@@ -1,3 +1,3 @@
 # high-shool-cs-class
 
-Computer science lectures and exercises for High school courses.
+Computer science lectures and exercises for high school courses.
