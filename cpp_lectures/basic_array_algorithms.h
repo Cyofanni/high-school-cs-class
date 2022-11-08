@@ -1,3 +1,7 @@
+#include <iostream>
+using namespace std;
+
+
 struct pos_value{
 	double value;
 	int position;
