@@ -7,6 +7,10 @@ class ListNode{
 		this.next = next;
 	}
 	
+	int getKey(){
+		return key;
+	}
+	
 	void printList() {
 		System.out.print("Linked list's content is: ");
 		
