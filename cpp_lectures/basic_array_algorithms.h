@@ -19,6 +19,9 @@ void print_iterative_ptr_arithm(int*, int);
 void print_recursive(int*, int);
 
 
+void print_array_bubble_sort_debug(int*, int);
+
+
 /*left shifts a slice of an int array and fill the gap with a value passed
   as a parameter
     eg) left_shift_slice([5, 6*, 8, 2*, 9, 12], from: 1, to: 3, gap_fill: 999, size: 6)
@@ -60,7 +63,7 @@ int binary_search_iterative(int*, int, int);
 
 
 //recursive binary ("logarithmic") search
-int binary_search_iterative(int*, int, int);
+int binary_search_recursive(int*, int, int);
 
 
 //verifies if an int array is sorted in ascending or descending order
@@ -73,6 +76,10 @@ void insertion_sort(int*, int);
 
 //selection sort
 void selection_sort(int*, int);
+
+
+//naive bubble sort
+void bubble_sort_naive(int* v, int size);
 
 
 //bubble sort

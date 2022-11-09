@@ -22,6 +22,27 @@ void print_iterative_ptr_arithm(int* buf, int size){
 }
 
 
+void print_array_bubble_sort_debug(int* v, int size){
+	int i = 0;
+	while (i < size){
+		if (i < size - 1){
+			if (v[i] > v[i + 1]){
+				cout << '*' << v[i] << "------*";
+			}
+			else {
+				cout << v[i] << '\t';
+			}
+		}
+		else {
+				cout << v[i] << '\t';
+		}
+	
+		i++;
+	}
+	
+	cout << endl;
+}
+
 //insertion sort
 void insertion_sort(int* v, int size){
 	for (int i = 0; i < size; i++){
@@ -33,6 +54,51 @@ void insertion_sort(int* v, int size){
 			j--;
 		}
 		v[j + 1] = item;
+	}
+}
+
+
+//iterative binary ("logarithmic") search
+int binary_search_iterative(int* v, int size, int key){
+	int l = 0;
+	int h = size - 1;
+	int m;
+	bool found = false;
+	int index_of_key = -1;
+	
+	while (!found && h >= l){
+		m = (l + h) / 2;
+		if (key == v[m]){
+			index_of_key = m;
+			found = true;
+		}
+		else if (key > v[m]){
+			l = m + 1;
+		}
+		else{
+			h = m - 1;
+		}
+	}
+	
+	return index_of_key;
+}
+
+//naive bubble sort
+void bubble_sort_naive(int* v, int size){
+	//suppose the will be at least a swap, i.e. the array is not sorted
+	bool swap_predicted = true; 
+	
+	while (swap_predicted){
+		print_array_bubble_sort_debug(v, size);
+		swap_predicted = false;  //suppose there won't be any swap, i.e. has been sorted
+		for (int i = 0; i <= size - 2; i++){
+			if (v[i] > v[i + 1]){
+				int t = v[i];
+				v[i] = v[i + 1];
+				v[i + 1] = t;
+				swap_predicted = true;
+			}
+		}
 	}
 }
 

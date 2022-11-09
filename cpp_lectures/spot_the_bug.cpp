@@ -12,7 +12,7 @@ double* g(){
 	return buf;
 }
 
-//spot the bug - 2
+//spot the bug - 3
 void read_stdin_into_buffer(char* buf, int dim){
 	int position;
 	char value;
@@ -23,16 +23,17 @@ void read_stdin_into_buffer(char* buf, int dim){
 	buf[position] = value;
 }
 
-//spot the bug - 3
+//spot the bug - 4
 void print_buffer(char* buf, int dim){
 	int k = dim;
 	int i = 0;
 	while (i <= k){
 		std::cout << buf[i];
+		i++;
 	}
 }
 
-//spot the bug - 4
+//spot the bug - 5
 void h(){
 	const int sz_src = 20;
 	const int sz_dest = 10;
@@ -46,7 +47,7 @@ void h(){
 	}
 }
 
-//spot the bug - 5
+//spot the bug - 6
 int r(int n){
 	int k = 0;
 	if (k == 1){
@@ -55,7 +56,7 @@ int r(int n){
 	return n * r(n - 1);
 }
 
-//spot the bug - 6
+//spot the bug - 7
 int binary_search(int* a, int size, int searched_key){
 	bool found = false;
 	int m;
@@ -79,7 +80,7 @@ int binary_search(int* a, int size, int searched_key){
 }
 
 
-//spot the bug - 7
+//spot the bug - 8
 void func0(int* c, int n){
 	if (n % 2 == 0){
 		c = nullptr;
@@ -88,7 +89,7 @@ void func0(int* c, int n){
 }
 
 
-//spot the bug - 8
+//spot the bug - 9
 void l(int n){
 	int* b;
 	while (true){
@@ -97,7 +98,7 @@ void l(int n){
 }
 
 
-//spot the bug - 9
+//spot the bug - 10
 void func1(int* p, int dim){
 	int k;
 	int i;
