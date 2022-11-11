@@ -44,6 +44,7 @@ void h(){
 	int i = 0;
 	while (i < sz_src){
 		dest[i] = src[i];
+		i++;
 	}
 }
 
