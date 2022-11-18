@@ -2,7 +2,7 @@ class StackLecture{
 	static boolean checkParenthesisBalance(String expr){
 		boolean balanced = false;
 		
-		StackChar st = new StackChar(expr.length() * 3);
+		StackChar st = new StackChar(expr.length());
 		
 		boolean moreClosed = false; //becomes true when current character is ')' and the stack is already empty
 		for (int i = 0; i < expr.length() && moreClosed == false; i++){
