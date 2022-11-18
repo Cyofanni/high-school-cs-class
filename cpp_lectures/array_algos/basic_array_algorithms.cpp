@@ -155,7 +155,7 @@ void selection_sort(int* v, int size){
 	for (int i = 0; i <= size - 1; i++){
 		int curr_smallest_item = v[i];
 		int curr_smallest_item_index = i;
-		for (int j = i; j <= size - 1; j++){
+		for (int j = i + 1; j <= size - 1; j++){
 			if (v[j] < curr_smallest_item){
 				curr_smallest_item = v[j];
 				curr_smallest_item_index = j;

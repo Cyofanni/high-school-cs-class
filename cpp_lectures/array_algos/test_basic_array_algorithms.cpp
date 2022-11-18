@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 	srand(time(NULL));
-	const int size = 100000;
+	const int size = 20;
 	int array[size];
 	int array_copy[size];
 	
@@ -15,9 +15,9 @@ int main(){
 		array_copy[i] = array[i];
 	}
 
-	/*print_iterative(array, size);
-	bubble_sort(array, size);
-	print_iterative(array, size);*/
+	print_iterative(array, size);
+	selection_sort(array, size);
+	print_iterative(array, size);
 	
 	auto t0 = chrono::high_resolution_clock::now();
 	insertion_sort(array, size);
