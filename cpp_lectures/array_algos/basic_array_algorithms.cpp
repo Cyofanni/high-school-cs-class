@@ -62,7 +62,7 @@ void print_array_insertion_sort_debug(int* v, int size, int sorted_until){
 
 //insertion sort
 void insertion_sort(int v[], int size){
-	print_array_insertion_sort_debug(v, size, 0);
+	//print_array_insertion_sort_debug(v, size, 0);
 	
 	for (int i = 1; i < size; i++){
 		int item = v[i];
@@ -73,7 +73,7 @@ void insertion_sort(int v[], int size){
 		}
 		v[j + 1] = item;
 		
-		print_array_insertion_sort_debug(v, size, i);
+		//print_array_insertion_sort_debug(v, size, i);
 	}
 }
 
@@ -108,7 +108,7 @@ void bubble_sort_naive(int* v, int size){
 	bool is_sorted = false;
 
 	while (!is_sorted){
-		print_array_bubble_sort_debug(v, size);
+		//print_array_bubble_sort_debug(v, size);
 		is_sorted = true;  //suppose there won't be any swap, i.e. has been sorted
 		for (int i = 0; i <= size - 2; i++){
 			if (v[i] > v[i + 1]){
@@ -136,7 +136,7 @@ void bubble_sort_naive(int* v, int size){
 void bubble_sort(int* v, int size){
 	bool is_sorted = false;
 
-	for (int i = size - 1; i > 0 && is_sorted; i--){
+	for (int i = size - 1; i > 0 && !is_sorted; i--){
 		is_sorted = true;
 		for (int j = 0; j < i; j++){
 			if (v[j] > v[j + 1]){
