@@ -1,0 +1,15 @@
+in>:
+    1129:       f3 0f 1e fa             endbr64
+    112d:       55                      push   %rbp
+    112e:       48 89 e5                mov    %rsp,%rbp
+    1131:       c7 45 f4 00 00 00 00    movl   $0x0,-0xc(%rbp)
+    1138:       66 0f ef c0             pxor   %xmm0,%xmm0
+    113c:       f2 0f 11 45 f8          movsd  %xmm0,-0x8(%rbp)
+    1141:       c7 45 f0 00 00 00 00    movl   $0x0,-0x10(%rbp)
+    1148:       eb 04                   jmp    114e <main+0x25>
+    114a:       83 45 f0 01             addl   $0x1,-0x10(%rbp)
+    114e:       83 7d f0 09             cmpl   $0x9,-0x10(%rbp)
+    1152:       7e f6                   jle    114a <main+0x21>
+    1154:       b8 00 00 00 00          mov    $0x0,%eax
+    1159:       5d                      pop    %rbp
+    115a:       c3                      ret
