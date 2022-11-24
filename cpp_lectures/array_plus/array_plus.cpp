@@ -10,7 +10,7 @@ void ArrayPlus::print(){
 	int i = 0;
 	while (i < size){
 		std::cout << *(this->v + i) << '\t';
-	        ++i;	
+		++i;	
 	}
 	std::cout << '\n';
 }
