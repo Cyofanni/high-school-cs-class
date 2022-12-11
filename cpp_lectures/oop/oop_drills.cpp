@@ -8,7 +8,7 @@ private:
 	double d;
 public:
 	A(){
-		cout << "called default constructor" << endl; 
+		cout << "called default constructor" << endl;
 	}
 	A(char c){
 		(*this).c = c;
@@ -25,7 +25,7 @@ public:
 		(*this).d = d;
 		cout << "called 3-argument constructor" << endl;
 	}
-	
+
 	char get_c() const{
 		return c;
 	}
@@ -41,12 +41,12 @@ void print(const A& a){
 	cout << '[' << a.get_c() << ", " << a.get_i() << ", " << a.get_d() << ']' << endl;
 }
 
-int main(int argc, char* argv[]){	
+int main(int argc, char* argv[]){
 	A a('a', 78, 3.422);
 	print(a);
 	print({'b', 87, 43.34});
-	
-	
+
+
 	if (argc > 1){
 		if (strncmp(argv[1], "0", 1) == 0){
 			A a1;
