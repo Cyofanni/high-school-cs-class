@@ -1,28 +1,28 @@
-class QueueIntNode{
-    int key;
-    QueueIntNode next;
+class QueueStringNode{
+    private String key;
+    private QueueStringNode next;
 
-    QueueIntNode(int key, QueueIntNode next){
+    QueueStringNode(String key, QueueStringNode next){
         this.key = key;
         this.next = next;
     }
 
     //called on tail pointer
-    QueueIntNode enqueue(int item){
+    QueueStringNode enqueue(String item){
         /*"this" is the current tail pointer, its next member must point to the new node
            returns a reference to the new tail
         */
-        this.next = new QueueIntNode(item, null);
+        this.next = new QueueStringNode(item, null);
         return this.next;
     }
 
     //called on head pointer
-    QueueIntNode dequeue(){
+    QueueStringNode dequeue(){
         return this.next;
     }
 
     void print(){
-        QueueIntNode it = this;
+        QueueStringNode it = this;
         while (it != null){
             System.out.print(it.key + " ");
             it = it.next;
