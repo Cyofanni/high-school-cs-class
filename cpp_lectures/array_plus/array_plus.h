@@ -1,12 +1,13 @@
-class ArrayPlus{
+class ArrayPlus
+{
 private:
-	int* v;
-	int size;
+  int *v;
+  int size;
 public:
-	ArrayPlus(int*, int);
-	void print();
-	bool is_sorted(char);
-	int search(int);
-	void sort();
-	void shift(char);
+  ArrayPlus (int *, int);
+  void print ();
+  bool is_sorted (char);
+  int search (int);
+  void sort ();
+  void shift (char);
 };
