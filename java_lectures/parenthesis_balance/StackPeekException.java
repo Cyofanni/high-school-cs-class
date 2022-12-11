@@ -1,5 +1,5 @@
 class StackPeekException extends Exception{
-	StackPeekException(){
-		System.err.println("StackPeekException");
-	}
+    StackPeekException(){
+        System.err.println("StackPeekException");
+    }
 }
