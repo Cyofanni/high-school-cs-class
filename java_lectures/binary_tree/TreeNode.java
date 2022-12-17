@@ -2,6 +2,8 @@ class TreeNode{
     int key;
     TreeNode leftChild;
     TreeNode rightChild;
+    boolean visitedLeft = false;
+    boolean visitedRight = false;
 
     TreeNode(int key, TreeNode leftChild, TreeNode rightChild){
         this.key = key;
@@ -9,75 +11,123 @@ class TreeNode{
         this.rightChild = rightChild;
     }
 
-
     void preOrderWalkAndPrint(){
-        if (this != null){
-            System.out.print(this.key);
-            System.out.print("(");
-            if (this.leftChild != null){
-                this.leftChild.preOrderWalkAndPrint();
-            }
-            else{
-                System.out.print("nil");
-            }
-
-            System.out.print(", ");
-            if (this.rightChild != null){
-                this.rightChild.preOrderWalkAndPrint();
-            }
-            else{
-                System.out.print("nil");
-            }
-            System.out.print(")");
+        if (this == null){
+            System.out.print("nil");
+            return;
         }
+        System.out.print(this.key);
+        System.out.print("(");
+        if (this.leftChild != null){
+            this.leftChild.preOrderWalkAndPrint();
+        }
+        System.out.print(",");
+        if (this.rightChild != null){
+            this.rightChild.preOrderWalkAndPrint();
+        }
+        System.out.print(")");
     }
 
     int getHeight(){
-        if (this == null){
+        if(this == null){
             return 0;
         }
-        if (this.leftChild == null && this.rightChild == null){
+        if(this.leftChild == null && this.rightChild == null){
             return 0;
         }
-        int heightLeftSubTree = 0;
-        int heightRightSubTree = 0;
-        if (this.leftChild != null){
-            heightLeftSubTree = this.leftChild.getHeight();
+        int heightLeft = 0;
+        int heightRight = 0;
+        if(this.leftChild != null){
+            heightLeft = this.leftChild.getHeight();
         }
-        if (this.rightChild != null){
-            heightRightSubTree = this.rightChild.getHeight();
+        if(this.rightChild != null){
+            heightRight = this.rightChild.getHeight();
+        }
+        if(heightLeft >= heightRight){
+            return heightLeft + 1;
+        }
+        return heightRight + 1;
+    }
+
+    int getHeightIterative(){
+        int path_length_counter = 0;
+        int height = 0;
+        StackTreeNode st = new StackTreeNode(10);
+        st.push(this);
+
+        while (st.isEmpty() == false){
+            TreeNode currentNode = st.peek();
+
+            //if left subtree of current node has not yet been visited, visit it
+            if (currentNode.visitedLeft == false){
+                currentNode.visitedLeft = true;
+                if (currentNode.leftChild != null){
+                    currentNode = currentNode.leftChild;
+                    st.push(currentNode);
+                    path_length_counter++;
+                }
+            }
+            //if left subtree of currentnode has already been visited, visit its right child
+            else if (currentNode.visitedRight == false){
+                currentNode.visitedRight = true;
+                if (currentNode.rightChild != null){
+                    currentNode = currentNode.rightChild;
+                    st.push(currentNode);
+                    path_length_counter++;
+                }
+            }
+            else {
+                st.pop();
+                if (path_length_counter >= height){
+                    height = path_length_counter;
+                }
+                path_length_counter--;
+            }
+
+
         }
 
-        if (heightLeftSubTree >= heightRightSubTree){
-            return heightLeftSubTree + 1;
-        }
-        return heightRightSubTree + 1;
+        return height;
     }
 }
 
-/*height(T) = max(height(T.left),height(T.right))+1 =
-  max(max(height(T.left.left),height(T.left.right))+1,max(height(T.right.left),height(T.right.right))+1)+1 =
-  max(max(0,0)+1,max(height(T.right.left),0)+1)+1 =
-  max(max(0,0)+1,max(max(height(T.right.left.left),height(T.right.left.right))+1,0)+1)+1 =
-  max(max(0,0)+1,max(max(0,0)+1,0)+1)+1 =
-  max(0+1,max(0+1,0)+1)+1 =
-  max(1,max(1,0)+1)+1 =
-  max(1,1+1)+1 =
-  max(1,2)+1 =
-  2+1 =
-  3
-*/
+class StackTreeNode{
+    TreeNode[] stack_array;
+    int top;
+    int size;
 
+    StackTreeNode(int size){
+        this.stack_array = new TreeNode[size];
+        this.top = -1;
+        this.size = size;
+    }
 
-/*
-   height(T): returns int
-       if (t is nil):
-            return 0
-       if t.left is nil and r.right is nil:
-            return 0
-       int heightLeftSubTree = height(T.left)
-       int heightRightSubTree = height(T.right)
+    int push(TreeNode item){
+        if (top < size-1){
+            top++;
+            stack_array[top] = item;
+        }
 
-       return max(heightLeftSubTree, rightSubTree) + 1
+        return top;
+    }
 
-*/
+    int pop(){
+        if (top >= 0){
+            top--;
+        }
+
+        return top;
+    }
+
+    boolean isEmpty(){
+        return top == -1;
+    }
+
+    boolean isFull(){
+        return top == size - 1;
+    }
+
+    TreeNode peek(){
+        return stack_array[top];
+    }
+}
