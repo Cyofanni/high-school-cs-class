@@ -4,7 +4,7 @@
 using namespace std;
 
 /*euclidean algorithm - tail-recursive implementation*/
-unsigned long gcd_euclid_recursive(unsigned long a, unsigned long b){
+unsigned long gcd_euclid_recursive(unsigned long long a, unsigned long long b){
     if (!b){    //base case
         return a;
     }
@@ -12,7 +12,7 @@ unsigned long gcd_euclid_recursive(unsigned long a, unsigned long b){
 }
 
 /*euclidean algorithm - iterative implementation*/
-unsigned long gcd_euclid_iterative(unsigned long a, unsigned long b){
+unsigned long long gcd_euclid_iterative(unsigned long long a, unsigned long long b){
     while (b){
         int remainder_a_b = a % b;
         a = b;
@@ -23,18 +23,18 @@ unsigned long gcd_euclid_iterative(unsigned long a, unsigned long b){
 }
 
 /*collatz conjecture - tail recursive implementation*/
-unsigned long collatz_recursive(int n, unsigned int n_iterations){
+unsigned long long collatz_recursive(int n, unsigned int n_iterations){
     if (!n_iterations || n == 1){
         return n;
     }
-    unsigned long result;
+    unsigned long long result;
     n % 2 == 0 ? result = collatz_recursive(n / 2, n_iterations - 1) : result = collatz_recursive(3 * n + 1, n_iterations - 1);
     return result;
 }
 
 /*collatz conjecture - iterative implementation*/
-unsigned long int collatz_iterative(int n, unsigned int n_iterations){
-    for (int i = 1; i <= n_iterations && n != 1; i += 1){
+unsigned long long collatz_iterative(int n, unsigned int n_iterations){
+    for (unsigned int i = 1; i <= n_iterations && n != 1; i += 1){
         n % 2 == 0 ? n /= 2 : n = 3 * n + 1;
     }
 
@@ -42,7 +42,7 @@ unsigned long int collatz_iterative(int n, unsigned int n_iterations){
 }
 
 /*naive primality test - skip even numbers, they cannot be prime (except for 2)*/
-bool primality_test_1(unsigned long n){
+bool primality_test_1(unsigned long long n){
     bool answer = true;
     if (n < 2){
         answer = false;
@@ -72,7 +72,7 @@ bool primality_test_1(unsigned long n){
   if it had even divisors, then it could have been divided by 2.
   It means that n would have been even. But we know it is odd.
 */
-bool primality_test_2(unsigned long n){
+bool primality_test_2(unsigned long long n){
     bool answer = true;
     if (n < 2){
         answer = false;
@@ -120,7 +120,7 @@ bool primality_test_2(unsigned long n){
      If you divide a number by its half, you get 2.
      If you divide a number by a number greater that its half, you get less than 2.
 */
-bool primality_test_3(unsigned long n){
+bool primality_test_3(unsigned long long n){
     bool answer = true;
     if (n < 2){
         answer = false;
@@ -169,7 +169,7 @@ bool primality_test_3(unsigned long n){
 
    So, to search for divisors of n, we can stop at the lower integer part of sqrt(n)
 */
-bool primality_test_4(unsigned long n){
+bool primality_test_4(unsigned long long n){
     bool answer = true;
     if (n < 2){
         answer = false;
@@ -211,7 +211,7 @@ long double leibniz_pi(unsigned int n_iterations){
 
 int main(int argc, char *argv[]){
     cout << "************************************************************************" << endl;
-    unsigned long int a, b;
+    unsigned long long a, b;
     cout << "enter two integer numbers to compute their gcd: " << endl;
     cout << "first number: ";
     cin >> a;
@@ -222,7 +222,7 @@ int main(int argc, char *argv[]){
     cout << "************************************************************************" << endl;
 
     cout << "************************************************************************" << endl;
-    unsigned long start_collatz;
+    unsigned long long start_collatz;
     int iterations;
     cout << "enter a natural number to verify the Collatz conjecture: ";
     cin >> start_collatz;
