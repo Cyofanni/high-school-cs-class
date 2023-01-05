@@ -14,6 +14,11 @@ typedef struct stack_node {
   struct stack_node *prev, *next;
 } STACK_NODE;
 
+typedef struct queue_node {
+  TREE_NODE *t;
+  struct queue_node *next;
+} QUEUE_NODE;
+
 STACK_NODE *init_stack_node(STACK_NODE *sn, STACK_NODE *psn, TREE_NODE *t) {
     sn = (STACK_NODE*) malloc(sizeof(STACK_NODE));
     sn->t = t;
@@ -36,7 +41,6 @@ STACK_NODE *push(STACK_NODE *st_ptr, TREE_NODE *t) {
 
   return new_stack_pointer;
 }
-
 
 STACK_NODE *pop(STACK_NODE *st_ptr) {
   STACK_NODE *new_stack_pointer = NULL;
@@ -115,13 +119,13 @@ void in_order_iter(TREE_NODE *t_node) {
       stack_pointer = pop(stack_pointer);
     }
     else if (!stack_pointer->t->visited_left) {
-    stack_pointer = push(stack_pointer, stack_pointer->t->left);
-    stack_pointer->prev->t->visited_left = TRUE;
+      stack_pointer = push(stack_pointer, stack_pointer->t->left);
+      stack_pointer->prev->t->visited_left = TRUE;
     }
     else if (!stack_pointer->t->visited_right) {
-    printf("%d ", stack_pointer->t->key);
-    stack_pointer = push(stack_pointer, stack_pointer->t->right);
-    stack_pointer->prev->t->visited_right = TRUE;
+      printf("%d ", stack_pointer->t->key);
+      stack_pointer = push(stack_pointer, stack_pointer->t->right);
+      stack_pointer->prev->t->visited_right = TRUE;
     }
   }
 }
@@ -175,8 +179,6 @@ void post_order_iter(TREE_NODE *t_node) {
   }
 }
 
-
-
 int main() {
   TREE_NODE *t = NULL;
   t = bst_insert(t, 20);
@@ -214,4 +216,6 @@ int main() {
   puts("\n");
   post_order_iter(t);
   fputs("\n", stdout);
+
+  return 0;
 }
