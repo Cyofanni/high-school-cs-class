@@ -3,9 +3,9 @@
 
 typedef enum bool {FALSE, TRUE} BOOL;
 
-typedef struct node {
+typedef struct tree_node {
   int key;
-  struct node *left, *right;
+  struct tree_node *left, *right;
   BOOL visited_left, visited_right;
 } TREE_NODE;
 
@@ -207,7 +207,7 @@ int main() {
   pre_order_iter(t);
   puts("\n");
 
-  set_visited_false();
+  set_visited_false(t);
 
   puts("post order, recursive and iterative:");
   post_order(t);
