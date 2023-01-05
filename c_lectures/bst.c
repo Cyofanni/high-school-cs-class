@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BASE_LEVEL 0
+#define BASE_TREE_LEVEL 0
 
 typedef enum bool {FALSE, TRUE} BOOL;
 
