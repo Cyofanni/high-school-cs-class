@@ -64,9 +64,9 @@ QUEUE_NODE *init_queue_node(QUEUE_NODE *sn, TREE_NODE *t) {
 QUEUE_NODE *enqueue(QUEUE_NODE *tail, TREE_NODE *t) {
   QUEUE_NODE *new_tail_ptr = NULL;
   new_tail_ptr = init_queue_node(tail, t);
-
+  
   if (tail) {
-    tail->next = new_tail_ptr;
+    tail->next = new_tail_ptr; 
   }
 
   return new_tail_ptr;
@@ -238,19 +238,19 @@ void breadth_first_search(TREE_NODE *t) {
       current_level = q_head->t->level;
       //if level changed, print newline
       if (current_level != old_level) {
-    putchar('\n');
+        putchar('\n');
       }
       if (q_head->t->left) {
-    //n stars means level n
-    print_n_chars(q_head->t->left->level, '*');
-    printf("%d ", q_head->t->left->key);
-    q_tail = enqueue(q_tail, q_head->t->left);
+        //n stars means level n
+        print_n_chars(q_head->t->left->level, '*');
+        printf("%d ", q_head->t->left->key);
+        q_tail = enqueue(q_tail, q_head->t->left);
       }
       if (q_head->t->right) {
-    //n stars means level n
-    print_n_chars(q_head->t->right->level, '*');
-    printf("%d ", q_head->t->right->key);
-    q_tail = enqueue(q_tail, q_head->t->right);
+        //n stars means level n
+        print_n_chars(q_head->t->right->level, '*');
+        printf("%d ", q_head->t->right->key);
+        q_tail = enqueue(q_tail, q_head->t->right);
       }
       q_head = dequeue(q_head);
     }
@@ -276,11 +276,11 @@ int main() {
   t = bst_insert(t, 23, BASE_LEVEL);
   t = bst_insert(t, 27, BASE_LEVEL);
   t = bst_insert(t, 60, BASE_LEVEL);
-
+  
   puts("breadth first search:");
   breadth_first_search(t);
   puts("\n");
-
+  
   puts("in order, recursive and iterative:");
   in_order(t);
   puts("\n");
