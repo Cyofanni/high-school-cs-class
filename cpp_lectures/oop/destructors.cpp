@@ -4,12 +4,10 @@ class B{
 private:
     int x;
     int y;
-
 public:
     B(){
         std::cout << "creating object of class B" << std::endl;
     }
-
     ~B(){
         std::cout << "destroying object of class B" << std::endl;
     }
@@ -24,7 +22,6 @@ public:
     C(){
        std::cout << "creating object of class C" << std::endl;
     }
-
     ~C(){
        std::cout << "destroying object of class C" << std::endl;
     }
@@ -37,7 +34,6 @@ public:
     D(){
         std::cout << "creating object of class D" << std::endl;
     }
-
     ~D(){
         std::cout << "destroying object of class D" << std::endl;
     }
@@ -50,7 +46,6 @@ public:
     E(){
         std::cout << "creating object of class E" << std::endl;
     }
-
     ~E(){
         std::cout << "destroying object of class E" << std::endl;
     }
@@ -66,7 +61,6 @@ void stack_allocation_deallocation(){
     std::cout << "address of d " << &d << std::endl;
     std::cout << "address of e " << &e << std::endl;
 }
-
 
 int main(int argc, char* argv[]){
     stack_allocation_deallocation();
