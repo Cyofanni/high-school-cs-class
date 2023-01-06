@@ -46,7 +46,6 @@ int main(int argc, char* argv[]){
 	print(a);
 	print({'b', 87, 43.34});
 
-
 	if (argc > 1){
 		if (strncmp(argv[1], "0", 1) == 0){
 			A a1;
