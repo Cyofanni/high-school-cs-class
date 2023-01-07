@@ -13,10 +13,10 @@ typedef union floating_point_bits {
   unsigned int ui;
 } fpb;
 
-void print_bits_int(int val, int is_float) {
+void display_bit_layout(int val, int is_float) {
   const size_t sz_int_bits = sizeof(int) * 8;
   if (!is_float) {
-    printf("integer value is: %d\n", val);
+    printf("the integer number is: %d\n", val);
   }
   const size_t sz_bits_and_spaces = sz_int_bits + sz_int_bits / 4 - 1; 
   char bits[sz_bits_and_spaces]; //make room for spaces, 1 space between each nibble
@@ -37,9 +37,9 @@ void print_bits_int(int val, int is_float) {
     bits_index--;
   }
   if (!is_float) {
-    printf("the bit layout is: %s\n", bits);
+    printf("\tthe bit layout is: %s\n", bits);
     if (val < 0) {
-      puts("signed integers are represented in 2's complement");
+      puts("\tsigned integers are represented in 2's complement");
     }
   }
   else {
@@ -81,7 +81,9 @@ void show_endianness() {
 int main(int argc, char *argv[]) {
   fpb fb;
   fb.f = 0.15625;
-  print_bits_int(fb.ui, 1);
-  
+  printf("the real number is %f\n", fb.f);
+  display_bit_layout(fb.ui, 1);
+  puts("\n\n");
+  display_bit_layout(-14, 0); 
   return 0;
 }
