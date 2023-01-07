@@ -20,7 +20,7 @@ void print_bytes(const char *str) {
 }
 
 int main(int argc, char *argv[]) {
-  char plaintext[30] = "alan turing died in 1952";
+  char plaintext[30] = "alan turing died in 1954";
   char ciphertext[30] = {};
   char key[5] = {0xCA, 0xFE, 0xBE, 0xEF, 0x00};
 
