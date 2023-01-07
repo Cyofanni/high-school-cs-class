@@ -10,7 +10,9 @@
 
 void print_bits_int(int val, int is_float) {
   const size_t sz_int_bits = sizeof(int) * 8;
-  printf("integer value is: %d\n", val);
+  if (!is_float) {
+    printf("integer value is: %d\n", val);
+  }
   const size_t sz_bits_and_spaces = sz_int_bits + sz_int_bits / 4 - 1; 
   char bits[sz_bits_and_spaces]; //make room for spaces, 1 space between each nibble
   
