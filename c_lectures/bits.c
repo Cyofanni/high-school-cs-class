@@ -8,7 +8,7 @@
 #define BYTES 0xDEADBEEF
 #define BYTES_SEQ_LENGTH 4
 
-void print_bits_int(int val) {
+void print_bits_int(int val, int is_float) {
   const size_t sz_int_bits = sizeof(int) * 8;
   printf("integer value is: %d\n", val);
   const size_t sz_bits_and_spaces = sz_int_bits + sz_int_bits / 4 - 1; 
@@ -29,10 +29,36 @@ void print_bits_int(int val) {
     }
     bits_index--;
   }
-  printf("the bit layout is: %s\n", bits);
-  if (val < 0) {
-    puts("signed integers are represented in 2's complement");
+  if (!is_float) {
+    printf("the bit layout is: %s\n", bits);
+    if (val < 0) {
+      puts("signed integers are represented in 2's complement");
+    }
   }
+  else {
+    //skip spaces
+    printf("the bit layout (IEEE 754 single precision) is:\n");
+    printf("\tsign_bit:      %c\n", bits[0]);
+    printf("\texponent bits: ");
+    for (int i = 1; i <= 3; i++) {
+      printf("%c ", bits[i]);
+    }
+    //space at position 4
+    for (int i = 5; i <= 8; i++) {
+      printf("%c ", bits[i]);
+    }
+    //space at position 9
+    printf("%c", bits[10]);
+    putchar('\n');
+    printf("\tmantissa bits: ");
+    for (int i = 11; i <= sz_bits_and_spaces - 1; i++) {
+      if ((i + 1) % 5 != 0) {
+	printf("%c ", bits[i]);
+      }
+    }
+    putchar('\n');
+  }
+  
 }
 
 void show_endianness() {
@@ -46,8 +72,15 @@ void show_endianness() {
   }
 }
 
+union floating_point__bits {
+  float f;
+  unsigned int ui;
+};
+
 int main(int argc, char *argv[]) {
-  show_endianness();
+  union floating_point__bits fb;
+  fb.f = 0.15625;
+  print_bits_int(fb.ui, 1);
   
   return 0;
 }
