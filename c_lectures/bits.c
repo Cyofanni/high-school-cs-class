@@ -8,6 +8,11 @@
 #define BYTES 0xDEADBEEF
 #define BYTES_SEQ_LENGTH 4
 
+typedef union floating_point_bits {
+  float f;
+  unsigned int ui;
+} fpb;
+
 void print_bits_int(int val, int is_float) {
   const size_t sz_int_bits = sizeof(int) * 8;
   if (!is_float) {
@@ -60,7 +65,6 @@ void print_bits_int(int val, int is_float) {
     }
     putchar('\n');
   }
-  
 }
 
 void show_endianness() {
@@ -74,13 +78,8 @@ void show_endianness() {
   }
 }
 
-union floating_point__bits {
-  float f;
-  unsigned int ui;
-};
-
 int main(int argc, char *argv[]) {
-  union floating_point__bits fb;
+  fpb fb;
   fb.f = 0.15625;
   print_bits_int(fb.ui, 1);
   
