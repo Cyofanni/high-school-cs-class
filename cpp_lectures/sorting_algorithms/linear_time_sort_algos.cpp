@@ -35,7 +35,7 @@ int *counting_sort(int input_array[], int len_input_array, int k) {
           2 elements in the list are <= 4
           4 elements in the list are == 5
      then 4 + 2 elements in the list are <= 5
-     use this idea to populate num_el_lesseq_index that with the info:
+     use this idea to populate num_el_lesseq_index with the info:
           num_el_lesseq_index[i]: number of elements less than or equal i
   */
   for (int i = 1; i <= k; i++) {
@@ -46,14 +46,14 @@ int *counting_sort(int input_array[], int len_input_array, int k) {
 
   /*loop over input_array starting from the end:
      we have an info about input_array[j], i.e. the number of elements
-     less or equal than input_array[j], stored in num_el_lesseq_index
+     less or equal than input_array[j], stored in num_el_lesseq_index[input_array[j]];
      in a sorted array, if there are n elements <= x, than x
-     must be in position n - 1; n decreases for each duplicate of x;
+     must be in position n - 1 (with 0-indexing); n decreases for each duplicate of x;
      example:
         4, 6, 7, 9, 12
         there are 3 elements <= 7, 7 is at index 2 (3 - 1)
         4, 6, 7, 9, 9, 15
-        there are 5 elements <= 9, the first 9 is at index 4 (5 - 1)
+        there are 5 elements <= 9, the first (from the end) 9 is at index 4 (5 - 1)
         there's another 9, at index 4 - 1 = 3
    */
   for (int j = len_input_array - 1; j >= 0; j--) {
@@ -75,3 +75,4 @@ int main() {
 
   delete[] result;
 }
+
