@@ -3,6 +3,24 @@
 
 using namespace std;
 
+void print_array_slice(int a[], int p, int r, int starred_it_ind,
+		       int slice_low, int slice_high) {
+  for (int i = p; i <= r; i++) {
+    if (i == slice_low) {
+      cout << "[";
+    }
+    cout << a[i];
+    if (i == starred_it_ind) {
+      cout << '*';
+    }
+    if (i == slice_high) {
+      cout<< "]";
+    }
+    cout << "     ";
+  }
+  cout << '\n';
+}
+
 /*p: lowest slice index, q: middle slice index
   r: highest slice index
  */
@@ -75,9 +93,27 @@ void merge(int a[], int p, int q, int r) {
 void merge_sort(int a[], int p, int r) {
   if (p < r) {
     int q = (p + r) / 2;
+
+    cout << "slice before left call: ";
+    print_array_slice(a, p, q, -1, -1, -1);
     merge_sort(a, p, q);
+    cout << "slice after left call: ";
+    print_array_slice(a, p, q, -1, -1, -1);
+    
+    cout << "slice before right call: ";
+    print_array_slice(a, p, q, -1, -1, -1);
     merge_sort(a, q + 1, r);
+    cout << "after right call: ";
+    print_array_slice(a, q + 1, r, -1, -1, -1);
+
+    cout << "slice left subarray before merge: ";
+    print_array_slice(a, p, q, -1, -1, -1);
+    cout << "right subarray before merge: ";
+    print_array_slice(a, q + 1, r, -1, -1, -1);
     merge(a, p, q, r);
+    cout << "slice after merge: ";
+    print_array_slice(a, p, r, -1, -1, -1);
+    cout << '\n';
   }
 }
 
@@ -117,24 +153,31 @@ int partition(int a[], int p, int r) {
   return i + 1;
 }
 
-void quick_sort(int a[], int p, int r) {
+void quick_sort(int a[], int p, int r, int a_length) {
   if (p < r) {
     int q = partition(a, p, r);
-    quick_sort(a, p, q - 1);
-    quick_sort(a, q, r);
+    cout << "after call to partition: ";
+    print_array_slice(a, 0, a_length, q, p, r);
+   
+    quick_sort(a, p, q - 1, a_length);
+    quick_sort(a, q, r, a_length);
     //no combine step required, the subarrays are sorted in place
   }
 }
 
-void print_array(int a[], int size) {
-  for (int i = 0; i < size; i++) {
-    cout << a[i] << '\t';
-  }
-  cout << '\n';
-}
+int main() { 
+  int arr[] = {9, 8, 1, 0, 4, 6, 2, 7, 10, 12};
+  print_array_slice(arr, 0, 7, -1, -1, -1);
+  quick_sort(arr, 0, 9, 9);
 
-int main(){
-  int arr[] = {1253, 2, 4, 123, 3777, 1, 23, 9981, 67};
-  merge_sort(arr, 0, 8);
-  print_array(arr, 9);
+  cout << "\nquicksort output: " << endl;
+  print_array_slice(arr, 0, 9, -1, -1, -1);
+
+  cout << "\n\n#######################################################\n\n" << endl;
+  int arr1[] = {9, 8, 1, 0, 4, 6, 2, 7, 10, 12};
+  print_array_slice(arr, 0, 9, -1, -1, -1);
+  merge_sort(arr, 0, 9);
+
+  cout << "\nmergesort output: " << endl;
+  print_array_slice(arr, 0, 9, -1, -1, -1);
 }
