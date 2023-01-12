@@ -20,6 +20,7 @@ void alloc_chars_heap(const char *str) {
     putchar(heap_bytes[i]);
   }
   putchar('\n');
+  free(heap_bytes);
 }
 
 void alloc_doubles_heap(double d) {
