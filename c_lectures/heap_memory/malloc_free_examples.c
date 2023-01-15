@@ -40,7 +40,7 @@ void alloc_doubles_heap(double d) {
 }
 
 int *compute_fibonacci_numbers(int n) {
-  int *fib_array = (int*) malloc((n + 1) * sizeof(int));
+  int *fib_array = (int*) malloc((n + 2) * sizeof(int));
   fib_array[1] = 1;
   for (int i = 2; i <= n; i++) {
     fib_array[i]= fib_array[i - 1] + fib_array[i - 2];

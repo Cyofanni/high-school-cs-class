@@ -8,7 +8,7 @@ void unsafe_heap_write(size_t sz) {
   printf("%s ", "enter an integer: ");
   scanf("%d", &in);
   int item_cnt = 0;
-  
+
   while (in != -1) {
     heap_ar[item_cnt] = in;
     printf("%s ", "enter an integer: ");
@@ -27,12 +27,12 @@ void safe_heap_write(size_t sz) {
   size_t heap_ar_len = sz;
   int * heap_ar = (int*) calloc(heap_ar_len, sizeof(int));
   printf("heap_ar allocated with size %lu at address %p\n", heap_ar_len, heap_ar);
-   
+
   int in;
   printf("%s ", "enter an integer: ");
   scanf("%d", &in);
   int item_index = 0;
-  
+
   while (in != -1) {
     if (item_index + 1 > heap_ar_len - 1) {
       heap_ar_len *= 2;
@@ -44,7 +44,7 @@ void safe_heap_write(size_t sz) {
     scanf("%d", &in);
     item_index++;
   }
-  
+
   for (int j = 0; j < item_index; j++) {
     printf("%d\t", heap_ar[j]);
   }
