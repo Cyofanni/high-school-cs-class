@@ -53,7 +53,6 @@ void safe_heap_write(size_t sz) {
   free(heap_ar);
 }
 
-
 int main() {
   safe_heap_write(4);
 }
