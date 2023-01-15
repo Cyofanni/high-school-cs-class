@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void unsafe_heap_write() {
-  size_t heap_ar_len = 4;
+void unsafe_heap_write(size_t sz) {
+  size_t heap_ar_len = sz;
   int * const heap_ar = (int * const) calloc(heap_ar_len, sizeof(int));
-  
   int in;
   printf("%s ", "enter an integer: ");
   scanf("%d", &in);
@@ -16,7 +15,6 @@ void unsafe_heap_write() {
     scanf("%d", &in);
     item_cnt++;
   }
-  
   for (int j = 0; j < item_cnt; j++) {
     printf("%d\t", heap_ar[j]);
   }
@@ -25,8 +23,8 @@ void unsafe_heap_write() {
   free(heap_ar);
 }
 
-void safe_heap_write() {
-  size_t heap_ar_len = 4;
+void safe_heap_write(size_t sz) {
+  size_t heap_ar_len = sz;
   int * heap_ar = (int*) calloc(heap_ar_len, sizeof(int));
   printf("heap_ar allocated with size %lu at address %p\n", heap_ar_len, heap_ar);
    
@@ -57,5 +55,5 @@ void safe_heap_write() {
 
 
 int main() {
-  safe_heap_write();
+  safe_heap_write(4);
 }
