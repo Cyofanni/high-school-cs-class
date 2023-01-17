@@ -20,8 +20,13 @@ def is_prime(n):
             
     return is_prime
 
+if len(sys.argv) < 2:
+    exit("missing number to test")
+
 start_time = time.time()
-number = 34598672233309548723054829365798672361154598672239919548453054829365734592387867236231
+#large number: 34598672233309548723054829365798672361154598672239919548453054829365734592387867236231
+number = int(sys.argv[1])
+
 if is_prime(number):
     print(number, 'is prime')    
 else:

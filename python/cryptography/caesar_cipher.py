@@ -4,13 +4,19 @@
 
 import sys
 
-def shift_character(plain_c, key):
-    return chr(((ord(plain_c) + key - 32) % 94) + 32)
+alphabet_size = 26
+ascii_base = 97
 
+def shift_character(plain_c, key):
+    return chr(((ord(plain_c) + key - ascii_base) % alphabet_size) + ascii_base)
+
+if (len(sys.argv) < 3):
+    exit("missing plaintext/key")
+    
 plain_text = sys.argv[1]
 key = sys.argv[2]
 
-for i in range(len(plain_text)):
-    print(shift_character(plain_text[i], int(key)), end = '')
+for pc in plain_text:
+    print(shift_character(pc, int(key)), end = '')
 
 print()
