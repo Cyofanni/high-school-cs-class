@@ -7,7 +7,7 @@ typedef enum bool {FALSE, TRUE} BOOL;
 
 typedef struct tree_node {
   int key;
-  struct tree_node *left, *right;
+  struct tree_node *left, *right, *parent;
   BOOL visited_left, visited_right;
   unsigned int level;
 } TREE_NODE;
@@ -64,9 +64,9 @@ QUEUE_NODE *init_queue_node(QUEUE_NODE *sn, TREE_NODE *t) {
 QUEUE_NODE *enqueue(QUEUE_NODE *tail, TREE_NODE *t) {
   QUEUE_NODE *new_tail_ptr = NULL;
   new_tail_ptr = init_queue_node(tail, t);
-  
+
   if (tail) {
-    tail->next = new_tail_ptr; 
+    tail->next = new_tail_ptr;
   }
 
   return new_tail_ptr;
@@ -84,7 +84,7 @@ QUEUE_NODE *dequeue(QUEUE_NODE *head) {
   }
 }
 
-TREE_NODE *bst_insert(TREE_NODE *node, int k, unsigned level) {
+TREE_NODE *bst_insert_rec(TREE_NODE *node, int k, unsigned level) {
   if (!node) {
     TREE_NODE *new_node = (TREE_NODE*) malloc(sizeof(TREE_NODE));
     new_node->key = k;
@@ -97,14 +97,75 @@ TREE_NODE *bst_insert(TREE_NODE *node, int k, unsigned level) {
   }
   else if (k <= node->key) {
     level++;
-    node->left = bst_insert(node->left, k, level);
+    node->left = bst_insert_rec(node->left, k, level);
   }
   else {
     level++;
-    node->right = bst_insert(node->right, k, level);
+    node->right = bst_insert_rec(node->right, k, level);
   }
 
   return node;
+}
+
+TREE_NODE *bst_insert_rec_p(TREE_NODE *node, TREE_NODE *p_node, int k, unsigned level) {
+  if (!node) {
+    TREE_NODE *new_node = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+    new_node->key = k;
+    new_node->left = NULL;
+    new_node->right = NULL;
+    new_node->parent = p_node;
+    new_node->visited_left = FALSE;
+    new_node->visited_right = FALSE;
+    new_node->level = level;
+    return new_node;
+  }
+  else if (k <= node->key) {
+    node->left = bst_insert_rec_p(node->left, node, k, level + 1);
+  }
+  else {
+    node->right = bst_insert_rec_p(node->right, node, k, level + 1);
+  }
+
+  return node;
+}
+
+TREE_NODE *bst_insert_iterative(TREE_NODE *t, int key, unsigned int level) {
+  TREE_NODE *current_pointer = t;  //tree iterator
+  TREE_NODE *parent_pointer = NULL;
+  BOOL last_left = FALSE;  //TRUE if went left in last iteration
+
+  while (current_pointer) {
+    parent_pointer = current_pointer;
+    if (key <= current_pointer->key) {
+      current_pointer = current_pointer->left;
+      last_left = TRUE;
+    }
+    else {
+      current_pointer = current_pointer->right;
+      last_left = FALSE;
+    }
+    level++;
+  }
+
+  TREE_NODE *new_node = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+  new_node->key = key;
+  new_node->left = NULL;
+  new_node->right = NULL;
+  new_node->visited_left = FALSE;
+  new_node->visited_right = FALSE;
+  new_node->level = level;
+
+  if (parent_pointer) {
+    if (last_left) {
+      parent_pointer->left = new_node;
+    }
+    else {
+      parent_pointer->right = new_node;
+    }
+    return t;
+  }
+
+  return new_node;
 }
 
 void set_visited_false(TREE_NODE *node) {
@@ -332,37 +393,41 @@ TREE_NODE *bst_maximum_iterative(TREE_NODE *t) {
 
 int main() {
   TREE_NODE *t = NULL;
-  unsigned int level = 0;
-  t = bst_insert(t, 1, BASE_TREE_LEVEL);
-  t = bst_insert(t, 10, BASE_TREE_LEVEL);
-  t = bst_insert(t, 30, BASE_TREE_LEVEL);
-  t = bst_insert(t, 8, BASE_TREE_LEVEL);
-  t = bst_insert(t, 12, BASE_TREE_LEVEL);
-  t = bst_insert(t, 25, BASE_TREE_LEVEL);
-  t = bst_insert(t, -65, BASE_TREE_LEVEL);
-  t = bst_insert(t, 5, BASE_TREE_LEVEL);
-  t = bst_insert(t, 9, BASE_TREE_LEVEL);
-  t = bst_insert(t, 380, BASE_TREE_LEVEL);
-  t = bst_insert(t, 42, BASE_TREE_LEVEL);
-  t = bst_insert(t, -121, BASE_TREE_LEVEL);
-  t = bst_insert(t, -1313, BASE_TREE_LEVEL);
-  t = bst_insert(t, 123, BASE_TREE_LEVEL);
-  t = bst_insert(t, 2700, BASE_TREE_LEVEL);
-  t = bst_insert(t, 60, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 12, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 16, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 8, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 4, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 10, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 15, BASE_TREE_LEVEL);
+  t = bst_insert_rec(t, 20, BASE_TREE_LEVEL);
 
-  TREE_NODE *s = bst_maximum_iterative(t);
-  
-  if (!s) {
-    printf("key not found\n\n\n");
-  }
-  else {
-    printf("%d\n\n\n", s->key);
-  }
-  
-  puts("breadth first search:");
+  //bst with initialized parent pointers
+  TREE_NODE *t_p = NULL;
+  t_p = bst_insert_rec_p(t_p, NULL, 12, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 16, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 8, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 4, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 10, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 15, BASE_TREE_LEVEL);
+  t_p = bst_insert_rec_p(t_p, NULL, 20, BASE_TREE_LEVEL);
+
+  //bst with initialized parent pointers
+  TREE_NODE *t_1 = NULL;
+  t_1 = bst_insert_rec(t_1, 12, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 16, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 8, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 4, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 10, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 15, BASE_TREE_LEVEL);
+  t_1 = bst_insert_rec(t_1, 20, BASE_TREE_LEVEL);
+
+  puts("breadth first search on BST built recursively:");
   breadth_first_search(t);
   puts("\n");
-  
+  puts("breadth first search on BST built iteratively:");
+  breadth_first_search(t_1);
+  puts("\n");
+
   puts("in order, recursive and iterative:");
   in_order(t);
   puts("\n");
