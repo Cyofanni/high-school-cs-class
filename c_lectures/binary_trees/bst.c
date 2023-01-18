@@ -480,6 +480,18 @@ void bst_delete(TREE_NODE *t) {
   }
 }
 
+void print_tree_parentheses(TREE_NODE *t) {
+  if (!t) {
+    return;
+  }
+  printf("%d",t->key);
+  putchar('(');
+  print_tree_parentheses(t->left);
+  putchar(',');
+  print_tree_parentheses(t->right);
+  putchar(')');
+}
+
 int main() {
   //bst with initialized parent pointers
   TREE_NODE *t_p = NULL;
