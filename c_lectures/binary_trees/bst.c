@@ -391,16 +391,23 @@ TREE_NODE *bst_maximum_iterative(TREE_NODE *t) {
   return p;
 }
 
-int main() {
-  TREE_NODE *t = NULL;
-  t = bst_insert_rec(t, 12, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 16, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 8, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 4, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 10, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 15, BASE_TREE_LEVEL);
-  t = bst_insert_rec(t, 20, BASE_TREE_LEVEL);
+TREE_NODE *bst_successor(TREE_NODE *t) {
+  if (t) {
+    if (t->right) {
+      return bst_minimum_iterative(t->right);
+    }
+    TREE_NODE *iter = t->parent;
+    while (iter && t == iter->right) {
+      t = iter;
+      iter = iter->parent;
+    }
+    return iter;
+  }
 
+  return NULL;
+}
+
+int main() {
   //bst with initialized parent pointers
   TREE_NODE *t_p = NULL;
   t_p = bst_insert_rec_p(t_p, NULL, 12, BASE_TREE_LEVEL);
@@ -410,6 +417,11 @@ int main() {
   t_p = bst_insert_rec_p(t_p, NULL, 10, BASE_TREE_LEVEL);
   t_p = bst_insert_rec_p(t_p, NULL, 15, BASE_TREE_LEVEL);
   t_p = bst_insert_rec_p(t_p, NULL, 20, BASE_TREE_LEVEL);
+
+  TREE_NODE *s = bst_successor(t_p->right->right);
+  if (s) {
+    printf("%d\n\n\n", s->key);
+  }
 
   //bst with initialized parent pointers
   TREE_NODE *t_1 = NULL;
@@ -421,33 +433,30 @@ int main() {
   t_1 = bst_insert_rec(t_1, 15, BASE_TREE_LEVEL);
   t_1 = bst_insert_rec(t_1, 20, BASE_TREE_LEVEL);
 
-  puts("breadth first search on BST built recursively:");
-  breadth_first_search(t);
-  puts("\n");
   puts("breadth first search on BST built iteratively:");
   breadth_first_search(t_1);
   puts("\n");
 
   puts("in order, recursive and iterative:");
-  in_order(t);
+  in_order(t_p);
   puts("\n");
-  in_order_iter(t);
+  in_order_iter(t_p);
   puts("\n");
 
-  set_visited_false(t);
+  set_visited_false(t_p);
 
   puts("pre order, recursive and iterative:");
-  pre_order(t);
+  pre_order(t_p);
   puts("\n");
-  pre_order_iter(t);
+  pre_order_iter(t_p);
   puts("\n");
 
-  set_visited_false(t);
+  set_visited_false(t_p);
 
   puts("post order, recursive and iterative:");
-  post_order(t);
+  post_order(t_p);
   puts("\n");
-  post_order_iter(t);
+  post_order_iter(t_p);
   fputs("\n", stdout);
 
   return 0;
