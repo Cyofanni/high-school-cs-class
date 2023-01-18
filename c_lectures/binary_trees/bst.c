@@ -407,31 +407,86 @@ TREE_NODE *bst_successor(TREE_NODE *t) {
   return NULL;
 }
 
+TREE_NODE *bst_predecessor(TREE_NODE *t) {
+  if (t) {
+    if (t->left) {
+      return bst_maximum_iterative(t->left);
+    }
+    TREE_NODE *iter = t->parent;
+    while (iter && t == iter->left) {
+      t = iter;
+      iter = iter->parent;
+    }
+    return iter;
+  }
+
+  return NULL;
+}
+
+void bst_delete(TREE_NODE *t) {
+  if (!t) {
+    //cannot delete empty node
+    return;
+  }
+  //if t has no child
+  if (!t->left && !t->right) {
+    //if t has not child and no parent
+    if (!t->parent) {
+      free(t);
+    }
+    else {
+      //if t is left child of its parent
+      if (t == t->parent->left) {
+	t->parent->left = NULL;
+      }
+      //if t is right child of its parent
+      else if (t == t->parent->right){
+	t->parent->right = NULL;
+      }
+      //free memory of node t
+      free(t);
+    }
+  }
+  //if has at least a child
+  else {
+    //
+  }
+}
+
+
 int main() {
   //bst with initialized parent pointers
   TREE_NODE *t_p = NULL;
   t_p = bst_insert_rec_p(t_p, NULL, 12, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 16, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 8, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 4, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 10, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 15, BASE_TREE_LEVEL);
-  t_p = bst_insert_rec_p(t_p, NULL, 20, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 16, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 8, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 4, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 10, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 15, BASE_TREE_LEVEL);
+  bst_insert_rec_p(t_p, NULL, 20, BASE_TREE_LEVEL);
 
-  TREE_NODE *s = bst_successor(t_p->right->right);
-  if (s) {
-    printf("%d\n\n\n", s->key);
-  }
+  puts("breadth first search on BST built recursively:");
+  breadth_first_search(t_p);
+  puts("\n");
+  bst_delete(t_p->left->left);
+  puts("breadth first search on BST built recursively, after node removal:");
+  breadth_first_search(t_p);
+  puts("\n");
 
-  //bst with initialized parent pointers
+  bst_delete(t_p->left->right);
+  puts("breadth first search on BST built recursively, after node removal:");
+  breadth_first_search(t_p);
+  puts("\n");
+
+  //bst with uninitialized parent pointers
   TREE_NODE *t_1 = NULL;
   t_1 = bst_insert_rec(t_1, 12, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 16, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 8, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 4, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 10, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 15, BASE_TREE_LEVEL);
-  t_1 = bst_insert_rec(t_1, 20, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 16, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 8, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 4, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 10, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 15, BASE_TREE_LEVEL);
+  bst_insert_rec(t_1, 20, BASE_TREE_LEVEL);
 
   puts("breadth first search on BST built iteratively:");
   breadth_first_search(t_1);
