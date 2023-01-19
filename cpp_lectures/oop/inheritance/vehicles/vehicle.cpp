@@ -6,5 +6,5 @@ Vehicle::Vehicle(std::string s): serial_number(s) {
 }
 
 std::string Vehicle::get_serial_number() {
-    return serial_number;
+  return serial_number;
 }
