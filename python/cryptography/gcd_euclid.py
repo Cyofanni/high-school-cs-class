@@ -12,28 +12,50 @@ def gcd_euclid_recursive(a, b):
         return a
     return gcd_euclid_recursive(b, a % b)
 
-def gcd_euclid_recursive_ext(a, b):
+def gcd_euclid_extended_recursive(a, b):
     if b == 0:
         return (a, 1, 0)
-    triple = gcd_euclid_recursive_ext(b, a % b)
-    backward_triple = []
-    backward_triple.append(triple[0])
-    backward_triple.append(triple[2])
-    backward_triple.append(triple[1] - a//b * triple[2])
-    return backward_triple
+    triple = gcd_euclid_extended_recursive(b, a % b)
+    return (triple[0], triple[2], triple[1] - a // b * triple[2])
 
-if len(sys.argv) < 3:
-    exit("not enough parameters")
+def gcd_euclid_extended_iterative(a, b):
+    coeffs = [(a, b)]
 
-a = int(sys.argv[1])
-b = int(sys.argv[2])
-#gcd(72, 22) = gcd(22, 6) = gcd(6, 4) = gcd(4, 2) = gcd(2, 0)
+    while b != 0:
+        rem = a % b
+        a = b
+        b = rem
+        coeffs.append((a, b))
 
-print("result of euclidean algorithm (iterative) on", a, "and", b,
-      "is", gcd_euclid_iterative(a, b))
-gcd = gcd_euclid_recursive(a, b)
-print("result of euclidean algorithm (recursive) on", a, "and", b,
-      "is", gcd)
+    triple = (a, 1, 0)
+    #build the triples (d, x, y) backwards
+    i = 2
+    while i <= len(coeffs):
+        triple = (triple[0], triple[2], triple[1] -
+        coeffs[len(coeffs)-i][0] // coeffs[len(coeffs)-i][1] * triple[2])
+        i += 1
 
-coeffs = gcd_euclid_recursive_ext(a, b)
-print("linear combination (a*x + b*y) is : ", gcd, "=", a, "*", coeffs[1], "+", b, "*", coeffs[2])
+    return triple
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        exit("not enough parameters")
+
+    a = int(sys.argv[1])
+    b = int(sys.argv[2])
+    #gcd(72, 22) = gcd(22, 6) = gcd(6, 4) = gcd(4, 2) = gcd(2, 0)
+
+    print("result of euclidean algorithm (iterative) on", a, "and", b,
+          "is", gcd_euclid_iterative(a, b))
+    gcd = gcd_euclid_recursive(a, b)
+    print("result of euclidean algorithm (recursive) on", a, "and", b,
+          "is", gcd)
+
+    coeffs = gcd_euclid_extended_recursive(a, b)
+    print("linear combination (a*x + b*y), computed recursively,  is : ",
+          gcd, "=", a, "*", coeffs[1], "+", b, "*", coeffs[2])
+
+    coeffs = gcd_euclid_extended_iterative(a, b)
+    print("linear combination (a*x + b*y), computed iteratively is : ",
+          gcd, "=", a, "*", coeffs[1], "+", b, "*", coeffs[2])
