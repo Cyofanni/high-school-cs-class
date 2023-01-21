@@ -1,6 +1,6 @@
 /*
-  The program reads 3 integers from stdin and prints the greatest
-  on stdout.
+  The program reads 3 integers from stdin and prints 
+  the greatest one stdout.
 */
 
 #include <stdio.h>
