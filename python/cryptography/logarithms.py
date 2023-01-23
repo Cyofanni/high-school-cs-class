@@ -27,5 +27,5 @@ def log_(base, number, iters):
 
 print('result of my logarithm function:     ',
       log_(float(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3])))
-print('result of python logarithm function: ',math.log2(float(sys.argv[2])))
+print('result of python logarithm function: ' ,math.log2(float(sys.argv[2])))
     
