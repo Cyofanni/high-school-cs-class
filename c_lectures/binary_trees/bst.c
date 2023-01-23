@@ -331,6 +331,21 @@ TREE_NODE *search_bst_recursive(TREE_NODE *t, int k) {
   return search_bst_recursive(t->right, k);
 }
 
+TREE_NODE *search_bst_recursive_1(TREE_NODE *t, int k) {
+  if (!t){
+    return NULL;
+  }
+  if (k == t->key) {
+    return t;
+  }
+  if (k < t->key) {
+    search_bst_recursive(t->left, k);
+  }
+  else {
+    return search_bst_recursive(t->right, k);
+  }
+}
+
 TREE_NODE *search_bst_iterative(TREE_NODE *t, int k) {
   TREE_NODE *p = t;
   BOOL found_key = FALSE;
@@ -492,28 +507,105 @@ void print_tree_parentheses(TREE_NODE *t) {
   putchar(')');
 }
 
+TREE_NODE *bst_successor_1(TREE_NODE *p) {
+  if (!p) {
+    return NULL;
+  }
+  if (p->right) {
+    return bst_minimum_iterative(p->right);
+  }
+
+  TREE_NODE *pp = p->parent;
+  /*
+    while pp exists and p is its right child
+  */
+  while (pp && pp->right == p) {
+    p = pp;
+    pp = pp->parent;
+  }
+
+  return pp;
+}
+
+TREE_NODE *bst_predecessor_1(TREE_NODE *p) {
+  if (!p) {
+    return NULL;
+  }
+  if (p->left) {
+    return bst_maximum_iterative(p->left);
+  }
+
+  TREE_NODE *pp = p->parent;
+  while (pp && p == pp->left) {
+    p == pp;
+    pp = pp->parent;
+  }
+
+  return pp;
+}
+
+BOOL bst_check(TREE_NODE *t) {
+  if (!t) {
+    return TRUE;
+  }
+
+  if (t->left && t->left->key > t->key) {
+    return FALSE;
+  }
+  if (t->right && t->right->key <= t->key) {
+    return FALSE;
+  }
+
+  BOOL res = bst_check(t->left);
+  //if left subtree is BST, then check right subtree
+  if (res) {
+    res = bst_check(t->right);
+  }
+
+  return res;
+}
+
 int main() {
   //bst with initialized parent pointers
   TREE_NODE *t_p = NULL;
+
   t_p = bst_insert_iterative(t_p, 15, BASE_TREE_LEVEL);
-  bst_insert_iterative(t_p, 5, BASE_TREE_LEVEL);
+  t_p->left = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+  t_p->left->key = 6;
+  t_p->left->left = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+  t_p->left->left->key = 3;
+  t_p->right = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+  t_p->right->key = 23;
+  t_p->right->right = (TREE_NODE*) malloc(sizeof(TREE_NODE));
+  t_p->right->right->key = 13;
+
+
+  //bst_insert_iterative(t_p, 5, BASE_TREE_LEVEL);
+  /*
   bst_insert_iterative(t_p, 16, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 3, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 12, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 20, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 10, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 15, BASE_TREE_LEVEL);
-  bst_insert_iterative(t_p, 18, BASE_TREE_LEVEL);
+  bst_insert_iterative(t_p, 12, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 23, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 6, BASE_TREE_LEVEL);
   bst_insert_iterative(t_p, 7, BASE_TREE_LEVEL);
+  */
+
+  printf("bst check returned: %d\n", bst_check(t_p));
 
   puts("breadth first search on BST built iteratively:");
   breadth_first_search(t_p);
-  TREE_NODE *n = search_bst_iterative(t_p, 345);
-  TREE_NODE *s = bst_successor(n);
+  TREE_NODE *n = search_bst_recursive(t_p, 15);
+  if (!n) {
+    puts("key not found\n");
+  }
+
+  TREE_NODE *s = bst_predecessor_1(n);
   if (n && s) {
-    printf("successor of %d is %d\n\n", n->key, s->key);
+    printf("predecessor of %d is %d\n\n", n->key, s->key);
   }
   else {
     puts("successor not found\n\n");
