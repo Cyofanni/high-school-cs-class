@@ -55,7 +55,7 @@ if len(sys.argv) < 3:
     print("usage: 'python3 modular_arithmetic.py s 7' prints table of sum modulo 7")
     print("usage: 'python3 modular_arithmetic.py p 7' prints table of product modulo 7")
     print("usage: 'python3 modular_arithmetic.py e 7' prints table of exponentiation modulo 7")
-    print("usage: 'python3 modular_arithmetic.py f 7' very Fermat's little theorem on m = 7")
+    print("usage: 'python3 modular_arithmetic.py f 6 7' very Fermat's little theorem on a = 6, m = 7")
     exit("missing operation and modulo number")
 elif sys.argv[1] != 's' and sys.argv[1] != 'p' and sys.argv[1] != 'e' and sys.argv[1] != 'f':
     exit("operation character must be 's' (sum), 'p' (product), 'e' (exponentiation), "
