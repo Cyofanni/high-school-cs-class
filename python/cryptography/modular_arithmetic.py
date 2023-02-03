@@ -24,9 +24,10 @@ def print_table(c, m):
 
     print()
     i = 0
-    print('   ', end = '')
+    print('  ', end = '')
     while i < m:
-        print(i, ' ', end = '')
+        s = "%6d" % (i)
+        print(s, end = '')
         i += 1
 
     print()
@@ -35,6 +36,7 @@ def print_table(c, m):
     while i < m:
         print(i, ' ', end = '')
         j = 0
+        print('    ', end = '')
         while j < m:
             res = 0
             if c == 's':
@@ -43,7 +45,8 @@ def print_table(c, m):
                 res = product_mod(i, j, m)
             elif c == 'e':
                 res = naive_exp_mod(i, j, m)
-            print(res, ' ', end = '')
+            r = "%2d    " % (res)
+            print(r, end = '')
             j += 1
         print()
         i += 1
@@ -55,7 +58,7 @@ if len(sys.argv) < 3:
     print("usage: 'python3 modular_arithmetic.py f 7' very Fermat's little theorem on m = 7")
     exit("missing operation and modulo number")
 elif sys.argv[1] != 's' and sys.argv[1] != 'p' and sys.argv[1] != 'e' and sys.argv[1] != 'f':
-    exit("operation character must be 's' (sum), 'p' (product), 'e' (exponentiation), " 
+    exit("operation character must be 's' (sum), 'p' (product), 'e' (exponentiation), "
             "'f' to verify Fermat's little theorem")
 
 if sys.argv[1] == 'f':
