@@ -17,7 +17,7 @@ def is_prime(n):
                 is_prime = False
                 found_div = True
             trial_div += 2
-            
+
     return is_prime
 
 if len(sys.argv) < 2:
@@ -28,7 +28,7 @@ start_time = time.time()
 number = int(sys.argv[1])
 
 if is_prime(number):
-    print(number, 'is prime')    
+    print(number, 'is prime')
 else:
     print(number, 'is not prime')
 print("------ trial division took %s seconds to produce a result ------" %
