@@ -1,0 +1,10 @@
+typedef struct queue_node {
+  TREE_NODE *t;
+  struct queue_node *next;
+} QUEUE_NODE;
+
+QUEUE_NODE *init_queue_node(QUEUE_NODE *sn, TREE_NODE *t);
+
+QUEUE_NODE *enqueue(QUEUE_NODE *tail, TREE_NODE *t);
+
+QUEUE_NODE *dequeue(QUEUE_NODE *head);
