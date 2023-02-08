@@ -1,3 +1,6 @@
+#usage python3 factorization.py 3463
+#      python3 factorization.py 98762341456423464716871998671345894
+
 #!usr/bin/python3
 import sys
 import math
@@ -26,7 +29,7 @@ def factorize(n):
     return factors
 
 if len(sys.argv) < 2:
-    exit("missing number to test")
+    exit("missing number to factorize")
 
 start_time = time.time()
 number = int(sys.argv[1])
