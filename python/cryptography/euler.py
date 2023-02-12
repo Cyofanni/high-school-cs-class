@@ -1,8 +1,8 @@
 import sys, sympy
 
-print('enter the integer a: ', end = '')
+print('enter an integer (a): ', end = '')
 a = int(input())
-print('enter the modulus: ', end = '')
+print('enter the modulus (n): ', end = '')
 n = int(input())
 
 if sympy.gcd(a, n) == 1:
