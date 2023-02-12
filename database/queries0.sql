@@ -1,12 +1,12 @@
-create table students(id INT AUTO_INCREMENT, name VARCHAR(20), surname VARCHAR(20), class VARCHAR(4), PRIMARY KEY(id));
+INSERT INTO students(name, surname, class) VALUES ('john', 'white', '4AAA');
 
-insert into students(name, surname, class) values ('john', 'white', '4AAA');
+CREATE TABLE classes(name VARCHAR(4), major VARCHAR(20), location VARCHAR(20), PRIMARY KEY(name));
 
-create table classes(name VARCHAR(4), major VARCHAR(20), location VARCHAR(20), primary key(name));
+INSERT INTO classes(name, major, location) VALUES ('2AA', 'humanities', 'viale X1');
 
-insert into classes(name, major, location) values ('2AA', 'humanities', 'viale X1');
-
-create table students(id INT AUTO_INCREMENT, name VARCHAR(20), surname VARCHAR(20), class VARCHAR(4), PRIMARY KEY(id), FOREIGN KEY(class) REFERENCES
-classes(name));
-
-
+CREATE TABLE students(id INT AUTO_INCREMENT,
+                      name VARCHAR(20),
+                      surname VARCHAR(20),
+                      class VARCHAR(4),
+                      PRIMARY KEY(id),
+                      FOREIGN KEY(class) REFERENCES classes(name));
