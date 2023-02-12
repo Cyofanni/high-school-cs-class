@@ -123,14 +123,14 @@ int main() {
   ref = b;
   cout << "ref: " << ref << "  b: " << b << endl;
   cout << "address of ref: " << &ref << "  address of b: " << &b << endl << endl;
-  
+
   //note that address of reference does not change
   shape& sref = sq;
   cout << "sref.x: " << sref.x << "   sq.x: " << sq.x << endl;
   cout << "address of sref: " << &sref << "  address of sq: " << &sq << endl;
   cout << "sref.get_x(): " << sref.get_x() << "   sq.x: " << sq.x << endl;
   sref.draw();
-  
+
   sref = l;
   cout << "sref.x: " << sref.x << "   l.x: " << l.x << endl;
   cout << "address of sref: " << &sref << "  address of l: " << &l << endl;
