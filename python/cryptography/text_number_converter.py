@@ -1,4 +1,4 @@
-#usage: python3 text_number_converter.py 0 texttoconverttonumber
+#usage: python3 text_number_converter.py 0 texttoconverttonumber n
 #       python3 text_number_converter.py 1 98656234986865
 import sys
 
@@ -47,7 +47,7 @@ if len(sys.argv) < 3:
 
 if int(sys.argv[1]) == 0: #convert text to number
     num = text_to_number_b_27(sys.argv[2])
-    print(num)
+    print(num % int(sys.argv[3]))
 elif int(sys.argv[1]) == 1: #convert number to text
     text = number_b_27_to_text(int(sys.argv[2]))
     print(text)
