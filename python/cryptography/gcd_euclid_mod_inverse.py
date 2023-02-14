@@ -63,4 +63,4 @@ if __name__ == '__main__':
           gcd, "=", a, "*", coeffs[1], "+", b, "*", coeffs[2])
     if gcd == 1:
         modular_inverse_a = coeffs[1] % b
-        print('the modular inverse of', a, "is", modular_inverse_a)
+        print("the modular inverse of " + str(a) + " (modulo " + str(b) + ") " + "is " + str(modular_inverse_a))
