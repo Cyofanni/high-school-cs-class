@@ -24,3 +24,5 @@ SELECT id, students.name, classes.name as className, major, location
        ON students.class = classes.name;
 
 ALTER TABLE students ADD COLUMN residenceCity VARCHAR(20);
+
+SELECT COUNT(*), residenceCity FROM students GROUP BY residenceCity;
