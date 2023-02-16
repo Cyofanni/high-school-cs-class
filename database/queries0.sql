@@ -10,3 +10,17 @@ CREATE TABLE students(id INT AUTO_INCREMENT,
                       class VARCHAR(4),
                       PRIMARY KEY(id),
                       FOREIGN KEY(class) REFERENCES classes(name));
+
+SELECT * FROM students CROSS JOIN classes;
+
+SELECT * FROM students
+         JOIN
+         classes
+         ON students.class = classes.name;
+
+SELECT id, students.name, classes.name as className, major, location
+       FROM students
+       JOIN classes
+       ON students.class = classes.name;
+
+ALTER TABLE students ADD COLUMN residenceCity VARCHAR(20);
