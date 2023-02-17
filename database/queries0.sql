@@ -26,3 +26,18 @@ SELECT id, students.name, classes.name as className, major, location
 ALTER TABLE students ADD COLUMN residenceCity VARCHAR(20);
 
 SELECT COUNT(*), residenceCity FROM students GROUP BY residenceCity;
+
+ALTER TABLE students ADD COLUMN avgMark DECIMAL(3, 2);
+
+SELECT * FROM students
+              WHERE avgMark >
+	      (SELECT avg(avgMark)
+	       FROM
+               students);
+
+SELECT * FROM students
+              JOIN
+	      classes
+	      ON
+	      students.class = classes.name
+	      WHERE classes.major = 'humanities';
