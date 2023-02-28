@@ -11,9 +11,6 @@ def invert_character(c):
         return c
     return chr(alphabet_size - (ord(c) - ascii_base) + ascii_base)
 
-if (len(sys.argv) < 3):
-    exit("missing plaintext/key")
-
 key = sys.argv[1]
 
 for c in key:
