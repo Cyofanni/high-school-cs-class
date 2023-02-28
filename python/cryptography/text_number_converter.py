@@ -42,14 +42,15 @@ def number_b_27_to_text(n):
         n = n // 27
     return text_result[-1::-1]
 
-if len(sys.argv) < 3:
-    exit("too few command line arguments")
+if __name__ == 'main':
+    if len(sys.argv) < 3:
+        exit("too few command line arguments")
 
-if int(sys.argv[1]) == 0: #convert text to number
-    num = text_to_number_b_27(sys.argv[2])
-    print(num)
-elif int(sys.argv[1]) == 1: #convert number to text
-    text = number_b_27_to_text(int(sys.argv[2]))
-    print(text)
-else:
-    exit("first argument must be either 0 or 1")
+    if int(sys.argv[1]) == 0: #convert text to number
+        num = text_to_number_b_27(sys.argv[2])
+        print(num)
+    elif int(sys.argv[1]) == 1: #convert number to text
+        text = number_b_27_to_text(int(sys.argv[2]))
+        print(text)
+    else:
+        exit("first argument must be either 0 or 1")

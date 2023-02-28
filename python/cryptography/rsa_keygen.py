@@ -14,8 +14,11 @@
 '''
 import sympy
 
-p = sympy.randprime(10**5, 10**6)
-q = sympy.randprime(10**5, 10**6)
+#p = sympy.randprime(10**5, 10**6)
+#q = sympy.randprime(10**5, 10**6)
+p = sympy.randprime(10**50, 10**60)
+q = sympy.randprime(10**50, 10**60)
+
 n = p * q
 phi_n = (p - 1) * (q - 1)
 
