@@ -1,16 +1,16 @@
 import math
 
-def binary_search(lst, k):
+def binary_search(lst, key):
     lst.sort()
     low = 0
     high = len(lst) - 1
     found = False
 
-    while low < high and not found:
+    while low < high and not found: #found is False
         middle = (low + high) // 2
-        if lst[middle] == k:
+        if lst[middle] == key:
             found = True
-        elif k > lst[middle]:
+        elif key > lst[middle]:
             low = middle + 1
         else:
             high = middle - 1
