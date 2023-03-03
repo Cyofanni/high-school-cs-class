@@ -41,3 +41,13 @@ SELECT * FROM students
 	      ON
 	      students.class = classes.name
 	      WHERE classes.major = 'humanities';
+
+SELECT * FROM students UNION SELECT * FROM students_1;
+
+SELECT name, surname FROM students WHERE annual_familiar_income =
+       (SELECT MAX(annual_familiar_income)
+        FROM students);
+
+SELECT * FROM students_1 WHERE name NOT IN
+       (SELECT name
+        FROM students);
