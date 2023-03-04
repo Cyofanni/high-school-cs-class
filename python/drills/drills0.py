@@ -6,7 +6,7 @@ def binary_search(lst, key):
     high = len(lst) - 1
     found = False
 
-    while low < high and not found: #found is False
+    while low <= high and not found:
         middle = (low + high) // 2
         if lst[middle] == key:
             found = True
@@ -52,7 +52,7 @@ l3 = ['mozart', 'beethoven', 'bach', 'the beatles',
       'the rolling stones', 'vivaldi']
 print(binary_search(l1, 5))
 print(binary_search(l2, 56))
-print(binary_search(l3, 'bach'))
+print(binary_search(l3, 'vivaldi'))
 t = binary_search(l3, 'beethoven')
 print(type(t))
 
