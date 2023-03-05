@@ -24,6 +24,12 @@ def factorial_head_recursive(num):
         return 1
     return num * factorial_head_recursive(num - 1)
 
+def insert_into_sorted_list(lst, item):
+    i = 0
+    while i < len(lst) and lst[i] < item:
+        i += 1
+    lst.insert(i, item)
+
 #test revseq
 composers = ['bach', 'mozart', 'beethoven', 'vivaldi', 'scarlatti']
 for composer in composers:
@@ -53,3 +59,10 @@ for i in range(100):
     print(factorial_head_recursive(i))
 end_time = time.time()
 print(end_time - start_time)
+
+print()
+print()
+#test insert_into_sorted_list
+items = [8, 6, 5, 67, 123]
+insert_into_sorted_list(items, 124)
+print(items)
