@@ -44,6 +44,30 @@ def merge(lst1, lst2):
 
     return lmerged
 
+def merge_1(lst, low, middle, high):
+    size = high - low + 1
+    left = lst[low:middle + 1]
+    left.append(math.inf)
+    right = lst[middle + 1:high + 1]
+    right.append(math.inf)
+
+    left_index = 0
+    right_index = 0
+    for i in range(low, high + 1):
+        if left[left_index] <= right[right_index]:
+            lst[i] = left[left_index]
+            left_index = left_index + 1
+        else:
+            lst[i] = right[right_index]
+            right_index = right_index + 1
+
+def merge_sort(lst, low, high):
+    if low < high:
+        middle = (low + high) // 2
+        merge_sort(lst, low, middle)
+        merge_sort(lst, middle + 1, high)
+        merge_1(lst, low, middle, high)
+
 #binary search
 print('binary search: ')
 l1 = [5, 1, 8, 3, 5, 3, 9, 12, 13]
@@ -67,3 +91,15 @@ print()
 print('merge algorithm: ')
 print(merge([2, 4, 6, 10, 12], [6, 7, 10, 12, 13, 16, 17, 18, 20, 22]))
 print(merge([1, 18], [0, 2, 4]))
+print(merge([2], [1]))
+
+#merge sort
+print()
+print('merge sort')
+ls = [1, 2, 3, 1, 7, 6, 4, 8, 9, 6, 41, 7, 6, 34]
+ls1 = [1, 2, 3, 1, 7, 6, 4, 8, 9, 6, 41, 7, 6, 34]
+ls1.sort()
+print(ls)
+merge_sort(ls, 0, len(ls) - 1)
+print(ls)
+print(ls1)
