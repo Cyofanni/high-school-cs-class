@@ -51,3 +51,15 @@ SELECT name, surname FROM students WHERE annual_familiar_income =
 SELECT * FROM students_1 WHERE name NOT IN
        (SELECT name
         FROM students);
+
+ALTER TABLE students RENAME COLUMN annual_familiar_income TO annualFamiliarIncome;
+
+SELECT * FROM students WHERE birthday > '2005-07-31';
+
+SELECT * FROM students WHERE birthday IS NULL;
+
+SELECT YEAR(birthday) FROM composers;
+
+SELECT * FROM composers WHERE YEAR(deathday) = 1750;
+
+SELECT * FROM composers WHERE YEAR(deathday) - YEAR(birthday) > 60;
