@@ -8,17 +8,23 @@ int main() {
   for (int i = 0; i < 10; i++) {
     cin >> vect[i];
   }
+  int key;
+  cin >> key;
+  bool found = false;
+  int key_index = -1;
 
-  for (int i = 0; i < 10; i++) {
-      bool is_duplicate = false;
-      for (int j = 0; j < i && is_duplicate == false; j++) {
-	if (vect[j] == vect[i]) {
-	  is_duplicate = true;
-	}
-      }
-      if (is_duplicate == true) {
-	cout << vect[i] << " has duplicate" << endl;
-      }
+  for (int i = 0; i < 10 && found == false; i++) {
+    if (key == vect[i]) {
+      found = true;
+      key_index = i;
+    }
+  }
+
+  if (found == true) {
+    cout << key << " found at index: " << key_index << endl;
+  }
+  else {
+    cout << key << " not found" << endl;
   }
 
   cout << endl;
