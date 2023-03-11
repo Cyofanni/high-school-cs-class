@@ -33,17 +33,15 @@ IN
 /*
 works.
 works.composer is FOREIGN KEY to composers.id 
-+----+----------------------+------------+----------+
-| id | title                | year       | composer |
-+----+----------------------+------------+----------+
-|  1 | moonlight sonata     | 1802-05-03 |        3 |
-|  2 | goldberg variations  | 1740-05-03 |        2 |
-|  3 | clarinet concerto    | 1788-11-12 |        1 |
-|  4 | piano concerto K 488 | 1787-11-12 |        1 |
-|  5 | ninth symphony       | 1824-11-12 |        3 |
-|  6 | chromatic fantasia   | 1720-12-13 |        2 |
-|  7 | fifth symphony       | 1803-10-08 |        3 |
-+----+----------------------+------------+----------+
++----+---------------------+------------+----------+
+| id | title               | issue_date | composer |
++----+---------------------+------------+----------+
+|  1 | moonlight sonata    | 1802-05-03 |        3 |
+|  2 | goldberg variations | 1740-05-03 |        2 |
+|  5 | ninth symphony      | 1824-11-12 |        3 |
+|  6 | chromatic fantasia  | 1720-12-13 |        2 |
+|  7 | fifth symphony      | 1803-10-08 |        3 |
++----+---------------------+------------+----------+
 */
 //try to delete the record of 'Bach'
 DELETE FROM composers WHERE surname = 'Bach';
