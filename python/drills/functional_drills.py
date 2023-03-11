@@ -7,7 +7,7 @@ def factorial(num):
 '''powers_of_2 = [0, 2, 4, 8, 16, 32, 64, 128, 512]
    convert each item into binary
 '''
-#old-style way
+#old-style
 powers_of_2 = [0, 2, 4, 8, 16, 32, 64, 128, 512]
 i = 0
 while i < len(powers_of_2):
@@ -31,3 +31,20 @@ numbers = [0, 1, 2, 3, 4, 5, 6, 7]
 map_fact = map(factorial, numbers)
 for f in map_fact:
     print(f)
+
+#list comprehension
+interval1 = [i for i in range(10)]
+print(interval1)
+interval2 = [i for i in range(-10, 11)]
+print(interval2)
+powers_of_2 = [2**e for e in range(13)]
+print(powers_of_2)
+times_table_2 = [2*m for m in range(11)]
+print(times_table_2)
+
+#'quadratic' list comprehension
+print()
+times_tables = [[num*t for t in range(1, 11)] for num in range(1, 11)]
+for times_table in times_tables:
+    print(times_table)
+
