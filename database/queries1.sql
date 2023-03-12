@@ -56,5 +56,7 @@ SHOW CREATE TABLE works;
    //name of foreign key constraint is works_ibfk_1
 //drop existing constraint
 ALTER TABLE works DROP CONSTRAINT works_ibfk_1;
-//create new constraint
+//create a new constraint
 ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(id) ON DELETE CASCADE;
+ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(id) ON DELETE RESTRICT;
+ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(iD) ON DELETE CASCADE ON UPDATE CASCADE;
