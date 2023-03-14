@@ -1,16 +1,16 @@
 import math
 
 def binary_search(lst, key):
-    lst.sort()
+    lst_sorted = sorted(lst)
     low = 0
-    high = len(lst) - 1
+    high = len(lst_sorted) - 1
     found = False
 
     while low <= high and not found:
         middle = (low + high) // 2
-        if lst[middle] == key:
+        if lst_sorted[middle] == key:
             found = True
-        elif key > lst[middle]:
+        elif key > lst_sorted[middle]:
             low = middle + 1
         else:
             high = middle - 1
@@ -75,6 +75,7 @@ l2 = [8, 1, 8, 3, 5, 3, 9, 12, 13, 12, 24, 56, 45]
 l3 = ['mozart', 'beethoven', 'bach', 'the beatles',
       'the rolling stones', 'vivaldi']
 print(binary_search(l1, 5))
+print(l1)
 print(binary_search(l2, 56))
 print(binary_search(l3, 'vivaldi'))
 t = binary_search(l3, 'beethoven')
