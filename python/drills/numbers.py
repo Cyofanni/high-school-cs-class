@@ -19,3 +19,8 @@ powers_2 = [1]
 for t in range(1, 17):
     powers_2.append(powers_2[t] << 1)
 print(powers_2)
+
+#filter prime numbers out of the interval [0..1000]
+filt_primes = filter(sympy.isprime, [n for n in range(0, 1001)])
+for prime in filt_primes:
+    print(prime)
