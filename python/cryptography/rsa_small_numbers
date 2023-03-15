@@ -1,0 +1,47 @@
+- Suppose that Bob wants to send Alice a message encrypted with the RSA cryptosystem.
+
+- Alice must generate her pair (KEY_PUBLIC_ALICE, KEY_PRIVATE_ALICE):
+    - Alice chooses two prime numbers (let the numbers be small in this example):
+          p = 11, q = 17
+      Generating prime numbers is easy.
+
+    - Alice computes:
+          n = p * q = 11 * 17 = 187
+      Computing products is easy.
+
+    - Alice computes:
+          phi(n) = phi(p * q) = phi(p) * phi(q) = (p - 1) * (q - 1) =
+          = 10 * 16 = 160
+      Computing phi(n) is easy, if n's factors are known. Obviously, Alice knows
+      p and q, the factors of n.
+
+    - Alice finds an integer 'e' such that:
+          gcd(e, phi(n)) = 1
+      Alice chooses e = 7. In fact, gcd(e, phi(n)) = gcd(7, 160) = 1.
+      This is easy.
+    
+    - Alice finds the modular inverse of e (modulo phi(n)), that is the integer 'd' such that:
+          (e * d) mod phi(n) = 1
+      d = 23, because (7 * 23) % 160 = 1.
+      This is easy for Alice, because she knows phi(n).
+
+    - Alice publishes:
+          K_PUBLIC_ALICE: (e, n)
+      This is Alice's RSA public key.
+
+    - Alice keeps this secret:
+          K_PRIVATE_ALICE: (d, n).
+      This is Alice's RSA private key.
+
+- Suppose that Bob wants to send a message 'P' encoded as the decimal number 149.
+    - Bob encrypts P this way:
+        E(P): (P ^ e) mod n = (149 ^ 7) % 187 = 140
+        Bob sends the message 140 to Alice. Let's call 140 'C'.
+      Notice that Bob encrypts P by means of e and n, which make up Alice's public key.
+    
+    - Alice receives 140, the ciphertext computed by Bob. She decrypts it this way:
+        D(C): (C ^ d) mod n = (140 ^ 23) % 187 = 149. The result is exactly the Bob's plaintext!
+
+
+- The security of this cryptosystem is based on the fact that computing phi(n)
+  is difficult for large n's, without knowing p and q, the prime factors of n.

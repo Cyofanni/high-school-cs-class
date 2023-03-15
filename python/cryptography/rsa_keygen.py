@@ -4,10 +4,10 @@
   2- compute n = p * q and phi(n) = phi(p * q) = phi(p) * phi(q) = (p - 1) * (q - 1)
   3- select a small odd integer e such that gcd(e, phi(n)) = 1
   4- compute d as the modular inverse of e, modulo phi(n)
-  5- publish P = (e, n) (the RSA public key)
-  6- keep secret the pair S = (d, n) (the RSA private key)
+  5- publish PUBLIC_KEY = (e, n) (the RSA public key)
+  6- keep secret the pair PRIVATE_KEY = (d, n) (the RSA private key)
 
-  phi(n) is difficult to compute without knowing the factors
+  phi(n) is difficult to compute without knowing the factors.
 
   Now, let P be the plaintext, encoded as a number. Let 'E' be the 'encrypting function',
   and 'D' be the 'decrypting function'. E and D are defined as follows:
