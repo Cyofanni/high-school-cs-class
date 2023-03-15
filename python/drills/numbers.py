@@ -1,4 +1,4 @@
-#build a list with the factorizations of the numbers in the interval
+#build a list with factorizations of the numbers in the interval
 #[0, 100]. Use the method 'factorint(n)' from the module 'sympy'.
 #Rely on list comprehension
 import sympy
@@ -12,3 +12,10 @@ print(fs)
 sqrts_sym_num = {num: (sympy.sqrt(num), math.sqrt(num)) for num in range(0, 51)}
 for k, v in sqrts.items():
     print(k, v)
+
+#generate a list containing powers of 2 [2**0..2**16], using the bitwise left shift operator
+#start with the given list
+powers_2 = [1]
+for t in range(1, 17):
+    powers_2.append(powers_2[t] << 1)
+print(powers_2)
