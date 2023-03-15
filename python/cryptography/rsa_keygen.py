@@ -11,7 +11,7 @@
 
   Now, let P be the plaintext, encoded as a number. Let 'E' be the 'encrypting function',
   and 'D' be the 'decrypting function'. E and D are defined as follows:
-  E(P): M^e (mod n) ---> produces C, the ciphertext
+  E(P): P^e (mod n) ---> produces C, the ciphertext
   D(C): C^d (mod n) ---> produces P, the original plaintext
   This procedure can be shown to be correct.
 
