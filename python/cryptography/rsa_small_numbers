@@ -45,4 +45,5 @@
         private key.
 
 - The security of this cryptosystem is based on the fact that computing phi(n)
-  is difficult for large n's, without knowing p and q, the prime factors of n.
+  is difficult for large n's, without knowing p and q, the prime factors of n, and
+  factorization is a difficult problem.
