@@ -40,7 +40,7 @@
       Notice that Bob encrypts P by means of e and n, which make up Alice's public key.
     
     - Alice receives 140, the ciphertext computed by Bob. She decrypts it this way:
-        D(C): (C ^ d) mod n = (140 ^ 23) % 187 = 149. The result is exactly the Bob's plaintext!
+        D(C): (C ^ d) mod n = (140 ^ 23) % 187 = 149. The result is exactly Bob's plaintext!
         Notice that Alice made this computation using the parameters d and n, which make up her
         private key.
 
