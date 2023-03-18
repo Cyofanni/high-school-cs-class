@@ -1,1 +1,0 @@
-#include <stdio.h>int main() {  int data[30000] = {0};  int data_pointer = 0; return 0;}
