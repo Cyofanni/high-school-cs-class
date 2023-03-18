@@ -18,7 +18,7 @@ int main() {
     }
   printf("%d", (data[data_pointer]));
   data_pointer++;
- scanf("%d", &data[data_pointer]);
+  scanf("%d", &data[data_pointer]);
   data_pointer--;
   data[data_pointer]--;
   if (data[data_pointer] != 0) {

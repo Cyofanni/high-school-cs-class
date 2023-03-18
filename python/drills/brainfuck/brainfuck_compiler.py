@@ -42,7 +42,7 @@ with open(sys.argv[2], 'w') as obj_file:
         elif program[instruction_pointer] == '.':
             obj_file.write('  printf("%d", (data[data_pointer]));\n')
         elif program[instruction_pointer] == ',':
-            obj_file.write(' scanf("%d", &data[data_pointer]);\n')
+            obj_file.write('  scanf("%d", &data[data_pointer]);\n')
         elif program[instruction_pointer] == '[':
             obj_file.write('  loop_' + str(loop_counter) + ':\n')
             obj_file.write('    if (data[data_pointer] == 0) {\n')
