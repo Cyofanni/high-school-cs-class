@@ -1,0 +1,4 @@
+!countdown with input!
+++++++++++
+[.>,<-]
+.
