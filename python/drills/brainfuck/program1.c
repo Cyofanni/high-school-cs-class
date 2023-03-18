@@ -7,7 +7,7 @@ int main() {
     if (data[data_pointer] == 0) {
       goto end_loop_0;
     }
- printf("%d", (data[data_pointer]));
+  printf("%d", (data[data_pointer]));
   data[data_pointer]++;
   if (data[data_pointer] != 0) {
     goto loop_0;

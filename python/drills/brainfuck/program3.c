@@ -16,7 +16,7 @@ int main() {
     if (data[data_pointer] == 0) {
       goto end_loop_0;
     }
- printf("%d", (data[data_pointer]));
+  printf("%d", (data[data_pointer]));
   data_pointer++;
  scanf("%d", &data[data_pointer]);
   data_pointer--;
@@ -26,6 +26,6 @@ int main() {
   }
   end_loop_0:
     ;
- printf("%d", (data[data_pointer]));
+  printf("%d", (data[data_pointer]));
   return 0;
 }
