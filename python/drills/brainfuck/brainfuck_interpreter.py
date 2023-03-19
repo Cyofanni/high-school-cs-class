@@ -50,7 +50,11 @@ while instruction_pointer < program_size:
             print(data[data_pointer], end = '')
         instruction_pointer += 1
     elif program[instruction_pointer] == ',':
-        data[data_pointer] = input()
+        if sys.argv[2] == '-ascii':
+            data[data_pointer] = input()
+        elif sys.argv[2] == '-ints':
+            data[data_pointer] = input()
+            data[data_pointer] = int(data[data_pointer])
         instruction_pointer += 1
     elif program[instruction_pointer] == '[':
         if data[data_pointer] == 0:
