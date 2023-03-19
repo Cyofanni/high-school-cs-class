@@ -11,7 +11,7 @@ import sys
 
 tokens = ('>', '<', '+', '-', '.', ',', '[', ']')
 
-def keep_tokens(tk):
+def keep_token(tk):
     return tk in tokens
 
 program = ''
@@ -19,7 +19,7 @@ with open(sys.argv[1], 'r') as file:
     for line in file:
         program += line
 
-filter_tokens = filter(keep_tokens, program)
+filter_tokens = filter(keep_token, program)
 program = "".join(list(filter_tokens))
 
 program_size = len(program)
@@ -44,7 +44,10 @@ while instruction_pointer < program_size:
         data[data_pointer] -= 1
         instruction_pointer += 1
     elif program[instruction_pointer] == '.':
-        print(data[data_pointer], end = '\n')
+        if sys.argv[2] == '-ascii':
+            print(chr(data[data_pointer]), end = '')
+        elif sys.argv[2] == '-ints':
+            print(data[data_pointer], end = '')
         instruction_pointer += 1
     elif program[instruction_pointer] == ',':
         data[data_pointer] = input()
