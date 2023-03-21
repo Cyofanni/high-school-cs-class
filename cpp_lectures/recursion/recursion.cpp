@@ -6,13 +6,6 @@
 
 using namespace std;
 
-void bad_rec_func() {
-  if (0 == 1) {
-    return;
-  }
-  return bad_rec_func();
-}
-
 unsigned long long natural_recursive(unsigned long long n) {
   return !n ? 0 : 1 + natural_recursive(n - 1);
 }
