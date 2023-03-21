@@ -2,6 +2,7 @@
 #include <climits>
 #include <chrono>
 #include <cstring>
+#include <cstdlib>
 
 using namespace std;
 
@@ -60,26 +61,42 @@ int product_recursive(int n, int m) {
   return n + product_recursive(n, m - 1);
 }
 
-int main() {
-  /*
-  auto t0 = chrono::high_resolution_clock::now();
-  char algo_version[30];
-  int choice = atoi(argv[1]);
-
-  switch(choice){
-  case 0:
-    cout << natural_iterative(atoi(argv[2])) << endl;
-    strncpy(algo_version, "iterative implementation:  ", strlen("iterative implementation:  ") + 1);
-    break;
-  case 1:
-    cout << natural_recursive(atoi(argv[2])) << endl;
-    strncpy(algo_version, "recursive implementation:  ", strlen("recursive implementation:  ") + 1);
-    break;
+bool binary_search_iterative_not_structured(int a[], int size, int key) {
+  int low = 0, high = size - 1;
+  while (low <= high) {
+    int middle = (low + high) / 2;
+    if (key == a[middle]) {
+      return true;
+    }
+    else if (key < a[middle]) {
+      high = middle - 1;
+    }
+    else {
+      low = middle + 1;
+    }
   }
 
-  auto t1 = chrono::high_resolution_clock::now();
-  cout << algo_version << chrono::duration_cast<chrono::nanoseconds>(t1 - t0).count() << " nanoseconds passed\n";
-  */
+  return false;
+}
+
+bool binary_search_recursive(int a[], int low, int high, int key) {
+  if (low > high) {
+    return false;
+  }
+  int middle = (low + high) / 2;
+  if (key == a[middle]) {
+    return true;
+  }
+  if (key < a[middle]) {
+    return binary_search_recursive(a, low, middle - 1, key);
+  }
+  return binary_search_recursive(a, middle + 1, high, key);
+}
+
+int main() {
+  int arr[12] = {1, 5, 6, 12, 13, 14, 16, 20, 21, 24, 25, 28};
+  cout << binary_search_iterative_not_structured(arr, 12, 28) << endl;
+  cout << binary_search_recursive(arr, 0, 11, 28) << endl;
 
   return 0;
 }
