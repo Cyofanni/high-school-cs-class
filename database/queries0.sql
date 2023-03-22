@@ -23,10 +23,12 @@ SELECT id, students.name, classes.name as className, major, location
        JOIN classes
        ON students.class = classes.name;
 
+/*DDL instruction, modifies the schema*/
 ALTER TABLE students ADD COLUMN residenceCity VARCHAR(20);
 
 SELECT COUNT(*), residenceCity FROM students GROUP BY residenceCity;
 
+/*DDL instruction*/
 ALTER TABLE students ADD COLUMN avgMark DECIMAL(3, 2);
 
 SELECT * FROM students

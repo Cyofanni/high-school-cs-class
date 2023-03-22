@@ -1,4 +1,4 @@
-/*describe students;
+/*table students;
 +----------------------+--------------+------+-----+---------+----------------+
 | Field                | Type         | Null | Key | Default | Extra          |
 +----------------------+--------------+------+-----+---------+----------------+
@@ -32,14 +32,52 @@ FROM students
 GROUP BY residenceCity
 HAVING num_students > 2;
 
-/*extract this:
-+-------------+----------------+-----------+--------------+----------------+
-| player_name | player_surname | team_name | coach_name   | coache_surname |
-+-------------+----------------+-----------+--------------+----------------+*/
-SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name,
-coaches.name AS coach_name, coaches.surname AS coache_surname
-FROM players
-JOIN teams
-ON players.team = teams.id
-JOIN coaches
-ON coaches.team = teams.id;
+/*extract distinct names from the table 'students'*/
+SELECT DISTINCT name FROM students;
+
+/*extract distinct pairs (name, surname) from the table 'students'*/
+SELECT DISTINCT name, surname FROM students;
+
+/*extract the count of different names from the table 'students'*/
+SELECT COUNT(DISTINCT name) AS num_diff_names FROM students;
+
+
+
+/*a teacher could teach in 0-n classes;
+  a class could have 0-n teachers*/
+/*
+table classes:
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(4)  | NO   | PRI | NULL    |       |
+| major    | varchar(20) | YES  |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+table teachers:
+teachers;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(20) | YES  |     | NULL    |                |
+| surname | varchar(20) | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+*/
+
+CREATE TABLE teachers_classes (
+    teacher_id INT,
+    class VARCHAR(20),
+    PRIMARY KEY(teacher_id, class),
+    FOREIGN KEY(teacher_id) REFERENCES teachers(id),
+    FOREIGN KEY(class) REFERENCES classes(name)
+);
+
+/*extract only teachers (name and surname, once per teacher) that teach in humanities*/
+SELECT DISTINCT teachers.name, teachers.surname
+FROM teachers
+JOIN teachers_classes
+ON teachers.id = teachers_classes.teacher_id
+JOIN classes
+ON teachers_classes.class = classes.name AND classes.major = 'humanities';

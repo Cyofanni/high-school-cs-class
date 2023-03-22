@@ -31,7 +31,7 @@ IN
  FROM favourite_composers)
 
 /*
-works.
+works
 works.composer is FOREIGN KEY to composers.id 
 +----+---------------------+------------+----------+
 | id | title               | issue_date | composer |
@@ -43,7 +43,7 @@ works.composer is FOREIGN KEY to composers.id
 |  7 | fifth symphony      | 1803-10-08 |        3 |
 +----+---------------------+------------+----------+
 */
-//try to delete the record of 'Bach'
+/*try to delete the record of 'Bach'*/
 DELETE FROM composers WHERE surname = 'Bach';
 /*ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint 
                     fails (`experiments`.`works`, CONSTRAINT `works_ibfk_1` FOREIGN KEY (`composer`) REFERENCES `composers` (`id`))
@@ -52,11 +52,11 @@ DELETE FROM composers WHERE surname = 'Bach';
 
 /*see constraints*/
 SHOW CREATE TABLE works;
-// CONSTRAINT `works_ibfk_1` FOREIGN KEY (`composer`) REFERENCES `composers` (`id`)
+/* CONSTRAINT `works_ibfk_1` FOREIGN KEY (`composer`) REFERENCES `composers` (`id`)
    //name of foreign key constraint is works_ibfk_1
-//drop existing constraint
+drop existing constraint*/
 ALTER TABLE works DROP CONSTRAINT works_ibfk_1;
-//create a new constraint
+/*create a new constraint*/
 ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(id) ON DELETE CASCADE;
 ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(id) ON DELETE RESTRICT;
 ALTER TABLE works ADD FOREIGN KEY(composer) REFERENCES composers(iD) ON DELETE CASCADE ON UPDATE CASCADE;

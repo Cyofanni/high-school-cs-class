@@ -1,4 +1,4 @@
-//from mysql shell, run the command: source serie_a.sql
+/*from mysql shell, run the command: source serie_a.sql*/
 
 CREATE DATABASE IF NOT EXISTS serie_a_db;
 
@@ -28,3 +28,15 @@ CREATE TABLE players(
       PRIMARY KEY(id),
       FOREIGN KEY(team) REFERENCES teams(id)
 );
+
+/*extract this:
++-------------+----------------+-----------+--------------+----------------+
+| player_name | player_surname | team_name | coach_name   | coache_surname |
++-------------+----------------+-----------+--------------+----------------+*/
+SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name,
+coaches.name AS coach_name, coaches.surname AS coache_surname
+FROM players
+JOIN teams
+ON players.team = teams.id
+JOIN coaches
+ON coaches.team = teams.id;
