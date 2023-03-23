@@ -7,7 +7,7 @@ def e2():
 def e3():
     return math.exp(3)
 def e4():
-     return math.exp(4);
+    return math.exp(4)
 
 fs = [e1, e2, e3, e4]
 for f in fs:
