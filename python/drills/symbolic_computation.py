@@ -9,3 +9,14 @@ print()
 x, y = symbols('x y')
 expr1 = x**2 + 2*x*y + y**2
 print(factor(expr1))
+
+#solve equations
+x = symbols('x')
+sols = solve('x**2 - x - 1', x)  #x**2 - x - 1 = 0
+print(sols)
+sols = solve('x**2 + 9', x)  #x**2 = -9
+print(sols)
+sols = solve('log(x)')
+print(sols)
+sols = solve('sin(x) - 1', x)
+print(sols)
