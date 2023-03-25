@@ -24,7 +24,6 @@ while i < sqrt_limit:
         j = i + 1
         while j < len_numbers:
             if numbers[j] % numbers[i] == 0:
-                print(numbers[j], numbers[i])
                 numbers.pop(j)
                 len_numbers -= 1
             j += 1
