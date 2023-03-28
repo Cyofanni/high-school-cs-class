@@ -35,29 +35,3 @@ TREE_NODE *bst_minimum_iterative(TREE_NODE *t);
 TREE_NODE *bst_maximum_recursive(TREE_NODE *t);
 
 TREE_NODE *bst_maximum_iterative(TREE_NODE *t);
-
-/*
-  verifyBST(T): returns true or false
-      if T is nil:
-	      return TRUE
-      if T.left and T.left.key > T.key:
-              return FALSE
-	  if T.right and T.right.key <= T.key:
-              return FALSE
-      isLeftBST = verifyBST(T.left)
-	  if isLeftBST is FALSE:
-	      return FALSE
-      else:
-          return verifyBST(T.right)	  
-*/
-
-/*
-   isSorted(node): returns true or false
-       if node is nil:
-           return TRUE	
-       if node.next is nil:
-           return TRUE	
-       if node.key > node.next.key:
-	       return FALSE
-	   return isSorted(node.next)
-*/
