@@ -6,6 +6,9 @@
   ...
 */
 
+DROP DATABASE IF EXISTS assignment_0;
+CREATE DATABASE assignment_0;
+USE assignment_0;
 DROP TABLE IF EXISTS teacher_class_conn;
 DROP TABLE IF EXISTS teachers;
 DROP TABLE IF EXISTS classes;
