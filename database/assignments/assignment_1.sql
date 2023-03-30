@@ -1,4 +1,4 @@
-/*a city could belong to a min:1, max: 1, region;
+/*a city could belong to min:1, max: 1, region;
   a region could have min:0, max:n cities;
 
   cities(id, name, population, region);
