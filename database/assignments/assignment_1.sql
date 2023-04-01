@@ -52,6 +52,17 @@ output:
 +-------------+------------+
 */
 
+SELECT
+regions.name AS region_name,
+COUNT(*) AS num_cities
+FROM
+cities
+JOIN
+regions
+ON
+cities.region = regions.id
+GROUP BY region;
+
 /*write a query that extracts the number of cities per region,
   but only when region has at least two cities.
 */
