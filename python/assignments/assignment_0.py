@@ -7,7 +7,7 @@
 #   where fracts has been built at point 1;
 
 
-#3. generate a list containing Lucas numbers. Use list comprehension;
+#3. generate a list containing Lucas numbers;
 
 #4. use filter to extract the odd numbers out of a list of integers;
 
