@@ -41,7 +41,8 @@ VALUES('venezia', 250000, 1),
       ('bergamo', 150000, 2),
       ('firenze', 350000, 3);
 
-/*write a query that extracts the number of cities per region
+/*
+1. write a query that extracts the number of cities per region
 output:
 +-------------+------------+
 | region_name | num_cities |
@@ -63,6 +64,18 @@ ON
 cities.region = regions.id
 GROUP BY region;
 
-/*write a query that extracts the number of cities per region,
-  but only when region has at least two cities.
+/*
+2. write a query that extracts the number of cities per region,
+   but only when region has at least two cities.
 */
+SELECT
+regions.name AS region_name,
+COUNT(*) AS num_cities
+FROM
+cities
+JOIN
+regions
+ON
+cities.region = regions.id
+GROUP BY region
+HAVING num_cities >= 2;
