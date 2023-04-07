@@ -101,15 +101,92 @@ unsigned int count_occurs(char* str, int sz, char key) {
     return 0;
   }
   if (*str == key) {
+    //count occurrences in the remainder of the string
+    unsigned int count_tail = count_occurs(str + 1, sz - 1, key);
+    //add 1 and return
+    return count_tail + 1;
+  }
+  //otherwise, continue scanning the remainder of the string
+  return count_occurs(str + 1, sz - 1, key);
+}
+
+//Ex 6 ###
+bool binary_search_i(int* a, int size, int key) {
+  int low = 0, high = size - 1;
+  bool found = false;
+  while (!found && low <= high) {
+    int middle = (low + high) / 2;
+    if (key == *(a + middle)) {
+      found = true;
+    }
+    else if (key < *(a + middle)) {
+      high = middle - 1;
+    }
+    else {
+      low = middle + 1;
+    }
+  }
+
+  return found;
+}
+
+bool binary_search_r(int* a, int low, int high, int key) {
+  if (low > high) {
+    return false;
+  }
+  int middle = (low + high) / 2;
+  if (key == a[middle]) {
+    return true;
+  }
+  if (key < a[middle]) {
+    return binary_search_r(a, low, middle - 1, key);
+  }
+  return binary_search_r(a, middle + 1, high, key);
+}
+
+/*search for key in each row, return index of row with first
+  occurrence of key*/
+int search_key_matrix(int matrix[][5], int num_rows, int key) {
+  int row_index = -1;
+  bool found_row = false;
+  for (int i = 0; i < num_rows && !found_row; i++) {
+    if (!(i % 2)) {
+      found_row = binary_search_i(matrix[i], 5, key);
+    }
+    else {
+      found_row = binary_search_r(matrix[i], 0, 4, key);
+    }
+    if (found_row) {
+      row_index = i;
+    } 
+  }
+
+  return row_index;
+}
+
+//Ex 7 ###
+void print_array_rec_rec(int* a, int low, int high) {
+  if (low <= high) {
+    int middle = (low + high) / 2;
+    print_array_rec_rec(a, low, middle - 1);
+    cout << a[middle] << ' ';
+    print_array_rec_rec(a, middle + 1, high);
   }
 }
 
+//Ex 8 ###
+
 int main() {
-  /*int matr[][16] = {
-    {0, 3, 2, 7, 9, 3, 4, 4, 4, 3, -1, -2, 56, 2, 87, 87},
-    {34, -1, -1, 0, 0, 3, 4, 3, 71, 3, -1, 3, 55, 234, 871, 81}
+  int matr[][5] = {
+    {0, 3, 6, 7, 9},
+    {34, 36, 50, 67, 72},
+    {87, 88, 120, 124, 166},
+    {5, 54, 36, 130, 240},
+    {-12, 1, 7, 40, 40},
+    {8, 9, 9, 17, 65},
   };
 
+  /*
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 16; j++) {
       cout << matr[i][j] << ' ';
@@ -118,8 +195,4 @@ int main() {
   }
   cout << endl;
   */
-
-  char st[] = "aaaabba";
-  print_dups(st, 7);
 }
-
