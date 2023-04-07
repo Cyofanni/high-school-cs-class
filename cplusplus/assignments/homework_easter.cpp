@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include <cstring>
 using namespace std;
 
 //Ex 0 ###
@@ -175,24 +176,60 @@ void print_array_rec_rec(int* a, int low, int high) {
 }
 
 //Ex 8 ###
+int count_occurr_iter(int* arr, int size, int key) {
+  int counter = 0;
+  for (int i = 0; i < size; ++i) {
+    if (arr[i] == key) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
+int count_occur_tail_rec(int* arr, int size, int key, int counter) {
+  if (!size) {
+    return counter;
+  }
+  if (*arr == key) {
+    return count_occur_tail_rec(arr + 1, size - 1, key, counter + 1);
+  }
+  return count_occur_tail_rec(arr + 1, size - 1, key, counter);
+}
+
+//Ex 10 ###
+void print_diag_2(char matrix[5][5]) {
+  for (int i = 0; i < 5; i++) {
+    cout << matrix[i][5 - 1 - i] << ' ';
+  }
+  cout << endl;
+}
+
+//Ex 11 ###
+bool find_match(char str[], int len_str, char pattern[], int pattern_len) {
+  bool found = false;
+  for (int i = 0; i <= len_str - pattern_len && !found; i++) {
+    bool is_match = true;
+    int pattern_index = 0;
+    for (int j = 0; j < pattern_len && is_match; j++) {
+      if (pattern[j] != str[i + j]) {
+	is_match = false;
+      }
+    }
+    if (is_match) {
+      found = true;
+    }
+  }
+
+  return found;
+}
 
 int main() {
   int matr[][5] = {
-    {0, 3, 6, 7, 9},
-    {34, 36, 50, 67, 72},
-    {87, 88, 120, 124, 166},
+    {0, 3, 6, 7, 3},
+    {34, 36, 34, 67, 72},
+    {34, 88, 120, 124, 166},
     {5, 54, 36, 130, 240},
     {-12, 1, 7, 40, 40},
     {8, 9, 9, 17, 65},
   };
-
-  /*
-  for (int i = 0; i < 2; i++) {
-    for (int j = 0; j < 16; j++) {
-      cout << matr[i][j] << ' ';
-    }
-    cout << endl;
-  }
-  cout << endl;
-  */
 }
