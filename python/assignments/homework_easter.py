@@ -87,4 +87,19 @@ for num in nums:
 print(occurs)
 
 #Ex 7 ###
+def shift_char(plaintext_character, key, ascii_base, alphabet_size):
+    return chr(((ord(plaintext_character) - ascii_base + key) % alphabet_size) + ascii_base)
 
+shifts_map = {chr(i) : i - 97 for i in range(97, 123)}
+print(shifts_map)
+
+def vigenere(plaintext, key):
+    key_index = 0
+    ciphertext = ''
+    for c in plaintext:
+        if key_index == len(key):
+            key_index = 0
+        ciphertext += shift_char(c, shifts_map[key[key_index]], 97, 26)
+        key_index += 1
+
+    return ciphertext
