@@ -223,13 +223,84 @@ bool find_match(char str[], int len_str, char pattern[], int pattern_len) {
   return found;
 }
 
+//Ex 12 ###
+bool are_rows_equal(int matrix[][4], int num_rows, int row_1, int row_2) {
+  bool result = true;
+  if (row_1 < 0 || row_1 > num_rows - 1 || row_2 < 0 || row_2 > num_rows - 1) {
+    result = false;
+  }
+  else {
+    for (int i = 0; i < 4 && result; i++) {
+      if (matrix[row_1][i] != matrix[row_2][i]) {
+	result = false;
+      }
+    }
+  }
+
+  return result;
+}
+
+//Ex 12 ###
+bool are_columns_equal(int matrix[][4], int num_rows, int col_1, int col_2) {
+  bool result = true;
+  if (col_1 < 0 || col_1 > 3 || col_2 < 0 || col_2 > 3) {
+    result = false;
+  }
+  else {
+    for (int i = 0; i < num_rows && result; i++) {
+      if (matrix[i][col_1] != matrix[i][col_2]) {
+	result = false;
+      }
+    }
+  }
+
+  return result;
+}
+
+//Ex 13 ###
+bool are_matrices_equal(int matrix1[][6], int matrix2[][6], int num_rows) {
+  bool eq = true;
+  for (int i = 0; i < num_rows && eq; i++) {
+    for (int j = 0; j < 6 && eq; j++) {
+      if (matrix1[i][j] != matrix2[i][j]) {
+	eq = false;
+      }
+    }
+  }
+
+  return eq;
+}
+
+//Ex 15 ###
+bool is_palindrome(char* str, int l, int h) {
+  //an empty string is palindrome
+  if (l > h) {
+    return true;
+  }
+  //opposite items are different, str cannot be palindrome
+  if (str[l] != str[h]) {
+    return false;
+  }
+  return is_palindrome(str, l + 1, h - 1);
+}
+
+
 int main() {
-  int matr[][5] = {
-    {0, 3, 6, 7, 3},
-    {34, 36, 34, 67, 72},
-    {34, 88, 120, 124, 166},
-    {5, 54, 36, 130, 240},
-    {-12, 1, 7, 40, 40},
-    {8, 9, 9, 17, 65},
+  int matr1[][6] = {
+    {0, 3, 6, 7, 3, 5},
+    {34, 36, 34, 67, 72, 12},
+    {34, 88, 120, 124, 166, 51},
+    {5, 54, 36, 130, 240, 98},
+    {-12, 1, 7, 40, 40, 53},
+    {8, 9, 9, 17, 65, 16}
+  };
+
+  int matr2[][6] = {
+    {0, 3, 6, 7, 3, 5},
+    {34, 36, 34, 67, 72, 12},
+    {34, 88, 120, 124, 166, 51},
+    {5, 54, 36, 130, 240, 98},
+    {-12, 1, 7, 40, 40, 53},
+    {8, 9, 9, 17, 65, 16}
   };
 }
