@@ -5,7 +5,6 @@ def sqrt_2_cont_fract(approx, num_calls):
         return approx
     return 1 + (1 / (1 + sqrt_2_cont_fract(approx, num_calls - 1)))
 
-
 for i in range(1, 33):
     print(str(i) + '-th approximation of sqrt(2)')
     print('from below', end = ' ')
