@@ -1,9 +1,11 @@
-expr = '2 2 + 3 4 *';
+/* expression in infix notation
+     (2 + 2) * 3 * 4 + 2
+*/
+expr = '2 2 + 3 4 * 2 +';
 stack = [];
 
 for (i = 0; i < expr.length; i++) {
-    if (expr[i] != ' ' && expr[i] != '+'  && expr[i] != '*'
-        && Number(expr[i]) != NaN) {
+    if (expr[i] != ' ' && isFinite(expr[i])) {
         stack.push(Number(expr[i]));
     }
     else if (expr[i] == '+' || expr[i] == '*') {
@@ -26,4 +28,4 @@ for (i = 0; i < expr.length; i++) {
     }
 }
 
-console.log(stack);
+console.log('Ans:', stack[0]);
