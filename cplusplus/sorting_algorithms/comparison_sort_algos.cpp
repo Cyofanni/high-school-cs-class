@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include <cstdlib>
 
 using namespace std;
 
@@ -41,7 +42,7 @@ void merge(int a[], int p, int q, int r) {
 
   int i, j;
   //place first half of a in left
-  for (i = 0; i <= sz_left - 2; i++) {
+  for (i = 0; i < sz_left - 1; i++) {
     left[i] = a[p + i];
   }
   /*put sentinel value at last position
@@ -51,7 +52,7 @@ void merge(int a[], int p, int q, int r) {
   left[i] = INT_MAX;
 
   //place second half of a in right
-  for (j = 0; j <= sz_right - 2; j++) {
+  for (j = 0; j < sz_right - 1; j++) {
     right[j] = a[q + 1 + j];
   }
   /*put sentinel value at last position
@@ -117,7 +118,7 @@ int partition(int a[], int p, int r) {
   //iterate over the slice, up to 1 item before the pivot
   for (int j = p; j <= r - 1; j++) {
     //let the lower part increase from left to right
-    //if a[j] is > pivot, do nothing
+    //if a[j] > pivot, do nothing
     if (a[j] <= pivot) {
       /*put a[j] in the lower part,
         because it is less than or equal to the pivot;
@@ -146,9 +147,7 @@ void quick_sort(int a[], int p, int r, int a_length) {
 }
 
 int main() {
-  int arr[] = {9, 8, 1, 0, 4, 6, 2, 7, 10, 12};
-  quick_sort(arr, 0, 9, 10);
-
-  int arr1[] = {9, 8, 1, 0, 4, 6, 2, 7, 10, 12};
-  merge_sort(arr, 0, 9);
+  int arr[3] = {16, 17, 2};
+  merge(arr, 0, 1, 2);
+  print_array_slice(arr, 0, 2, -1, -1, -1);
 }
