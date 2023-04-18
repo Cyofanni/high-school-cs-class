@@ -1,7 +1,7 @@
 /* expression in infix notation
-     2 + 5 * 3
+      (((4 + 3) * 3) + 9)
 */
-expr = '2 5 3 * +';
+expr = '4 3 + 3 * 9 +';
 stack = [];
 
 for (i = 0; i < expr.length; i++) {
@@ -9,7 +9,6 @@ for (i = 0; i < expr.length; i++) {
         stack.push(Number(expr[i]));
     }
     else if (expr[i] == '+' || expr[i] == '*'){
-        console.log(stack);
         var ans;
         if (expr[i] == '+') {
 	    ans = 0;
