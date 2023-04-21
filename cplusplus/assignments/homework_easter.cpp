@@ -272,7 +272,7 @@ bool are_matrices_equal(int matrix1[][6], int matrix2[][6], int num_rows) {
 }
 
 //Ex 15 ###
-bool is_palindrome(char* str, int l, int h) {
+bool is_palindrome_rec(char* str, int l, int h) {
   //an empty string is palindrome
   if (l > h) {
     return true;
@@ -281,11 +281,42 @@ bool is_palindrome(char* str, int l, int h) {
   if (str[l] != str[h]) {
     return false;
   }
-  return is_palindrome(str, l + 1, h - 1);
+  return is_palindrome_rec(str, l + 1, h - 1);
 }
 
+bool is_palindrome_iter_1(char* str, unsigned int size) {
+  int l = 0, h = size - 1;
+  while (l <= h) {
+    if (str[l] != str[h]) {
+      return false;
+    }
+    l++;
+    h--;
+  }
+
+  return true;
+}
+
+bool is_palindrome_iter_2(char* str, unsigned int size) {
+  int l = 0, h = size - 1;
+  bool is_pal = true;
+  while (l <= h && is_pal) {
+    if (str[l] != str[h]) {
+      is_pal = false;
+    }
+    l++;
+    h--;
+  }
+
+  return is_pal;
+}
 
 int main() {
+  char str[] = "radar";
+  cout << is_palindrome_rec(str, 0, strlen(str) - 1) << endl;
+  cout << is_palindrome_iter_1(str, strlen(str)) << endl;
+  cout << is_palindrome_iter_2(str, strlen(str)) << endl;
+
   int matr1[][6] = {
     {0, 3, 6, 7, 3, 5},
     {34, 36, 34, 67, 72, 12},
