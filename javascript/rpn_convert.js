@@ -1,11 +1,8 @@
-/* expression in infix notation
-     2 + 5 * 3
-*/
-expr = '(((4 + 3) * 3) + 9)';
-operators_stack = [];
-rpn_expr = '';
+var expr = '((4 + 3) * 8)';
+var operators_stack = [];
+var rpn_expr = '';
 
-for (i = 0; i < expr.length; i++) {
+for (var i = 0; i < expr.length; i++) {
     if (expr[i] != ' ' && isFinite(expr[i])) {
         rpn_expr += expr[i] + ' ';
     }

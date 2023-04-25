@@ -1,10 +1,10 @@
 /* expression in infix notation
-      (((4 + 3) * 3) + 9)
+      (((4 + 3) * 3) + ((2 + 2) * (3 + 8)))
 */
-expr = '4 3 + 3 * 9 +';
-stack = [];
+var expr = '4 3 + 3 * 2 2 + 3 8 + * +';
+var stack = [];
 
-for (i = 0; i < expr.length; i++) {
+for (var i = 0; i < expr.length; i++) {
     if (expr[i] != ' ' && isFinite(expr[i])) {
         stack.push(Number(expr[i]));
     }

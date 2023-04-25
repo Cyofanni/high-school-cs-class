@@ -1,9 +1,9 @@
-expr = '()()()()()(((())))';
-stack = [];
+var expr = '()()()()()(((())))';
+var stack = [];
 
 function verify_parenth_balancing(expr) {
-    is_unbalanced = false;
-    for (i = 0; i < expr.length && is_unbalanced == false; i++) {
+    var is_unbalanced = false;
+    for (var i = 0; i < expr.length && is_unbalanced == false; i++) {
         if (expr[i] == '(') {
             stack.push('(');
         }

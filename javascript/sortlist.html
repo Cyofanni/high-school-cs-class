@@ -27,23 +27,23 @@
     <br/>
     <button onclick = "sort()">Sort</button>
 
-    <script>
-      array = [];
+    <script type="text/javascript">
+      var array = [];
       function addNumbers() {
-	  for (i = 0; i < 10; i++) {
+	  for (var i = 0; i < 10; i++) {
 	      numElement = document.getElementById("n" + i);
 	      array.push(numElement.value);
 	  }
       }
       function sort() {
 	  array.sort(function (x, y) { return x - y; });
-	  sortedArray = document.createElement("div");
-	  bodyElement = document.getElementById("root");
-	  for (i = 0; i < array.length; i++) {
-	      element = document.createElement("span");
-	      lineBreak = document.createElement("br");
+	  var sortedArray = document.createElement("div");
+	  var bodyElement = document.getElementById("root");
+	  for (var i = 0; i < array.length; i++) {
+	      var element = document.createElement("span");
+	      var lineBreak = document.createElement("br");
 	      
-	      textNode = document.createTextNode(array[i]);
+	      var textNode = document.createTextNode(array[i]);
 	      element.appendChild(textNode);
 	      sortedArray.appendChild(element);
 	      sortedArray.appendChild(lineBreak);
