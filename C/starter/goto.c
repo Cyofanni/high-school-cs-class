@@ -24,6 +24,6 @@ int main() {
         i++;
         goto begin_loop;
     end_loop:
-            printf("out of loop, i: %u\n", i);
+        printf("out of loop, i: %u\n", i);
     */
 }
