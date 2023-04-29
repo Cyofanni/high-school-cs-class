@@ -1,10 +1,4 @@
 <?php
-//return reference
-function &f() {
-    $var = 7;
-    return $var;
-}
-
 $counter = 10;
 
 function inc_counter($k) {
