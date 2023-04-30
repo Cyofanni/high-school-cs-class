@@ -6,7 +6,7 @@ function f1() {
 }
 
 f1();
-echo "value of $g: $g\n";
+echo "value of global g: $g\n";
 
 function f2() {
     global $g;
@@ -14,5 +14,5 @@ function f2() {
 }
 
 f2();
-echo "value of $g: $g\n";
+echo "value of global g: $g\n";
 ?>
