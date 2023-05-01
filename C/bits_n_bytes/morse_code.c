@@ -30,6 +30,29 @@ int main() {
     case 'h':
       puts("....");
       break;
+    case 'i':
+      puts("..");
+      break;
+    case 'j':
+      puts(".___");
+      break;
+    case 'k':
+      puts("_._");
+      break;
+    case 'l':
+      puts("._..");
+      break;
+    case 'm':
+      puts("__");
+      break;
+    case 'n':
+      puts("_.");
+      break;
+    case EOF:
+      puts("closing input stream...");
+      goto end;
     }
   }
+  end:
+      puts("exiting program...");
 }
