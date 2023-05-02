@@ -4,7 +4,7 @@
 
 int main() {
   char c;
-  while (c = getchar()) {
+  while ((c = getchar()) != EOF) {
     switch (c) {
     case 'a':
       puts("._");
@@ -48,11 +48,42 @@ int main() {
     case 'n':
       puts("_.");
       break;
-    case EOF:
-      puts("closing input stream...");
-      goto end;
+    case 'o':
+      puts("___");
+      break;
+    case 'p':
+      puts(".__.");
+      break;
+    case 'q':
+      puts("__._");
+      break;
+    case 'r':
+      puts("._.");
+      break;
+    case 's':
+      puts("...");
+      break;
+    case 't':
+      puts("...");
+      break;
+    case 'u':
+      puts(".._");
+      break;
+    case 'v':
+      puts("..._");
+      break;
+    case 'w':
+      puts(".__");
+      break;
+    case 'x':
+      puts("_.._");
+      break;
+    case 'y':
+      puts("_.__");
+      break;
+    case 'z':
+      puts("__..");
+      break;
     }
   }
-  end:
-      puts("exiting program...");
 }
