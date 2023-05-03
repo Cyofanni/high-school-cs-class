@@ -38,4 +38,36 @@
     echo preg_match("/\+39 3[0-9]{2} [0-9]{3} [0-9]{4}/", "+39 3980 342 8741") . "\t";
     echo preg_match("/\+39 3[0-9]{2} [0-9]{3} [0-9]{4}/", "+39 398 342 8741") . "\t";
     echo preg_match("/\+39 3[0-9]{2} [0-9]{3} [0-9]{4}/", "+39 398 542 3741") . "\n";
+
+    //pattern: 1 or more occurrences of 'A'
+    echo preg_match("/A+/", 'TCGCGCTTTTCTCGCGC') . "\t";
+    echo preg_match("/A+/", 'TCGCGCTTTTCATCGCGC') . "\t";
+    echo preg_match("/A+/", 'TCGCGCTTTTCAAATCGCGC') . "\n";
+
+    //pattern: 'GC', repeated 1 or more times
+    echo preg_match("/(GC)+/", "ATCCCCCGGGGG") . "\t";
+    echo preg_match("/(GC)+/", "ATCCCCCGCGGGG") . "\t";
+    echo preg_match("/(GC)+/", "ATCCCCCGCGCGGGG") . "\n";
+
+    //pattern: start with 'a', end with 'o', any lower-case letter between
+    echo preg_match("/a[a-z]*o/", "albero") . "\t";
+    echo preg_match("/a[a-z]*o/", "ao") . "\t";
+    echo preg_match("/a[a-z]*o/", "amaca") . "\t";
+    echo preg_match("/a[a-z]*o/", "aka") . "\n";
+
+    //pattern: italian "codice fiscale"
+    $codice_fiscale_regex = "/^([A-Z]{6}[0-9]{2}[M|F][0-9]{2}[A-Z][0-9]{3}[A-Z])$/";
+    $codici_fiscali = array("MCZGGN98M09A703K", "MCZGGNN98R09A703K",
+                            "ACZGGN90M09A7033K", "MZZGNN95F19A804K",
+                            "ACZGGN90M09A7033K ", "  MZZGNN95F19A804K",
+                            "ACZGGN90M09A7033K", "  MZZ GNN95F19A804K  ");
+    foreach ($codici_fiscali as $c) {
+        if (preg_match($codice_fiscale_regex, $c)) {
+            echo $c . " could be valid italian codice fiscale (basic check);\n";
+        }
+        else {
+            echo $c . " cannot be valid italian codice fiscale;\n";
+        }
+    }
+    echo "\n";
 ?>
