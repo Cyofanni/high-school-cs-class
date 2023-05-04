@@ -56,7 +56,7 @@
     echo preg_match("/a[a-z]*o/", "aka") . "\n";
 
     //pattern: italian "codice fiscale"
-    $codice_fiscale_regex = "/^([A-Z]{6}[0-9]{2}[M|F][0-9]{2}[A-Z][0-9]{3}[A-Z])$/";
+    $codice_fiscale_regex = "/^([A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z])$/";
     $codici_fiscali = array("MCZGGN98M09A703K", "MCZGGNN98R09A703K",
                             "ACZGGN90M09A7033K", "MZZGNN95F19A804K",
                             "ACZGGN90M09A7033K ", "  MZZGNN95F19A804K",
@@ -70,4 +70,32 @@
         }
     }
     echo "\n";
+    /*repeat the exercise using an associative array:
+        array("giovanni mazzocchin" => "MZZ...", "mario rossi" => "RSSMR" etc...)
+    */
+
+    //pattern: any filename (at least 1 lower/upper case letter or decimal digit) ending in .php
+    echo preg_match("/[a-zA-Z0-9]+.php/", "tes!.php") . "\t";
+    echo preg_match("/[a-zA-Z0-9]+.php/", "tes!.txt example.php example..cpp example1.php") . "\n";
+
+    //pattern: three characters, either 'A', or 'B', or 'C'
+    echo preg_match("/[A|B|C]{3}/", "ABC") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "ACB") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "BCA") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "CBA") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "CBC") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "BBC") . "\t";
+    echo preg_match("/[A|B|C]{3}/", "CBQ") . "\n";
+
+    //pattern: 0 or 1 lowercase letter, followed by 4 digits. Anchored to the end of the text.
+    echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd!1234 ") . "\t";
+    echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd!1234") . "\t";
+    echo preg_match("/([a-z]?[0-9]{4})$/", "a1234 hello") . "\t";
+    echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd! 1234") . "\t";
+    echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd! b6652") . "\n";
+
+    //pattern: do not start with a vowel, at the beginning of the text
+    echo preg_match("/^[^aeiou]/", "nel mezzo del cammin") . "\t";
+    echo preg_match("/^[^aeiou]/", "chiare, fresche, dolci acque") . "\t";
+    echo preg_match("/^[^aeiou]/", "il sabato del villaggio") . "\n";
 ?>
