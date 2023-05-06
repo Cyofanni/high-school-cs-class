@@ -75,8 +75,8 @@
     */
 
     //pattern: any filename (at least 1 lower/upper case letter or decimal digit) ending in .php
-    echo preg_match("/[a-zA-Z0-9]+.php/", "tes!.php") . "\t";
-    echo preg_match("/[a-zA-Z0-9]+.php/", "tes!.txt example.php example..cpp example1.php") . "\n";
+    echo preg_match("/[a-zA-Z0-9]+\.php/", "tes!.php") . "\t";
+    echo preg_match("/[a-zA-Z0-9]+\.php/", "tes!.txt example.php example..cpp example1.php") . "\n";
 
     //pattern: three characters, either 'A', or 'B', or 'C'
     echo preg_match("/[A|B|C]{3}/", "ABC") . "\t";
