@@ -94,7 +94,7 @@
     echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd! 1234") . "\t";
     echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd! b6652") . "\n";
 
-    //pattern: do not start with a vowel, at the beginning of the text
+    //pattern: do not start with a lowercase vowel, at the beginning of the text
     echo preg_match("/^[^(aeiou)]/", "nel mezzo del cammin") . "\t";
     echo preg_match("/^[^(aeiou)]/", "chiare, fresche, dolci acque") . "\t";
     echo preg_match("/^[^(aeiou)]/", "ul sabato del villaggio") . "\t";
