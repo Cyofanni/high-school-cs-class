@@ -95,7 +95,23 @@
     echo preg_match("/([a-z]?[0-9]{4})$/", "?!cd! b6652") . "\n";
 
     //pattern: do not start with a vowel, at the beginning of the text
-    echo preg_match("/^[^aeiou]/", "nel mezzo del cammin") . "\t";
-    echo preg_match("/^[^aeiou]/", "chiare, fresche, dolci acque") . "\t";
-    echo preg_match("/^[^aeiou]/", "il sabato del villaggio") . "\n";
+    echo preg_match("/^[^(aeiou)]/", "nel mezzo del cammin") . "\t";
+    echo preg_match("/^[^(aeiou)]/", "chiare, fresche, dolci acque") . "\t";
+    echo preg_match("/^[^(aeiou)]/", "ul sabato del villaggio") . "\t";
+    echo preg_match("/^[^(aeiou)]/", "el sabato del villaggio") . "\t";
+    echo preg_match("/^[^(aeiou)]/", "al sabato del villaggio") . "\t";
+    echo preg_match("/^[^(aeiou)]/", "ol sabato del villaggio") . "\n";
+
+    //pattern: start with a vowel (any case), at the beginning of the text
+    echo preg_match("/^[(aeiou)|(AEIOU)]/", "albero") . "\t";
+    echo preg_match("/^[(aeiou)|(AEIOU)]/", "Albero") . "\t";
+    echo preg_match("/^[(aeiou)|(AEIOU)]/", " Olbero") . "\n";
+
+   /*pattern: match isolated that start with a vowel (any case) - at least one
+              lowercase letter - 1 decimal digit*/
+
+   $pattern = "/ [(AEIOU)|(aeiou)][a-z]+[0-9] /";
+   echo preg_match($pattern, "regex == nightmare") . "\t";
+   echo preg_match($pattern, "aa alber1 qweqwe") . "\t";
+   echo preg_match($pattern, "aa obcdef9 qweqwe") . "\n";
 ?>
