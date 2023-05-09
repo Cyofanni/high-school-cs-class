@@ -107,11 +107,10 @@
     echo preg_match("/^[(aeiou)|(AEIOU)]/", "Albero") . "\t";
     echo preg_match("/^[(aeiou)|(AEIOU)]/", " Olbero") . "\n";
 
-   /*pattern: match isolated that start with a vowel (any case) - at least one
+    /*pattern: match isolated that start with a vowel (any case) - at least one
               lowercase letter - 1 decimal digit*/
-
-   $pattern = "/ [(AEIOU)|(aeiou)][a-z]+[0-9] /";
-   echo preg_match($pattern, "regex == nightmare") . "\t";
-   echo preg_match($pattern, "aa alber1 qweqwe") . "\t";
-   echo preg_match($pattern, "aa obcdef9 qweqwe") . "\n";
+    $pattern = "/ [(AEIOU)|(aeiou)][a-z]+[0-9] /";
+    echo preg_match($pattern, "regex == nightmare") . "\t";
+    echo preg_match($pattern, "aa alber1 qweqwe") . "\t";
+    echo preg_match($pattern, "aa obcdef9 qweqwe") . "\n";
 ?>
