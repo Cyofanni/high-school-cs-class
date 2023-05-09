@@ -113,4 +113,12 @@
     echo preg_match($pattern, "regex == nightmare") . "\t";
     echo preg_match($pattern, "aa alber1 qweqwe") . "\t";
     echo preg_match($pattern, "aa obcdef9 qweqwe") . "\n";
+
+    /*pattern: text does not start with a decimal digit*/
+    $pattern = "/^[^0-9]/";
+    echo preg_match($pattern, "abcde") . "\t";
+    echo preg_match($pattern, "1asd") . "\t";
+    echo preg_match($pattern, " 123") . "\t";
+    echo preg_match($pattern, "!qweoiuy") . "\t";
+    echo preg_match($pattern, "90abqwe") . "\n";
 ?>
