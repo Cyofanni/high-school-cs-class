@@ -31,7 +31,7 @@ CREATE TABLE d_p(
 
 CREATE TABLE eu_countries(
   name VARCHAR(20),
-  PRIMARY KEY(NAME)
+  PRIMARY KEY(name)
 );
 
 INSERT INTO doctors(name, surname, birthdate)
