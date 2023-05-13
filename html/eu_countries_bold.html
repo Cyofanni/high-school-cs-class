@@ -3,14 +3,13 @@
     <title>Some EU countries</title>
   </head>
   <script type="text/javascript">
-    function deleteCountry() {
+    countries = ['germany', 'austria', 'romania', 'netherlands',
+                 'belgium', 'italy', 'portugal', 'spain', 'france'];
+    function setBoldCountries() {
       countriesUl = document.getElementById('eu_list');
-      idCountryToDelete = document.getElementById('country_to_delete').
-                                   value.trim().toLowerCase();
-      
-      liToDelete = document.getElementById(idCountryToDelete);
-      if (liToDelete) {
-        countriesUl.removeChild(liToDelete);
+      for (let i = 0; i < countries.length; i++) {
+          countryElement = document.getElementById(countries[i]);
+          countryElement.setAttribute('style', 'font-weight: bold');
       }
     }
   </script>
@@ -27,8 +26,6 @@
       <li id="spain">Spain</li>
       <li id="france">France</li>
     </ul>
-    <h3>Delete a country</h3>
-    <input id="country_to_delete" placeholder="enter a country..."></input>
-    <button onclick="deleteCountry()">Delete</button>
+    <button onclick="setBoldCountries()">Set all countries to bold font</button>
   </body>
 </html>
