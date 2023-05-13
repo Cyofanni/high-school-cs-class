@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Some EU countries</title>
+  </head>
+  <script type="text/javascript">
+    function deleteCountry() {
+      countriesUl = document.getElementById('eu_list');
+      idCountryToDelete = document.getElementById('country_to_delete').
+                                   value.trim().toLowerCase();
+      
+      liToDelete = document.getElementById(idCountryToDelete);
+      if (liToDelete) {
+        countriesUl.removeChild(liToDelete);
+      }
+    }
+  </script>
+  <body>
+    <h1>Some of European Union's countries</h1>
+    <ul id="eu_list">
+      <li id="germany">Germany</li>
+      <li id="austria">Austria</li>
+      <li id="romania">Romania</li>
+      <li id="netherlands">Netherlands</li>
+      <li id="belgium">Belgium</li>
+      <li id="italy">Italy</li>
+      <li id="portugal">Portugal</li>
+      <li id="spain">Spain</li>
+      <li id="france">France</li>
+    </ul>
+    <h3>Delete a country</h3>
+    <input id="country_to_delete" placeholder="enter a country..."></input>
+    <button onclick="deleteCountry()">Delete</button>
+  </body>
+</html>
