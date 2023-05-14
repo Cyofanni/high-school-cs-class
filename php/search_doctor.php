@@ -10,6 +10,9 @@
   $res = $db -> query($q);
 
   echo "<html><body>";
+  if (mysqli_num_rows($res) == 0) {
+    echo "<h2>no result matches your query<h2>";
+  }
   while ($rec = $res -> fetch_assoc()) {
       echo $rec['id'] . "  " . "  " . $rec['name'] . "  " . $rec['surname'];
       echo "</br>";
