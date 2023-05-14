@@ -1,18 +1,30 @@
-def z_rec(num_calls, c):
-    if num_calls == 0:
-        return 0
-    return z_rec(num_calls - 1, c) ** 2 + c
+from matplotlib import pyplot
 
-def z_iter(num_iters, c):
+def is_point_of_M(c, num_iters):
     z = 0
-    for i in range(num_iters):
+    i = 0
+    diverged = False
+    while i < num_iters and diverged == False:
         z = z ** 2 + c
-    return z
+        if abs(z - c) > 10 ** 8:
+            diverged = True
+        i += 1
 
-#c: 1 --> tends to infinity
-#c: -1 --> bounded
-c = 1
-for n in range(12):
-    print(z_rec(n, c))
-    print()
-    assert(z_rec(0, c) == z_iter(0, c))
+    return not diverged
+
+#x:[-2, 2], y:[-3, 3], step:0.1, num_iters: 16 --> 2s
+#x:[-2, 2], y:[-3, 3], step:0.01, num_iters: 16 --> 16m32s
+
+x = -2
+final_x = -x
+initial_y = -3
+final_y = -initial_y
+step = 0.1
+num_iters = 16
+while x <= final_x:
+  y = initial_y
+  while y <= final_y:
+    if is_point_of_M(complex(x, y), num_iters) == True:
+      pyplot.scatter([x], [y], [3], color = 'black')
+    y = y + step
+  x = x + step
