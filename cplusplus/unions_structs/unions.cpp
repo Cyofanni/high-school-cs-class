@@ -1,16 +1,19 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
-union var_var {
+union var_rec {
+	unsigned short usi;
 	unsigned int ui;
-	int i;
-	long int li;
+	unsigned long int uli;
+        float d;
 };
 
 int main() {
-	union var_var v;
-	v.li = 0xCAFEDEADBEBEBABA;
+	union var_rec v;
+	v.uli = 0xCAFEDEADBEBEBABA;
+	cout << v.usi << endl;
 	cout << v.ui << endl;
-	cout << v.i << endl;
-	cout << v.li << endl;
+	cout << v.uli << endl;
+        cout << setprecision(12) << v.d << endl;
 }
