@@ -61,8 +61,7 @@ int main() {
   for (unsigned int exp = 1; exp <= 32; exp++) {
     long double n1 = pow(2, exp);
     long double n2 = pow(sqrt(2), exp * 2);
-    printf("exp:%u; ", exp);
-    printf("%17.16Lf; %17.16Lf; ", n1, n2);
+    printf("exp:%3u; ", exp);
     printf("error: %Le\n", n1 - n2);
   }
 }
