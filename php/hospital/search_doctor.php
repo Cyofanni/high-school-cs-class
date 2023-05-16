@@ -1,7 +1,6 @@
 <?php
   /*
      apache web server error log /var/log/apache2/
-     curl "http://localhost/search_doctor.php?name=giovanni&surname=rossi"
   */
 
   $db = new mysqli("localhost", "root", "brocchi", "hospital");
@@ -12,11 +11,11 @@
 
   echo "<html><body>";
   if (mysqli_num_rows($res) == 0) {
-    echo "<h2>no result matches your query</h2>";
+    echo "<h2>no result matches your query<h2>";
   }
   while ($rec = $res -> fetch_assoc()) {
       echo "<div>";
-      echo $rec['id'] . "  " . "  " . $rec['name'] . "  " . $rec['surname'];
+      echo $rec['id'] . "  " . "  " . $rec['name'] . "  " . $rec['surname'] . "  " . $rec['birthdate'];
       echo "</div>";
   }
   echo "</body></html>";
