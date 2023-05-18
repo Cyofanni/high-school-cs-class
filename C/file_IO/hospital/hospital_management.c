@@ -19,12 +19,13 @@ typedef struct patient {
 } patient;
 
 int main() {
-  FILE *f_ptr = fopen("patients", "r");
+  FILE *f_ptr = fopen("patients", "w+");
   int input_id;
   char input_name[20] = {};
   char input_surname[20] = {};
   char input_residence_city[20] = {};
   unsigned int input_num_exams;
+  unsigned int num_patients = 0;
 
   printf("enter a record (id, name, surname, city, number_of_exams): ");
   putchar('\n');
@@ -70,6 +71,10 @@ int main() {
 
     printf(" number of exams: ");
     fscanf(stdin, "%d", &input_num_exams);
+
+    if (input_id != -1) {
+        num_patients++;
+    }
   }
 
   //read the file
@@ -82,7 +87,7 @@ int main() {
 
   rewind(f_ptr);
   printf("%-4s%-20s%-20s%-20s%-4s\n", "id", "name", "surname", "residence city", "number of exams");
-  while (i <= 2) {
+  while (i <= num_patients + 1) {
     fread(&id, sizeof(int), 1, f_ptr);
     fread(n, sizeof(char), 20, f_ptr);
     fread(s, sizeof(char), 20, f_ptr);
