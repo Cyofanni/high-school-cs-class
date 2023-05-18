@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+  font-size: 40;
+}
+
+button {
+  font-size: 20;
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 10px 23px;
+}
+
+input {
+  margin-bottom: 12;
+}
+
+.buttons {
+  margin-top: 32;
+  margin-bottom: 32;
+}
