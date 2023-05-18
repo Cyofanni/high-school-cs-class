@@ -7,8 +7,7 @@
   $res = $db -> query($q);
   echo "<html><body>";
   if (mysqli_num_rows($res) == 0) {
-    echo "login failed";
-    die("exiting login");
+    die("login failed");
   }
   $res = $db -> query($q);
   while ($rec = $res -> fetch_assoc()) {
