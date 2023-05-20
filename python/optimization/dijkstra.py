@@ -2,19 +2,17 @@
 
 import math
 
-def extract_min(d):
-  min_cost = math.inf
-  min_v = None
-  for pair in d.items():
-    if pair[1] <= min_cost:
-      min_cost = pair[1]
-      min_v = pair[0]
+def print_costs_sp_src(graph, source):
+  for key in graph.keys():
+    print('Cost of shortest path with source', source + ':',
+          graph[key]['cst_sp_src'], 'dest:', key, '(computed so far)')
 
+def extract_min(d):
+  min_v = min(d, key = d.get)
   d.pop(min_v)
   return min_v
 
 def dijkstra(G, source, preds):
-  print(G)
   Q = {}
   for v in G.keys():
     Q[v] = G[v]['cst_sp_src']
@@ -34,27 +32,39 @@ def dijkstra(G, source, preds):
         preds[u] = v
         Q[u] = new_cst_sp_src
 
-    print(G)
+    print_costs_sp_src(G, 's')
+    print("*************************")
 
 source = 's'
-G = {'s':{'r':5,'t':6,'x':3,'cst_sp_src':0},
-         'y':{'cst_sp_src':math.inf},
-         'r':{'t':2,'cst_sp_src':math.inf},
-         't':{'y':3,'x':1,'cst_sp_src':math.inf},
-         'x':{'y':9,'cst_sp_src':math.inf}}
+G = {
+      's':{'r':5,'t':6,'x':3,'cst_sp_src':0},
+      'y':{'cst_sp_src':math.inf},
+      'r':{'t':2,'cst_sp_src':math.inf},
+      't':{'y':3,'x':1,'cst_sp_src':math.inf},
+      'x':{'y':9,'cst_sp_src':math.inf}
+    }
 
 pred_sp_src = {'s':None,'y':None,'r':None,'t':None,'x':None}
 
-dijkstra(G, 's', pred_sp_src)
+source1 = 's'
+G1 = {
+      's':{'t':10,'y':5,'cst_sp_src':0},
+      't':{'x':1,'y':2,'cst_sp_src':math.inf},
+      'y':{'t':3,'x':9,'z':2,'cst_sp_src':math.inf},
+      'z':{'s':7,'x':6,'cst_sp_src':math.inf},
+      'x':{'z':7,'cst_sp_src':math.inf}
+     }
 
-node = 'y'
-print('shortest path to node:', node)
-shortest_path = [node]
-while pred_sp_src[node] != None:
-  node = pred_sp_src[node]
-  shortest_path.insert(0, node)
+pred_sp_src1 = {'s':None,'t':None,'y':None,'x':None,'z':None}
 
-print('BEGIN OF PATH', end = ' -> ')
-for node in shortest_path:
-  print(node, '->', end = ' ')
-print('END OF PATH')
+dijkstra(G1, source1, pred_sp_src1)
+
+for dest in G1.keys():
+  dest_v = dest
+  shortest_path = [dest_v]
+  while dest_v != None:
+    dest_v = pred_sp_src1[dest_v]
+    if (dest_v != None):
+      shortest_path.insert(0, dest_v)
+
+  print('Shortest path', source1, '->', dest, 'is:', shortest_path)
