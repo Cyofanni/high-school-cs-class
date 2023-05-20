@@ -1,43 +1,57 @@
 #Dijkstra’s algorithm
 
 import math
-graph = {'s':{'t':10,'y':5},'y':{'t':3,'x':9,'z':2},'z':{'s':7,'x':6},'x':{'z':4},
-         't':{'x':1,'y':2}}
-distances_source = {'s':0,'y':math.inf,'z':math.inf,'x':math.inf,'t':math.inf}
-predecessors_shortest_path = {'s':None,'y':None,'z':None,'x':None,'t':None}
-Q = distances_source.copy()
 
-def extract_min_cost_node():
+def extract_min(d):
   min_cost = math.inf
-  min_pair = None
-  for pair in Q.items():
-    if pair[1] < min_cost:
-      min_cost = pair[1] 
-      min_pair = pair
-  Q.pop(min_pair[0])
-  return min_pair[0]
+  min_v = None
+  for pair in d.items():
+    if pair[1] <= min_cost:
+      min_cost = pair[1]
+      min_v = pair[0]
 
-while len(Q) > 0:
-  current_node = extract_min_cost_node()
-  print('current node is:', current_node)
-  current_node_successors = graph[current_node]
+  d.pop(min_v)
+  return min_v
 
-  for succ in current_node_successors.items():
-    succ_key, succ_distance = succ
-    distance_source_s_current_node = distances_source[current_node]
-    if distance_source_s_current_node + succ_distance < distances_source[succ_key]:
-      distances_source[succ_key] = distance_source_s_current_node + succ_distance
-      predecessors_shortest_path[succ_key] = current_node
-      Q[succ_key] = distance_source_s_current_node + succ_distance
+def dijkstra(G, source, preds):
+  print(G)
+  Q = {}
+  for v in G.keys():
+    Q[v] = G[v]['cst_sp_src']
 
-  print('costs from source, computed so far:', distances_source)
-  print()
+  while len(Q) > 0:
+    v = extract_min(Q)
+    v_succs = G[v].copy()
+    v_succs.pop('cst_sp_src')
 
-node = 'x'
+    for u in v_succs:
+      uv_weight = G[v][u]
+      v_c = G[v]['cst_sp_src']
+      u_c = G[u]['cst_sp_src']
+      new_cst_sp_src = v_c + uv_weight
+      if v_c + uv_weight < u_c:
+        G[u]['cst_sp_src'] = new_cst_sp_src
+        preds[u] = v
+        Q[u] = new_cst_sp_src
+
+    print(G)
+
+source = 's'
+G = {'s':{'r':5,'t':6,'x':3,'cst_sp_src':0},
+         'y':{'cst_sp_src':math.inf},
+         'r':{'t':2,'cst_sp_src':math.inf},
+         't':{'y':3,'x':1,'cst_sp_src':math.inf},
+         'x':{'y':9,'cst_sp_src':math.inf}}
+
+pred_sp_src = {'s':None,'y':None,'r':None,'t':None,'x':None}
+
+dijkstra(G, 's', pred_sp_src)
+
+node = 'y'
 print('shortest path to node:', node)
 shortest_path = [node]
-while predecessors_shortest_path[node] != None:
-  node = predecessors_shortest_path[node]
+while pred_sp_src[node] != None:
+  node = pred_sp_src[node]
   shortest_path.insert(0, node)
 
 print('BEGIN OF PATH', end = ' -> ')
