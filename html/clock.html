@@ -1,0 +1,14 @@
+<html>
+  <script type="text/javascript">
+    window.onload = function() {
+        clockEl = document.getElementById('clock');
+        now = document.createTextNode(new Date());
+        setInterval(() => clockEl.innerHTML = new Date().toLocaleTimeString(), 1000);
+    }
+  </script>
+  <body>
+   <div id="clock" style="font-size: 64; text-align: center;">
+     Start...
+   </div>
+  </body>
+</html>
