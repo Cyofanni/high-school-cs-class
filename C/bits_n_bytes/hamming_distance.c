@@ -1,18 +1,19 @@
 #include <stdio.h>
+#include <stdint.h>
 
 /*compute the hamming distance between binary
-  representation of two unsigned shorts
+  representation of two uint8_t
 */
 
 int main() {
-    unsigned short int x = 0xFFFF;
-    unsigned short int y = 0xAEEA;
+    uint8_t x = 0xFF;
+    uint8_t y = 0x11;
 
     int bit_cnt = 1;
     int ham_dis_count = 0;
-    while (bit_cnt < sizeof(unsigned short int) * 8) {
-        unsigned short int cur_lsb_x = x & 0x0001;
-        unsigned short int cur_lsb_y = y & 0x0001;
+    while (bit_cnt <= sizeof(uint8_t) * 8) {
+        uint8_t cur_lsb_x = x & 0x01;
+        uint8_t cur_lsb_y = y & 0x01;
         ham_dis_count += cur_lsb_x ^ cur_lsb_y;
 
         x = x >> 1;
