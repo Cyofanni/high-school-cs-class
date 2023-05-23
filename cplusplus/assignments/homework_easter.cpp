@@ -312,26 +312,5 @@ bool is_palindrome_iter_2(char* str, unsigned int size) {
 }
 
 int main() {
-  char str[] = "radar";
-  cout << is_palindrome_rec(str, 0, strlen(str) - 1) << endl;
-  cout << is_palindrome_iter_1(str, strlen(str)) << endl;
-  cout << is_palindrome_iter_2(str, strlen(str)) << endl;
 
-  int matr1[][6] = {
-    {0, 3, 6, 7, 3, 5},
-    {34, 36, 34, 67, 72, 12},
-    {34, 88, 120, 124, 166, 51},
-    {5, 54, 36, 130, 240, 98},
-    {-12, 1, 7, 40, 40, 53},
-    {8, 9, 9, 17, 65, 16}
-  };
-
-  int matr2[][6] = {
-    {0, 3, 6, 7, 3, 5},
-    {34, 36, 34, 67, 72, 12},
-    {34, 88, 120, 124, 166, 51},
-    {5, 54, 36, 130, 240, 98},
-    {-12, 1, 7, 40, 40, 53},
-    {8, 9, 9, 17, 65, 16}
-  };
 }
