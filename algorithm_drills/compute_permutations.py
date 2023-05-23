@@ -4,7 +4,7 @@ def compute_permutations(word, k, permutation):
   if k == len(word):
     permutation_str = ''.join(permutation)
     if permutation_str not in permutations:
-    permutations.append(permutation_str)
+      permutations.append(permutation_str)
     return
 
   permutation[k] = word[k]
