@@ -86,6 +86,15 @@ bool binary_search_recursive(int a[], int low, int high, int key) {
   return binary_search_recursive(a, middle + 1, high, key);
 }
 
+void display_hanoi_tower_moves(int num_disks, char peg_init,
+                               char peg_temp, char peg_final) {
+  if (num_disks) {
+    display_hanoi_tower_moves(num_disks - 1, peg_init, peg_final, peg_temp);
+    cout << "move disk from peg " << peg_init << " to peg " << peg_final << endl;
+    display_hanoi_tower_moves(num_disks - 1, peg_temp, peg_init, peg_final);
+  }
+}
+
 int main() {
 
 }
