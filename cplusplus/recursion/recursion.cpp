@@ -87,9 +87,5 @@ bool binary_search_recursive(int a[], int low, int high, int key) {
 }
 
 int main() {
-  int arr[12] = {1, 5, 6, 12, 13, 14, 16, 20, 21, 24, 25, 28};
-  cout << binary_search_iterative_not_structured(arr, 12, 28) << endl;
-  cout << binary_search_recursive(arr, 0, 11, 28) << endl;
 
-  return 0;
 }
