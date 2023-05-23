@@ -147,7 +147,4 @@ void quick_sort(int a[], int p, int r, int a_length) {
 }
 
 int main() {
-  int arr[3] = {16, 17, 2};
-  merge(arr, 0, 1, 2);
-  print_array_slice(arr, 0, 2, -1, -1, -1);
 }
