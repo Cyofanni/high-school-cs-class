@@ -38,5 +38,10 @@ int main() {
   }
   cout << endl;
 
-  vector<int> v1(9998988776713877778761851);
+  try {
+    vector<int> v1(9998988776713877211);
+  }
+  catch (length_error) {
+    cout << "vector max size exceeded" << endl;
+  }
 }
