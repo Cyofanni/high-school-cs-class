@@ -39,21 +39,5 @@ void alloc_doubles_heap(double d) {
   free(heap_bytes);
 }
 
-int *compute_fibonacci_numbers(int n) {
-  int *fib_array = (int*) malloc((n + 2) * sizeof(int));
-  fib_array[1] = 1;
-  for (int i = 2; i <= n; i++) {
-    fib_array[i]= fib_array[i - 1] + fib_array[i - 2];
-  }
-
-  return fib_array;
-}
-
 int main(int argc, char *argv[]) {
-  int *fib_numbers = compute_fibonacci_numbers(15);
-  for (int i = 0; i <= 15; i++) {
-    printf("%d-th fibonacci number:\t\t%d\n", i, fib_numbers[i]);
-  }
-  putchar('\n');
-  free(fib_numbers);
 }
