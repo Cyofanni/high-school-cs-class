@@ -11,4 +11,3 @@ _start:
 
 	section .data
 str:	db "hello, world", 0Ah
-	
