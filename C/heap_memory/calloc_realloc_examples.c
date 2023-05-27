@@ -54,5 +54,4 @@ void safe_heap_write(size_t sz) {
 }
 
 int main() {
-  safe_heap_write(4);
 }
