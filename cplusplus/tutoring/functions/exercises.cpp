@@ -35,5 +35,23 @@ int min_prime_sup(int n) {
   return res;
 }
 
+//ex 7b
+void prime_divisors(int n) {
+  for (int i = 2; i <= n / 2; i++) {
+    if (n % i == 0 && is_prime(i)) {
+      cout << i << endl;
+    }
+  }
+}
+
+//ex 8
+double solve_eq_2_degree_1(double a, double b, double c) {
+  return (-b - sqrt(b * b - 4 * a * c)) / 2 * a;
+}
+
+double solve_eq_2_degree_2(double a, double b, double c) {
+  return (-b + sqrt(b * b - 4 * a * c)) / 2 * a;
+}
+
 int main() {
 }
