@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,5 +44,12 @@ int main() {
   }
   catch (length_error) {
     cout << "vector max size exceeded" << endl;
+  }
+
+  vector<int> vec1 = {6, 8, 7, 1, 6, 7};
+  vector<int>::iterator it;
+  it = find(vec1.begin(), vec1.end(), 8);
+  if (it) {
+    cout << *it << endl;
   }
 }
