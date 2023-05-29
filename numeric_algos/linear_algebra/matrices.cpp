@@ -23,14 +23,17 @@ void matrix_mult(double matr1[4][6], double matr2[6][5],
   }
 }
 
+//do not consider 0 pivots
 void gaussian_elimination(double system[3][4]) {
   int pivot_row = 0;
 
   for (int pivot_col = 0; pivot_col < 4; pivot_col++) {
     for (int row = pivot_row + 1; row < 3; row++) {
-      double l = system[row][pivot_col] / system[pivot_row][pivot_col];
-      for (int col = pivot_col; col < 4; col++) {
-	system[row][col] = system[row][col] - l * system[pivot_row][col];
+      if (system[pivot_row][pivot_col] != 0) {
+	double l = system[row][pivot_col] / system[pivot_row][pivot_col];
+	for (int col = pivot_col; col < 4; col++) {
+	  system[row][col] = system[row][col] - l * system[pivot_row][col];
+	}
       }
     }
     pivot_row++;
