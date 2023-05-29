@@ -20,5 +20,28 @@ int main() {
   double m3[4][5];
 
   matrix_mult(m1, m2, m3);
-  print_matrix_nrows_5(m3, 4);
+  print_matrix(*m3, 4, 6);
+  cout << endl;
+
+  double system_0[3][4] = {{2, 1, -1, 8},
+			   {-3, -1, 2, -11},
+			   {-2, 1, 2, -3},
+	                  };
+  gaussian_elimination(system_0);
+  print_matrix(*system_0, 3, 4);
+  cout << endl;
+
+  double system_1[3][4] = {{6, 4, -1, 12},
+			   {-3, -1, 2, -11},
+			   {-2, 1, 2, 8},
+	                  };
+  cout << endl;
+  gaussian_elimination(system_1);
+  print_matrix(*system_1, 3, 4);
+  /*
+  6 4 -1 12
+  0 1 1.5 -5
+  0 0 -1.83333 23.6667
+  */
+  cout << endl;
 }
