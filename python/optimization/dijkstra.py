@@ -4,8 +4,8 @@ import math
 
 def print_costs_sp_src(graph, source):
   for key in graph.keys():
-    print('Cost of shortest path with source', source + ':',
-          graph[key]['cst_sp_src'], 'dest:', key, '(computed so far)')
+    print('Cost of shortest path with source', source + ', dest', key + ':',
+          str(graph[key]['cst_sp_src']) + ' (computed so far)')
 
 def extract_min(d):
   min_v = min(d, key = d.get)
@@ -52,7 +52,7 @@ G1 = {
       't':{'x':1,'y':2,'cst_sp_src':math.inf},
       'y':{'t':3,'x':9,'z':2,'cst_sp_src':math.inf},
       'z':{'s':7,'x':6,'cst_sp_src':math.inf},
-      'x':{'z':7,'cst_sp_src':math.inf}
+      'x':{'z':4,'cst_sp_src':math.inf}
      }
 
 pred_sp_src1 = {'s':None,'t':None,'y':None,'x':None,'z':None}
