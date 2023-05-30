@@ -15,8 +15,9 @@ def generate_gray_codes(k):
     codes.append([1] + old_codes[i])
   size_codes = len(codes)
   middle = size_codes // 2
+  #comment the line below to get positional binary encoding
   codes[middle : size_codes] = codes[size_codes - 1 : middle - 1 : -1]
 
-generate_gray_codes(8)
+generate_gray_codes(5)
 for code in codes:
   print(code)
