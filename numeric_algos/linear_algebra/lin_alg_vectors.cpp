@@ -5,6 +5,9 @@ using namespace std;
 class bad_mat_mult {
 };
 
+class zero_pivot_err {
+};
+
 vector<vector<double>> mat_mult(const vector<vector<double>>& a,
                                 const vector<vector<double>>& b) {
   int a_n_rows = a.size();
@@ -29,6 +32,28 @@ vector<vector<double>> mat_mult(const vector<vector<double>>& a,
   return res;
 }
 
+//do not consider 0 pivot
+void gauss_elim(vector<vector<double>>& system) {
+  int pivot_row = 0, pivot_col = 0;
+  int n_rows = system.size();
+  int n_cols = system.at(0).size();
+  double pivot = system.at(pivot_row).at(pivot_col);
+  for (int i = 0; i < n_cols - 1; i++) {
+    double pivot = system.at(pivot_row).at(pivot_col);
+    if (abs(pivot) <= 1.5e-16) {
+      throw zero_pivot_err();
+    }
+    for (int row = pivot_row + 1; row < n_rows; row++) {
+      double l = system.at(row).at(pivot_col) / pivot;
+      for (int col = pivot_col; col < n_cols; col++) {
+        system.at(row).at(col) -= l * system.at(pivot_row).at(col);
+      }
+    }
+    pivot_row++;
+    pivot_col++;
+  }
+}
+
 void print_matrix(const vector<vector<double>>& mat) {
   for (auto& row : mat) {
     for (auto& el : row) {
@@ -36,6 +61,7 @@ void print_matrix(const vector<vector<double>>& mat) {
     }
     cout << endl;
   }
+  cout << endl;
 }
 
 int main() {
@@ -55,4 +81,11 @@ int main() {
 
   vector<vector<double>> m1_m2_prod = mat_mult(m1, m2);
   print_matrix(m1_m2_prod);
+
+  vector<vector<double>> sys = {{6, 4, -1, 12},
+				{-3, -1, 2, -11},
+				{-2, 1, 2, 8}
+                               };
+  gauss_elim(sys);
+  print_matrix(sys);
 }
