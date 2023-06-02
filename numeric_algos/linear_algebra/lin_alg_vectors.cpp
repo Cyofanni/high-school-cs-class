@@ -32,7 +32,7 @@ vector<vector<double>> mat_mult(const vector<vector<double>>& a,
   return res;
 }
 
-//do not consider 0 pivot
+//do not consider 0 pivots
 void gauss_elim(vector<vector<double>>& system) {
   int pivot_row = 0, pivot_col = 0;
   int n_rows = system.size();
