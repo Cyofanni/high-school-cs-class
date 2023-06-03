@@ -7,10 +7,9 @@ This repo includes lectures and examples on:
 + *cryptography* (**Python**)
 + *OOP* (**C++**)
 + *programming languages-related topics*
-+ *python* (with some bits of functional programming)
 + *PHP*
 + *relational databases* (**mysql**)
-+ *JavaScript*
++ *JavaScript - functional programming*
 + *security-related topics - buffer overflows, SQL injection, XSS*
 + *fractals - Python*
 + *optimization - Python*
