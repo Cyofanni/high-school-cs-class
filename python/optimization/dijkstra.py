@@ -33,6 +33,7 @@ def dijkstra(G, source, preds):
         Q[u] = new_cst_sp_src
 
     print_costs_sp_src(G, 's')
+    cont = input()
     print("*************************")
 
 source = 's'
