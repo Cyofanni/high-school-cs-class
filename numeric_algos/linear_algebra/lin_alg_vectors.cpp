@@ -37,7 +37,6 @@ void gauss_elim(vector<vector<double>>& system) {
   int pivot_row = 0, pivot_col = 0;
   int n_rows = system.size();
   int n_cols = system.at(0).size();
-  double pivot = system.at(pivot_row).at(pivot_col);
   for (int i = 0; i < n_cols - 1; i++) {
     double pivot = system.at(pivot_row).at(pivot_col);
     if (abs(pivot) <= 1.5e-16) {
@@ -86,6 +85,13 @@ int main() {
 				{-3, -1, 2, -11},
 				{-2, 1, 2, 8}
                                };
-  gauss_elim(sys);
+
+  try {
+    gauss_elim(sys); //may throw a zero_pivot_err exception
+  }
+  catch (zero_pivot_err) {
+    cout << "zero_pivot_err" << endl;
+  }
+
   print_matrix(sys);
 }
