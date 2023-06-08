@@ -3,7 +3,7 @@ using namespace std;
 
 enum CITIES {new_york, boston, chicago, san_francisco};
 
-double distances[8][8] = {
+double distances[4][4] = {
                                 {-1, 232.2, 789.9, 2901.6},
                                 {232.2, -1, 983.1, 3094.8},
                                 {789.9, 983.1, -1, 2127.3},
