@@ -1,4 +1,5 @@
 #include "list.h"
+#include "queue_array.h"
 
 int main() {
   L_NODE* l1 = NULL;
@@ -59,4 +60,29 @@ int main() {
   l4 = insert_iter(l4, 299, 8);
   print_rec(l4);
   putchar('\n');
+
+  QUEUE q = {{}, 0, -1, 0};
+  print(&q);
+  enqueue(&q, 4);
+  print(&q);
+  enqueue(&q, 5);
+  print(&q);
+  enqueue(&q, 6);
+  print(&q);
+  enqueue(&q, 7);
+  print(&q);
+  enqueue(&q, 8);
+  print(&q);
+  enqueue(&q, 9);
+  print(&q);
+  enqueue(&q, 10);
+  print(&q);
+  enqueue(&q, 11);
+  print(&q);
+  dequeue(&q);
+  print(&q);
+  enqueue(&q, 12);
+  print(&q);
+  enqueue(&q, 13);
+  print(&q);
 }
