@@ -8,6 +8,6 @@ dyn_int_vector::dyn_int_vector(int size, int val) {
   }
 }
 
-dyn_int_vector :: ~dyn_int_vector() {
+dyn_int_vector::~dyn_int_vector() {
   delete[] ptr;
 }
