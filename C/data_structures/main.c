@@ -1,5 +1,6 @@
 #include "list.h"
 #include "queue_array.h"
+#include "bin_tree.h"
 
 int main() {
   printf("%s\n", "list #1");
@@ -106,7 +107,7 @@ int main() {
   l6 = remove_iter(l6, 0);
   print_rec(l6);
   puts("\n");
-  
+
   printf("%s\n", "queue #1");
   QUEUE q = {{}, 0, -1, 0};
   print_debug(&q);
@@ -136,4 +137,14 @@ int main() {
   print(&q);
   enqueue(&q, 20);
   print(&q);
+  putchar('\n');
+
+  printf("%s\n", "tree #1");
+  T_NODE* r = NULL;
+  r = bst_insert_iter(r, 20);
+  r = bst_insert_iter(r, 15);
+  r = bst_insert_iter(r, 25);
+  r = bst_insert_iter(r, 29);
+  print_tree(r);
+  putchar('\n');
 }
