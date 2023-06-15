@@ -54,6 +54,22 @@ L_NODE* insert_iter(L_NODE* n, int key, int pos) {
   return n;
 }
 
+L_NODE* insert_rec(L_NODE* n, int key, int pos) {
+  if (!n || !pos) {
+    L_NODE* new_node = (L_NODE*) malloc(sizeof(L_NODE));
+    new_node -> key = key;
+    if (!n) {
+      new_node -> next = NULL;
+    }
+    else {
+      new_node -> next = n;
+    }
+    return new_node;
+  }
+  n -> next = insert_rec(n -> next, key, pos - 1);
+  return n;
+}
+
 void print_rec(L_NODE* n) {
   if (!n) {
     return;

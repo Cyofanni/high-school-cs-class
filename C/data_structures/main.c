@@ -2,6 +2,7 @@
 #include "queue_array.h"
 
 int main() {
+  printf("%s\n", "list #1");
   L_NODE* l1 = NULL;
   l1 = insert_back_iter(l1, 2);
   l1 = insert_back_iter(l1, 4);
@@ -10,10 +11,10 @@ int main() {
   l1 = insert_back_iter(l1, 10);
   l1 = insert_back_iter(l1, 12);
   l1 = insert_back_iter(l1, 14);
-
   print_rec(l1);
-  putchar('\n');
+  puts("\n");
 
+  printf("%s\n", "list #2");
   L_NODE* l2 = NULL;
   l2 = insert_back_rec(l2, 3);
   l2 = insert_back_rec(l2, 8);
@@ -23,8 +24,9 @@ int main() {
   l2 = insert_back_rec(l2, 30);
   l2 = insert_back_rec(l2, 40);
   print_rec(l2);
-  putchar('\n');
+  puts("\n");
 
+  printf("%s\n", "list #3");
   L_NODE* l3 = NULL;
   l3 = insert_front(l3, 1024);
   l3 = insert_front(l3, 512);
@@ -34,8 +36,9 @@ int main() {
   l3 = insert_front(l3, 32);
   l3 = insert_front(l3, 16);
   print_rec(l3);
-  putchar('\n');
+  puts("\n");
 
+  printf("%s\n", "list #4");
   L_NODE* l4 = NULL;
   l4 = insert_iter(l4, 200, 0);
   l4 = insert_iter(l4, 199, 0);
@@ -59,8 +62,27 @@ int main() {
   putchar('\n');
   l4 = insert_iter(l4, 299, 8);
   print_rec(l4);
-  putchar('\n');
+  puts("\n");
 
+  printf("%s\n", "list #5");
+  L_NODE* l5 = NULL;
+  l5 = insert_rec(l5, 200, 0);
+  l5 = insert_rec(l5, 199, 0);
+  l5 = insert_rec(l5, 198, 0);
+  print_rec(l5);
+  putchar('\n');
+  l5 = insert_rec(l5, 100, 1);
+  print_rec(l5);
+  putchar('\n');
+  l5 = insert_rec(l5, 150, 3);
+  print_rec(l5);
+  putchar('\n');
+  l5 = insert_rec(l5, 300, 16);
+  print_rec(l5);
+  putchar('\n');
+  puts("\n");
+
+  printf("%s\n", "queue #1");
   QUEUE q = {{}, 0, -1, 0};
   print(&q);
   enqueue(&q, 4);
@@ -85,4 +107,5 @@ int main() {
   print(&q);
   enqueue(&q, 13);
   print(&q);
+  puts("\n");
 }

@@ -14,4 +14,6 @@ L_NODE* insert_front(L_NODE*, int);
 
 L_NODE* insert_iter(L_NODE*, int, int);
 
+L_NODE* insert_rec(L_NODE*, int, int);
+
 void print_rec(L_NODE*);
