@@ -151,4 +151,22 @@ int main() {
   printf("%s\n", "graph #1");
   GRAPH g = {{}};
   init_graph(&g);
+  putchar('\n');
+
+  printf("%s\n", "doubly-linked list #1");
+  L_NODE_D* dl1 = NULL;
+  dl1 = insert_back_iter_d(dl1, 0);
+  dl1 = insert_back_iter_d(dl1, 1);
+  dl1 = insert_back_iter_d(dl1, 1);
+  dl1 = insert_back_iter_d(dl1, 2);
+  dl1 = insert_back_iter_d(dl1, 3);
+  dl1 = insert_back_iter_d(dl1, 5);
+  L_NODE_D* tail = dl1 -> next -> next -> next -> next -> next;
+  printf("%d ", tail -> key);
+  printf("%d ", tail -> prev -> key);
+  printf("%d ", tail -> prev -> prev -> key);
+  printf("%d ", tail -> prev -> prev -> prev -> key);
+  printf("%d ", tail -> prev -> prev -> prev -> prev -> key);
+  printf("%d ", tail -> prev -> prev -> prev -> prev -> prev -> key);
+  putchar('\n');
 }

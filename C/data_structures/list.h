@@ -7,6 +7,12 @@ typedef struct list_node {
   struct list_node* next;
 } L_NODE;
 
+typedef struct list_node_d {
+  int key;
+  struct list_node_d* prev;
+  struct list_node_d* next;
+} L_NODE_D;
+
 L_NODE* insert_back_iter(L_NODE*, int);
 
 L_NODE* insert_back_rec(L_NODE*, int);
@@ -18,5 +24,7 @@ L_NODE* insert_iter(L_NODE*, int, int);
 L_NODE* insert_rec(L_NODE*, int, int);
 
 L_NODE* remove_iter(L_NODE*, int);
+
+L_NODE_D* insert_back_iter_d(L_NODE_D*, int);
 
 void print_rec(L_NODE*);

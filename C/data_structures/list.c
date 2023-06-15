@@ -94,6 +94,24 @@ L_NODE* remove_iter(L_NODE* n, int pos) {
   return n;
 }
 
+L_NODE_D* insert_back_iter_d(L_NODE_D* n, int key) {
+  if (!n) {
+    L_NODE_D* new_node = (L_NODE_D*) malloc(sizeof(L_NODE_D));
+    new_node -> key = key;
+    new_node -> prev = NULL;
+    new_node -> next = NULL;
+    return new_node;
+  }
+  L_NODE_D* it = n;
+  while (it -> next) {
+    it = it -> next;
+  }
+  it -> next = (L_NODE_D*) malloc(sizeof(L_NODE_D));
+  it -> next -> key = key;
+  it -> next -> prev = it;
+  return n;
+}
+
 void print_rec(L_NODE* n) {
   if (!n) {
     return;
