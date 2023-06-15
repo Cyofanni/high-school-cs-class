@@ -3,6 +3,7 @@
 
 typedef struct list_node {
   int key;
+  int distance;    //used when it is a graph node
   struct list_node* next;
 } L_NODE;
 
