@@ -70,6 +70,30 @@ L_NODE* insert_rec(L_NODE* n, int key, int pos) {
   return n;
 }
 
+L_NODE* remove_iter(L_NODE* n, int pos) {
+  if (n) {
+    if (pos == 0) {
+      L_NODE* new_head = n -> next;
+      free(n);
+      return new_head;
+    }
+
+    L_NODE* curr = n;
+    L_NODE* prev = NULL;
+    while (curr && pos) {
+      prev = curr;
+      curr = curr -> next;
+      pos--;
+    }
+    if (curr) {
+      prev -> next = curr -> next;
+      free(curr);
+    }
+  }
+
+  return n;
+}
+
 void print_rec(L_NODE* n) {
   if (!n) {
     return;
