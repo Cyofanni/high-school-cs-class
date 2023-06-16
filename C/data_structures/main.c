@@ -1,6 +1,7 @@
 #include "queue_array.h"
 #include "bin_tree.h"
 #include "graph_adj_list.h"
+#include "heap.h"
 
 int main() {
   printf("%s\n", "list #1");
@@ -168,5 +169,14 @@ int main() {
   printf("%d ", tail -> prev -> prev -> prev -> key);
   printf("%d ", tail -> prev -> prev -> prev -> prev -> key);
   printf("%d ", tail -> prev -> prev -> prev -> prev -> prev -> key);
+  puts("\n");
+
+  printf("%s\n", "heap #1");
+  MAX_HEAP hp1 = {{-1, 16, 14, 10, 8, 7, 9, 3, 2, 4, 1}};
+  print_heap(&hp1, 1, 10);
+  putchar('\n');
+  MAX_HEAP hp2 = {{-1, 3, 14, 10, 8, 7, 9, 3, 2, 4, 1}};
+  max_heapify(&hp2, 1, 10);
+  print_heap(&hp2, 1, 10);
   putchar('\n');
 }
