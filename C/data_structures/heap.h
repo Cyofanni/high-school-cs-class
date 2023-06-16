@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define ARRAY_SIZE 33    //0-th index is unused
+#define ARRAY_SIZE 33    //0 index is unused
 
 typedef struct max_heap {
   int array[ARRAY_SIZE];
