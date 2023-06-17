@@ -171,12 +171,16 @@ int main() {
   printf("%d ", tail -> prev -> prev -> prev -> prev -> prev -> key);
   puts("\n");
 
-  printf("%s\n", "heap #1");
-  MAX_HEAP hp1 = {{-1, 16, 14, 10, 8, 7, 9, 3, 2, 4, 1}};
-  print_heap(&hp1, 1, 10);
+  printf("%s\n", "heap #1, #2, #3");
+  MAX_HEAP hp1 = {{-1, 16, 14, 10, 8, 7, 9, 3, 2, 4, 1}, 10};
+  print_heap(&hp1, 1);
   putchar('\n');
-  MAX_HEAP hp2 = {{-1, 3, 14, 10, 8, 7, 9, 3, 2, 4, 1}};
-  max_heapify(&hp2, 1, 10);
-  print_heap(&hp2, 1, 10);
+  MAX_HEAP hp2 = {{-1, 17, 3, 10, 8, 7, 9, 3, 2, 4, 1}, 10};
+  max_heapify(&hp2, 2);
+  print_heap(&hp2, 1);
+  putchar('\n');
+  MAX_HEAP hp3 = {{-1, 6, 8, 2, 3, 4, 0, 9, 1, 6, 17}, 10};
+  build_max_heap(&hp3, 10);
+  print_heap(&hp3, 1);
   putchar('\n');
 }
