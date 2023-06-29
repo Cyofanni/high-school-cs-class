@@ -108,6 +108,20 @@ int lin_search_iter(L_NODE* n, int key) {
   return key_ind;
 }
 
+L_NODE* node_at_ind(L_NODE* n, int index) {
+  L_NODE* ret_node = NULL;
+  int counter = 0;
+  while (n && counter <= index) {
+    if (counter == index) {
+      ret_node = n;
+    }
+    counter++;
+    n = n -> next;
+  }
+
+  return ret_node;
+}
+
 L_NODE_D* insert_back_iter_d(L_NODE_D* n, int key) {
   if (!n) {
     L_NODE_D* new_node = (L_NODE_D*) malloc(sizeof(L_NODE_D));

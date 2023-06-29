@@ -13,6 +13,10 @@ int main() {
   l1 = insert_back_iter(l1, 10);
   l1 = insert_back_iter(l1, 12);
   l1 = insert_back_iter(l1, 14);
+  L_NODE* nd = node_at_ind(l1, 7);
+  if (nd) {
+    printf("%d\n", nd -> key);
+  }
   print_rec(l1);
   puts("\n");
 
