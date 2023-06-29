@@ -25,6 +25,7 @@ int main() {
   l2 = insert_back_rec(l2, 20);
   l2 = insert_back_rec(l2, 30);
   l2 = insert_back_rec(l2, 40);
+  printf("%d\n", lin_search_iter(l2, 8));
   print_rec(l2);
   puts("\n");
 

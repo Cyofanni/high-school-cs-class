@@ -94,6 +94,20 @@ L_NODE* remove_iter(L_NODE* n, int pos) {
   return n;
 }
 
+int lin_search_iter(L_NODE* n, int key) {
+  int key_ind = -1;
+  int ind = 0;
+  while (n && key_ind == -1) {
+    if (n -> key == key) {
+      key_ind = ind;
+    }
+    n = n -> next;
+    ind++;
+  }
+
+  return key_ind;
+}
+
 L_NODE_D* insert_back_iter_d(L_NODE_D* n, int key) {
   if (!n) {
     L_NODE_D* new_node = (L_NODE_D*) malloc(sizeof(L_NODE_D));
