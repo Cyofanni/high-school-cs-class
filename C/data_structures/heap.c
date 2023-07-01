@@ -49,9 +49,17 @@ void print_heap(MAX_HEAP* h, int i) {
   putchar(')');
 }
 
-void build_max_heap(MAX_HEAP* h, int size) {
-  h->heap_size = size;
-  for (int i = size / 2; i >= 1; i--) {
+void build_max_heap(MAX_HEAP* h) {
+  for (int i = h->heap_size / 2; i >= 1; i--) {
     max_heapify(h, i);
+  }
+}
+
+void heap_sort(MAX_HEAP* h) {
+  build_max_heap(h);
+  for (int i = h->heap_size; i >= 2; i--) {
+    swap(&h->array[1], &h->array[i]);
+    h->heap_size--;
+    max_heapify(h, 1);
   }
 }

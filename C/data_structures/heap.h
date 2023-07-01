@@ -15,6 +15,8 @@ int right(MAX_HEAP*, int);
 
 void max_heapify(MAX_HEAP*, int);
 
-void build_max_heap(MAX_HEAP*, int);
+void build_max_heap(MAX_HEAP*);
 
 void print_heap(MAX_HEAP*, int);
+
+void heap_sort(MAX_HEAP*);

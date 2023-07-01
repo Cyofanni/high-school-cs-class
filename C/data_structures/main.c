@@ -185,7 +185,14 @@ int main() {
   print_heap(&hp2, 1);
   putchar('\n');
   MAX_HEAP hp3 = {{-1, 6, 8, 2, 3, 4, 0, 9, 1, 6, 17}, 10};
-  build_max_heap(&hp3, 10);
+  build_max_heap(&hp3);
   print_heap(&hp3, 1);
+  putchar('\n');
+  printf("heapsort\n");
+  MAX_HEAP hp4 = {{-1, 5, 2, 3, 4, 98, 57, 1, 4, 5, 42, 12, 42, -31, -33, -100, 120}, 16};
+  heap_sort(&hp4);
+  for (int i = 1; i <= 16; i++) {
+    printf("%d ", hp4.array[i]);
+  }
   putchar('\n');
 }
