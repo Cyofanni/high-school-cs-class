@@ -1,6 +1,6 @@
+#include "list.h"
 #include "queue_array.h"
 #include "bin_tree.h"
-#include "graph_adj_list.h"
 #include "heap.h"
 
 int main() {
@@ -153,11 +153,6 @@ int main() {
   r = bst_insert_iter(r, 29);
   print_tree(r);
   puts("\n");
-
-  printf("%s\n", "graph #1");
-  GRAPH g = {{}};
-  init_graph(&g);
-  putchar('\n');
 
   printf("%s\n", "doubly-linked list #1");
   L_NODE_D* dl1 = NULL;
