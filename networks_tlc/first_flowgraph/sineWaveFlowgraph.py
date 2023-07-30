@@ -33,6 +33,8 @@ import signal
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
+from gnuradio.qtgui import Range, RangeWidget
+from PyQt5 import QtCore
 
 
 
@@ -75,10 +77,18 @@ class sineWaveFlowgraph(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 32000
+        self.frequency = frequency = 50
+        self.amplitude = amplitude = 1
 
         ##################################################
         # Blocks
         ##################################################
+        self._frequency_range = Range(0, 1000, 50, 50, 200)
+        self._frequency_win = RangeWidget(self._frequency_range, self.set_frequency, "'frequency'", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._frequency_win)
+        self._amplitude_range = Range(0, 10, 1, 1, 200)
+        self._amplitude_win = RangeWidget(self._amplitude_range, self.set_amplitude, "'amplitude'", "counter_slider", float, QtCore.Qt.Horizontal)
+        self.top_layout.addWidget(self._amplitude_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
             1024, #size
             samp_rate, #samp_rate
@@ -173,7 +183,7 @@ class sineWaveFlowgraph(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, 100, 1, 0, 0)
+        self.analog_sig_source_x_0 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, frequency, amplitude, 0, 0)
 
 
         ##################################################
@@ -201,6 +211,20 @@ class sineWaveFlowgraph(gr.top_block, Qt.QWidget):
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
+
+    def get_frequency(self):
+        return self.frequency
+
+    def set_frequency(self, frequency):
+        self.frequency = frequency
+        self.analog_sig_source_x_0.set_frequency(self.frequency)
+
+    def get_amplitude(self):
+        return self.amplitude
+
+    def set_amplitude(self, amplitude):
+        self.amplitude = amplitude
+        self.analog_sig_source_x_0.set_amplitude(self.amplitude)
 
 
 

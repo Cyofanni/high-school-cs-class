@@ -33,6 +33,48 @@ options:
     state: enabled
 
 blocks:
+- name: amplitude
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '10'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [688, 76.0]
+    rotation: 0
+    state: true
+- name: frequency
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '50'
+    stop: '1000'
+    value: '50'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 76.0]
+    rotation: 0
+    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -50,9 +92,9 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    amp: '1'
+    amp: amplitude
     comment: ''
-    freq: '100'
+    freq: frequency
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
