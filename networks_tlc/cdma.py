@@ -25,9 +25,9 @@ print(norm_inner_prod(ST2_chipcode, ST3_chipcode))
 print(norm_inner_prod(ST2_chipcode, ST4_chipcode))
 print(norm_inner_prod(ST3_chipcode, ST4_chipcode))
 
-#ST3 trasmits the bit sequence: 1 1 silent 1 1 - 1
-signal_1 = ST3_chipcode                    #ST3 trasmits its own chipcode (alone)
-signal_2 = ST2_chipcode + ST3_chipcode     #ST3 tramits its own chipcode
+#ST3 transmits the bit sequence: 1 1 silent 1 1 - 1
+signal_1 = ST3_chipcode                    #ST3 transmits its own chipcode (alone)
+signal_2 = ST2_chipcode + ST3_chipcode     #ST3 transmits its own chipcode
 signal_3 = ST1_chipcode + negate_chipcode(ST2_chipcode) #ST3 is silent
 signal_4 = ST1_chipcode + negate_chipcode(ST2_chipcode) + ST3_chipcode  #ST3 transmits its own chipcode
 signal_5 = ST1_chipcode + ST2_chipcode + ST3_chipcode + ST4_chipcode    #ST3 transmits its own chipcode
