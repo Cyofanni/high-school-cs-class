@@ -128,23 +128,31 @@ class am(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, samp_rate,True)
+        self.blocks_multiply_xx_0_0 = blocks.multiply_vff(1)
         self.blocks_multiply_xx_0 = blocks.multiply_vff(1)
-        self.blocks_add_xx_0 = blocks.add_vff(1)
+        self.blocks_divide_xx_0 = blocks.divide_ff(1)
+        self.blocks_add_const_vxx_1 = blocks.add_const_ff(-1)
+        self.blocks_add_const_vxx_0 = blocks.add_const_ff(1)
         self.analog_sig_source_x_1 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
-        self.analog_sig_source_x_0_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
         self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 20, 1, 0, 0)
+        self.analog_const_source_x_0_0 = analog.sig_source_f(0, analog.GR_CONST_WAVE, 0, 0, 2)
+        self.analog_const_source_x_0 = analog.sig_source_f(0, analog.GR_CONST_WAVE, 0, 0, 2)
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_multiply_xx_0, 0))
-        self.connect((self.analog_sig_source_x_0, 0), (self.qtgui_time_sink_x_0, 1))
-        self.connect((self.analog_sig_source_x_0_0, 0), (self.blocks_add_xx_0, 0))
+        self.connect((self.analog_const_source_x_0, 0), (self.blocks_divide_xx_0, 1))
+        self.connect((self.analog_const_source_x_0_0, 0), (self.blocks_multiply_xx_0_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_add_const_vxx_0, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_multiply_xx_0, 1))
         self.connect((self.analog_sig_source_x_1, 0), (self.qtgui_time_sink_x_0, 2))
-        self.connect((self.blocks_add_xx_0, 0), (self.blocks_throttle_0, 0))
-        self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_add_xx_0, 1))
+        self.connect((self.blocks_add_const_vxx_0, 0), (self.blocks_divide_xx_0, 0))
+        self.connect((self.blocks_add_const_vxx_1, 0), (self.qtgui_time_sink_x_0, 1))
+        self.connect((self.blocks_divide_xx_0, 0), (self.blocks_multiply_xx_0, 0))
+        self.connect((self.blocks_divide_xx_0, 0), (self.blocks_multiply_xx_0_0, 1))
+        self.connect((self.blocks_multiply_xx_0, 0), (self.blocks_throttle_0, 0))
+        self.connect((self.blocks_multiply_xx_0_0, 0), (self.blocks_add_const_vxx_1, 0))
         self.connect((self.blocks_throttle_0, 0), (self.qtgui_time_sink_x_0, 0))
 
 
@@ -162,7 +170,6 @@ class am(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
-        self.analog_sig_source_x_0_0.set_sampling_freq(self.samp_rate)
         self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)

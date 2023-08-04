@@ -45,6 +45,40 @@ blocks:
     coordinate: [184, 12]
     rotation: 0
     state: enabled
+- name: analog_const_source_x_0
+  id: analog_const_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 268.0]
+    rotation: 0
+    state: true
+- name: analog_const_source_x_0_0
+  id: analog_const_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 68.0]
+    rotation: 0
+    state: true
 - name: analog_sig_source_x_0
   id: analog_sig_source_x
   parameters:
@@ -64,29 +98,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [112, 260.0]
-    rotation: 0
-    state: true
-- name: analog_sig_source_x_0_0
-  id: analog_sig_source_x
-  parameters:
-    affinity: ''
-    alias: ''
-    amp: '1'
-    comment: ''
-    freq: '1000'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    offset: '0'
-    phase: '0'
-    samp_rate: samp_rate
-    type: float
-    waveform: analog.GR_COS_WAVE
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [112, 108.0]
+    coordinate: [104, 212.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_1
@@ -111,8 +123,44 @@ blocks:
     coordinate: [112, 428.0]
     rotation: 0
     state: true
-- name: blocks_add_xx_0
-  id: blocks_add_xx
+- name: blocks_add_const_vxx_0
+  id: blocks_add_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 148.0]
+    rotation: 0
+    state: true
+- name: blocks_add_const_vxx_1
+  id: blocks_add_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '-1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [952, 196.0]
+    rotation: 0
+    state: true
+- name: blocks_divide_xx_0
+  id: blocks_divide_xx
   parameters:
     affinity: ''
     alias: ''
@@ -126,7 +174,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 152.0]
+    coordinate: [560, 200.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -144,7 +192,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 400.0]
+    coordinate: [664, 360.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_xx_0_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 176.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -265,13 +331,17 @@ blocks:
     state: true
 
 connections:
-- [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
-- [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '1']
-- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '0']
+- [analog_const_source_x_0, '0', blocks_divide_xx_0, '1']
+- [analog_const_source_x_0_0, '0', blocks_multiply_xx_0_0, '0']
+- [analog_sig_source_x_0, '0', blocks_add_const_vxx_0, '0']
 - [analog_sig_source_x_1, '0', blocks_multiply_xx_0, '1']
 - [analog_sig_source_x_1, '0', qtgui_time_sink_x_0, '2']
-- [blocks_add_xx_0, '0', blocks_throttle_0, '0']
-- [blocks_multiply_xx_0, '0', blocks_add_xx_0, '1']
+- [blocks_add_const_vxx_0, '0', blocks_divide_xx_0, '0']
+- [blocks_add_const_vxx_1, '0', qtgui_time_sink_x_0, '1']
+- [blocks_divide_xx_0, '0', blocks_multiply_xx_0, '0']
+- [blocks_divide_xx_0, '0', blocks_multiply_xx_0_0, '1']
+- [blocks_multiply_xx_0, '0', blocks_throttle_0, '0']
+- [blocks_multiply_xx_0_0, '0', blocks_add_const_vxx_1, '0']
 - [blocks_throttle_0, '0', qtgui_time_sink_x_0, '0']
 
 metadata:
