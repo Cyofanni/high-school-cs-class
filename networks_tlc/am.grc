@@ -64,7 +64,29 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [104, 236.0]
+    coordinate: [112, 260.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [112, 108.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_1
@@ -86,7 +108,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [128, 492.0]
+    coordinate: [112, 428.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 152.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -104,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [512, 384.0]
+    coordinate: [408, 400.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -227,9 +267,11 @@ blocks:
 connections:
 - [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
 - [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '1']
+- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '0']
 - [analog_sig_source_x_1, '0', blocks_multiply_xx_0, '1']
 - [analog_sig_source_x_1, '0', qtgui_time_sink_x_0, '2']
-- [blocks_multiply_xx_0, '0', blocks_throttle_0, '0']
+- [blocks_add_xx_0, '0', blocks_throttle_0, '0']
+- [blocks_multiply_xx_0, '0', blocks_add_xx_0, '1']
 - [blocks_throttle_0, '0', qtgui_time_sink_x_0, '0']
 
 metadata:
