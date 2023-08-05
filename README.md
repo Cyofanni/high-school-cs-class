@@ -2,7 +2,7 @@
 
 Computer Science lectures and exercises for italian Scientific High School courses. \
 This repo includes lectures and examples on: 
-+ algorithms and data structures* (**C/C++/Python**)
++ algorithms and data structures (**C/C++/Python**)
 + numerical analysis (**C/C++/Python**)
 + cryptography (**Python**)
 + OOP (**C++**)
