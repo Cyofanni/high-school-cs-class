@@ -28,3 +28,16 @@ plt.plot(t, s)
 plt.show()
 
 #sawtooth
+h1 = sin(2*pi*f*t)
+h2 = (-1/2) * sin(2*pi*2*f*t)
+h3 = (1/3) * sin(2*pi*3*f*t)
+h4 = (-1/4) * sin(2*pi*4*f*t)
+h5 = (1/5) * sin(2*pi*5*f*t)
+h6 = (-1/6) * sin(2*pi*6*f*t)
+h7 = (1/7) * sin(2*pi*7*f*t)
+h8 = (-1/8) * sin(2*pi*8*f*t)
+h9 = (1/9) * sin(2*pi*9*f*t)
+
+s = (2*A/pi) * (h1 + h2 + h3 + h4 + h5 + h6 + h7 + h8 + h9)
+plt.plot(t, s)
+plt.show()
