@@ -13,5 +13,6 @@ This repo includes lectures and examples on:
 + *security-related topics - buffer overflows, SQL injection, XSS*
 + *fractals - Python*
 + *optimization - Python*
+* *networking, telecommunications*
 
 
