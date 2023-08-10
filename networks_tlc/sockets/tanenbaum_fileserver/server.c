@@ -1,4 +1,4 @@
-#include <sys/types.h>	/* This is the server code */
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>

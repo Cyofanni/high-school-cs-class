@@ -1,7 +1,3 @@
-/* This page contains a client program that can request a file from the server program
- * on the next page. The server responds by sending the whole file.
- */
-
 #include <sys/types.h>
 #include <unistd.h>
 #include <string.h>
