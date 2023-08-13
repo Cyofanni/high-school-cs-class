@@ -27,5 +27,5 @@ def rectangle_rule_l(f, a, b, n):
   ys = [f(x) for x in xs]
   return sum(ys) * b
 
-print(rectangle_rule_l(lambda x: x ** 2 + x + 1, 0, 6, 100))
+print(rectangle_rule_l(lambda x: x ** 2 + x + 1, 0, 6, 20))
 print(float(integrate(x ** 2 + x + 1, (x, 0, 6))))
