@@ -4,19 +4,19 @@ class operation {
     int op2;
   public:
     operation(int, int);
-    virtual int exec() = 0;
-    int get_op1();
-    int get_op2();
+    virtual int exec() const = 0;
+    int get_op1() const;
+    int get_op2() const;
 };
 
 class addition: public operation {
   public:
     addition(int, int);
-    int exec();
+    int exec() const;
 };
 
 class multiplication: public operation {
   public:
     multiplication(int, int);
-    int exec();
+    int exec() const;
 };
