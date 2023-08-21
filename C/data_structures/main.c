@@ -143,7 +143,14 @@ int main() {
   print(&q);
   enqueue(&q, 20);
   print(&q);
+  dequeue(&q);
+  print(&q);
+  dequeue(&q);
+  print(&q);
   putchar('\n');
+
+  printf("%s\n", "queue #2");
+  QUEUE q1 = {{}, 0, -1, 0};
 
   printf("%s\n", "tree #1");
   T_NODE* r = NULL;

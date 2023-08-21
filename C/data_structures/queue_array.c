@@ -1,34 +1,27 @@
 #include "queue_array.h"
 
 void enqueue(QUEUE* q, int key) {
-  if (q -> size < QUEUE_CAPACITY) {
-    q -> tail++;
-    if (q -> tail == QUEUE_CAPACITY) {
-      q -> tail = 0;
-    }
-
-    if (q -> size == 0) {
-      q -> arr[q -> tail] = key;
-      q -> size++;
-    }
-    else {
-      if (q -> head != q -> tail) {
-	q -> arr[q -> tail] = key;
-	q -> size++;
-      }
-    }
+  if (!is_full(q)) {
+    q -> tail = (q -> tail + 1) % QUEUE_CAPACITY;
+    q -> arr[q -> tail] = key;
+    q -> size++;
   }
 }
 
 void dequeue(QUEUE* q) {
-  if (q -> size > 0) {
+  if (!is_empty(q)) {
     q -> arr[q -> head] = 0;
-    q -> head++;
-    if (q -> head == QUEUE_CAPACITY) {
-      q -> head = 0;
-    }
+    q -> head = (q -> head + 1) % QUEUE_CAPACITY;
     q -> size--;
   }
+}
+
+bool is_full(QUEUE* q) {
+  return q -> size == QUEUE_CAPACITY;
+}
+
+bool is_empty(QUEUE* q) {
+  return q -> size == 0;
 }
 
 void print(QUEUE* q) {
