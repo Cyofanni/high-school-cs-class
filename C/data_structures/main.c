@@ -2,6 +2,7 @@
 #include "queue_array.h"
 #include "bin_tree.h"
 #include "heap.h"
+#include "stack_array.h"
 
 int main() {
   printf("%s\n", "list #1");
@@ -116,41 +117,51 @@ int main() {
 
   printf("%s\n", "queue #1");
   QUEUE q = {{}, 0, -1, 0};
-  print_debug(&q);
+  print_queue_debug(&q);
   enqueue(&q, 4);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 6);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 11);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 9);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 13);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 14);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 15);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 17);
-  print(&q);
+  print_queue(&q);
   dequeue(&q);
-  print(&q);
+  print_queue(&q);
   dequeue(&q);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 18);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 19);
-  print(&q);
+  print_queue(&q);
   enqueue(&q, 20);
-  print(&q);
+  print_queue(&q);
   dequeue(&q);
-  print(&q);
+  print_queue(&q);
   dequeue(&q);
-  print(&q);
+  print_queue(&q);
   putchar('\n');
 
   printf("%s\n", "queue #2");
   QUEUE q1 = {{}, 0, -1, 0};
+  putchar('\n');
+
+  printf("%s\n", "stack #1");
+  STACK s1 = {{}, -1, 0};
+  push(&s1, 7);
+  push(&s1, 4);
+  print_stack(&s1);
+  pop(&s1);
+  print_stack(&s1);
+  putchar('\n');
 
   printf("%s\n", "tree #1");
   T_NODE* r = NULL;

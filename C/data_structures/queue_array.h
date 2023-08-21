@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #define QUEUE_CAPACITY 8
 
@@ -13,6 +14,10 @@ void enqueue(QUEUE*, int);
 
 void dequeue(QUEUE*);
 
-void print(QUEUE*);
+bool is_queue_full(QUEUE*);
 
-void print_debug(QUEUE*);
+bool is_queue_empty(QUEUE*);
+
+void print_queue(QUEUE*);
+
+void print_queue_debug(QUEUE*);
