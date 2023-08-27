@@ -70,6 +70,9 @@ int main() {
   putchar('\n');
   l4 = insert_iter(l4, 299, 8);
   print_rec(l4);
+  putchar('\n');
+  bubble_sort(l4);
+  print_rec(l4);
   puts("\n");
 
   printf("%s\n", "list #5");
@@ -86,6 +89,9 @@ int main() {
   print_rec(l5);
   putchar('\n');
   l5 = insert_rec(l5, 300, 16);
+  print_rec(l5);
+  bubble_sort(l5);
+  putchar('\n');
   print_rec(l5);
   puts("\n");
 

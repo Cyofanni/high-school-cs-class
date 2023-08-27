@@ -122,6 +122,36 @@ L_NODE* node_at_ind(L_NODE* n, int index) {
   return ret_node;
 }
 
+bool is_sorted(L_NODE* n) {
+  if (!n && !n -> next) {
+    return true;
+  }
+  if (n -> key > n -> next -> key) {
+    return false;
+  }
+  return is_sorted(n -> next);
+}
+
+void bubble_sort(L_NODE* n) {
+  if (n && n -> next) {
+    bool sorted = false;
+    L_NODE* it;
+    while (sorted == false) {
+      it = n;
+      sorted = true;
+      while (it -> next != NULL) {
+	if (it -> key > it -> next -> key) {
+	  sorted = false;
+	  int t = it -> key;
+	  it -> key = it -> next -> key;
+	  it -> next -> key= t;
+	}
+	it = it -> next;
+      }
+    }
+  }
+}
+
 L_NODE_D* insert_back_iter_d(L_NODE_D* n, int key) {
   if (!n) {
     L_NODE_D* new_node = (L_NODE_D*) malloc(sizeof(L_NODE_D));

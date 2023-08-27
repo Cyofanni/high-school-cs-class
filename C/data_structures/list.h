@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct list_node {
   int key;
-  int distance;    //used when it is a graph node
   struct list_node* next;
 } L_NODE;
 
@@ -28,6 +28,10 @@ L_NODE* remove_iter(L_NODE*, int);
 int lin_search_iter(L_NODE*, int);
 
 L_NODE* node_at_ind(L_NODE*, int);
+
+bool is_sorted(L_NODE*);
+
+void bubble_sort(L_NODE*);
 
 L_NODE_D* insert_back_iter_d(L_NODE_D*, int);
 
