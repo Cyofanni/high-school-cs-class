@@ -36,6 +36,7 @@ public:
     }
     cout << endl;
   }
+
   ~dyn_vector() {
     delete[] ptr;
   }
