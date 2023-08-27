@@ -36,6 +36,17 @@ T_NODE* bst_insert_iter(T_NODE* t, int key) {
   return t;
 }
 
+T_NODE* bst_insert_rec(T_NODE* t, int key) {
+  if (!t) {
+    return (T_NODE*) malloc(sizeof(T_NODE));
+  }
+  if (key <= t -> key) {
+    t -> left = bst_insert_rec(t -> left, key);
+  }
+  t -> right = bst_insert_rec(t -> right, key);
+  return t;
+}
+
 void print_tree(T_NODE* t) {
   if (!t) {
     putchar('_');
