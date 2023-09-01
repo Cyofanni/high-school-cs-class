@@ -22,10 +22,7 @@ p3 = list(f3)
 f4 = filter(lambda x: x & 0b1000 == 8, pos)
 p4 = list(f4)
 
-print(codeword)
-
 for ind in p1:
-    print(ind)
     codeword[1] = codeword[1] + codeword[ind]
 codeword[1] = codeword[1] % 2
 
@@ -41,4 +38,30 @@ for ind in p4:
     codeword[8] = codeword[8] + codeword[ind]
 codeword[8] = codeword[8] % 2
 
-print(codeword)
+print('transmitted codeword:', codeword)
+
+codeword[11] = 1 - codeword[11]
+print('received codeword:   ', codeword)
+
+b1 = 0
+for ind in p1:
+    b1 = b1 + codeword[ind]
+b1 = b1 % 2
+
+b2 = 0
+for ind in p2:
+    b2 = b2 + codeword[ind]
+b2 = b2 % 2
+
+b3 = 0
+for ind in p3:
+    b3 = b3 + codeword[ind]
+b3 = b3 % 2
+
+b4 = 0
+for ind in p4:
+    b4 = b4 + codeword[ind]
+b4 = b4 % 2
+
+print("syndrome")
+print(b4, b3, b2, b1)
