@@ -45,4 +45,8 @@ console.log(k.call());
 
 //?
 pt1 = {x: 5, y: 3, sum_comp: function(pt2) { return {x: this.x + pt2.x, y: this.y + pt2.y}; }};
-console.log(pt1.sum_comp({x:7, y: 12}));
+console.log(pt1.sum_comp({x: 7, y: 12}));
+
+//?
+ns = [5, 6, 1, 7, 12, 100, 3, 4];
+ns.every(x => { return x != 100; });
