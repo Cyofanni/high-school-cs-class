@@ -1,7 +1,7 @@
 from numpy import *
 from matplotlib import pyplot as plt
-#square wave
 
+#square wave
 t = linspace(-3, 3, 1000)
 f = 1  #fundamental frequency
 A = 1  #amplitude
