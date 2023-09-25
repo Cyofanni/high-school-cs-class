@@ -17,8 +17,6 @@ int main(int argc, char* argv[]) {
   st.pop();
   st.pop();
   st.pop();
-  st.pop();
-  st.pop();
 
   st.print();
 }

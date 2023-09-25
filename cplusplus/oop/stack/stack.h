@@ -6,6 +6,7 @@ class stack {
   int size;
  public:
   stack(int);
+  ~stack();
   bool is_full();
   bool is_empty();
   void push(int);

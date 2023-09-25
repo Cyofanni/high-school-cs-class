@@ -9,6 +9,10 @@ stack::stack(int cap) {
   top = -1;
 }
 
+stack::~stack() {
+  delete[] ar;
+}
+
 bool stack::is_full() {
   return top == capacity - 1;
 }
