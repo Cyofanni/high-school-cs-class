@@ -11,10 +11,15 @@ def negate_chipcode(chipcode):
 def norm_inner_prod(S, T):
   return (1/len(S)) * sum(S * T)
 
-ST1_chipcode = np.array([-1, -1, -1, 1, 1, -1, 1, 1])
-ST2_chipcode = np.array([-1, -1, 1, -1, 1, 1, 1, -1])
-ST3_chipcode = np.array([-1, 1, -1, 1, 1, 1, -1, -1])
-ST4_chipcode = np.array([-1, 1, -1, -1, -1, -1, 1, -1])
+#ST1_chipcode = np.array([-1, -1, -1, 1, 1, -1, 1, 1])
+#ST2_chipcode = np.array([-1, -1, 1, -1, 1, 1, 1, -1])
+#ST3_chipcode = np.array([-1, 1, -1, 1, 1, 1, -1, -1])
+#ST4_chipcode = np.array([-1, 1, -1, -1, -1, -1, 1, -1])
+
+ST1_chipcode = np.array([1, 1, 1, 1, 1, 1, 1, 1])
+ST2_chipcode = np.array([1, -1, 1, -1, 1, -1, 1, -1])
+ST3_chipcode = np.array([1, 1, -1, -1, 1, 1, -1, -1])
+ST4_chipcode = np.array([1, -1, -1, 1, 1, -1, -1, 1])
 
 #check orthogonality
 print('check orthogonality between chipcode pairs')
