@@ -14,11 +14,11 @@ queue::~queue() {
   delete[] ar;
 }
 
-bool queue::is_full() {
+bool queue::is_full() const {
   return size == capacity;
 }
 
-bool queue::is_empty() {
+bool queue::is_empty() const {
   return size == 0;
 }
 
@@ -43,20 +43,21 @@ void queue::dequeue() {
   }
 }
 
-void queue::print() {
-  if (head <= tail) {
-    for (int i = head; i <= tail; i++) {
-      cout << ar[i] << '\t';
+void queue::print() const {
+  if (size > 0) {
+    if (head <= tail) {
+      for (int i = head; i <= tail; i++) {
+        cout << ar[i] << '\t';
+      }
     }
+    else {
+      for (int i = head; i <= capacity - 1; i++) {
+        cout << ar[i] << '\t';
+      }
+      for (int i = 0; i <= tail; i++) {
+        cout << ar[i] << '\t';
+      }
+    }
+    cout << endl;
   }
-  else {
-    for (int i = head; i <= capacity - 1; i++) {
-      cout << ar[i] << '\t';
-    }
-    for (int i = 0; i <= tail; i++) {
-      cout << ar[i] << '\t';
-    }
-  }
-
-  cout << endl;
 }

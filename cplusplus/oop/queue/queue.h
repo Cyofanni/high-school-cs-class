@@ -8,11 +8,11 @@ class queue {
  public:
   queue(int);
   ~queue();
-  bool is_full();
-  bool is_empty();
+  bool is_full() const;
+  bool is_empty() const;
   void enqueue(int);
   void dequeue();
-  void print();
+  void print() const;
 };
 
 class queue_full_exception {
