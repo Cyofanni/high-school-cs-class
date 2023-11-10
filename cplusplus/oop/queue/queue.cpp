@@ -50,7 +50,7 @@ void queue::print() {
     }
   }
   else {
-    for (int i = head; i <= capacity -1; i++) {
+    for (int i = head; i <= capacity - 1; i++) {
       cout << ar[i] << '\t';
     }
     for (int i = 0; i <= tail; i++) {
