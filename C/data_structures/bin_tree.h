@@ -13,3 +13,5 @@ T_NODE* bst_insert_iter(T_NODE*, int);
 T_NODE* bst_insert_rec(T_NODE*, int);
 
 void print_tree(T_NODE*);
+
+int height(T_NODE*);

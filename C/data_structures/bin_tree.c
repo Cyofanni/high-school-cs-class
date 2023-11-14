@@ -59,3 +59,15 @@ void print_tree(T_NODE* t) {
   print_tree(t -> right);
   putchar(')');
 }
+
+int height(T_NODE* t) {
+  if (!t || (!t -> left && !t -> right)) {
+    return 0;
+  }
+  int l_h = height(t -> left);
+  int r_h = height(t -> right);
+  if (l_h >= r_h) {
+    return l_h + 1;
+  }
+  return r_h + 1;
+}
