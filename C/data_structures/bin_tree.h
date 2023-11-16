@@ -15,3 +15,9 @@ T_NODE* bst_insert_rec(T_NODE*, int);
 void print_tree(T_NODE*);
 
 int height(T_NODE*);
+
+int sum_keys(T_NODE*);
+
+bool verify_BST(T_NODE*);
+
+int count_nodes(T_NODE*);

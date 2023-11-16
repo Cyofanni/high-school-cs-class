@@ -178,6 +178,7 @@ int main() {
   print_tree(r);
   putchar('\n');
   printf("height: %d\n\n", height(r));
+  printf("sum of keys: %d\n\n", sum_keys(r));
 
   printf("%s\n", "tree #2");
   T_NODE* r1 = NULL;
@@ -253,8 +254,39 @@ int main() {
   n9 -> key = 234;
   n9 -> left = NULL;
   n9 -> right = NULL;
-  n8 -> left = n9;
+  n8 -> right = n9;
   printf("height: %d\n", height(r2));
+  puts("\n");
+  print_tree(r2);
+  puts("\n");
+
+  printf("%s\n", "tree #4");
+  T_NODE* r3 = NULL;
+  printf("%d\n", verify_BST(r3));
+  r3 = (T_NODE*) malloc(sizeof(T_NODE));
+  r3 -> key = 15;
+  r3 -> left = NULL;
+  r3 -> right = NULL;
+  printf("%d\n", verify_BST(r3));
+  T_NODE* r3_1 = (T_NODE*) malloc(sizeof(T_NODE));
+  r3_1 -> key = 10;
+  r3_1 -> left = NULL;
+  r3_1 -> right = NULL;
+  r3 -> left = r3_1;
+  printf("%d\n", verify_BST(r3));
+  T_NODE* r3_2 = (T_NODE*) malloc(sizeof(T_NODE));
+  r3_2 -> key = 20;
+  r3_2 -> left = NULL;
+  r3_2 -> right = NULL;
+  r3 -> right = r3_2;
+  printf("%d\n", verify_BST(r3));
+  T_NODE* r3_4 = (T_NODE*) malloc(sizeof(T_NODE));
+  r3_4 -> key = 20;
+  r3_4 -> left = NULL;
+  r3_4 -> right = NULL;
+  r3_2 -> left = r3_4;
+  printf("%d\n", verify_BST(r3));
+  printf("%d\n", count_nodes(r3));
   puts("\n");
 
   printf("%s\n", "doubly-linked list #1");
