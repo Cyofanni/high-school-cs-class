@@ -33,35 +33,45 @@ def print_path_iter(p, v):
   path.insert(0, v)
   print(path)
 
-G = {'s':['t','y'],
-     'y':['x','z','t'],
-     'z':['x','s'],
-     't':['x','y'],
-     'x':['z']
+G = {
+      's': ['r','t','x'],
+      'r': ['t'],
+      't': ['y','x'],
+      'x': ['y'],
+      'y': []
     }
 
-G_costs = {'s':0,
-           't':math.inf,
-           'x':math.inf,
-           'z':math.inf,
-           'y':math.inf
+G_costs = {
+            's': 0,
+            'r': math.inf,
+            't': math.inf,
+            'x': math.inf,
+            'y': math.inf
           }
 
-G_edges = {'st':10,
-           'sy':5,
-           'yx':9,
-           'yz':2,
-           'yt':3,
-           'zx':6,
-           'zs':7,
-           'tx':1,
-           'ty':2,
-           'xz':4
+G_edges = {
+            'sr': 5,
+            'st': 6,
+            'sx': 3,
+            'rt': 2,
+            'tx': 1,
+            'ty': 3,
+            'tx': 1,
+            'xy': 9
           }
 
-P = {'s':None,
-     't':None,
-     'x':None,
-     'y':None,
-     'z':None
+P = {
+      's': None,
+      'r': None,
+      't': None,
+      'x': None,
+      'y': None
     }
+
+dijkstra(G, G_costs, G_edges, P)
+print(G_costs)
+print(P)
+print_path_rec(P, 'y')
+print()
+print_path_rec(P, 't')
+print()

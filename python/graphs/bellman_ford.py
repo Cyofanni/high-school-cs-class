@@ -1,67 +1,63 @@
 import math
 
-G_adj = {
-         's': ['t', 'y'],
-         't': ['x', 'z', 'y'],
-         'y': ['z', 'x'],
-         'x': ['t'],
-         'z': ['s', 'x']
-        }
+def bellman_ford(g, g_c, g_e, p):
+    num_vert = len(g)
+    i = 1
+    while i <= num_vert - 1:
+      for edge in g_e:
+        u = edge[0]
+        v = edge[1]
+        cost_u_v = edge[2]
+        #relaxation
+        if g_c[u] + cost_u_v < g_c[v]:
+          g_c[v] = g_c[u] + cost_u_v
+          p[v] = u
+      i += 1
 
-G_edges_costs = [
-                 ('s', 't', 6), ('s', 'y', 7),
-                 ('t', 'x', 5), ('t', 'z', -4), ('t', 'y', 8),
-                 ('y', 'z', 9), ('y', 'x', -3),
-                 ('x', 't', -2),
-                 ('z', 's', 2), ('z', 'x', 7)
-                ]
+    for edge in g_e:
+       u = edge[0]
+       v = edge[1]
+       cost_u_v = edge[2]
+       if g_c[v] > g_c[u] + cost_u_v:
+        return True
 
-G_V_costs = {
-             's': 0,
-             't': math.inf,
-             'y': math.inf,
-             'x': math.inf,
-             'z': math.inf
-            }
+    return False
 
-preds = {
-         's': None,
-         't': None,
-         'y': None,
-         'x': None,
-         'z': None
-        }
+G = {
+     's':['t','y'],
+     't':['x','y','z'],
+     'x':['t'],
+     'z':['s','x'],
+     'y':['x','z']
+    }
 
-V_size = len(G_adj)
+G_costs = {
+           's':0,
+           't':math.inf,
+           'x':math.inf,
+           'z':math.inf,
+           'y':math.inf
+          }
 
-no_neg_cycle = True
+G_edges = [
+           ('t','x',5),
+           ('t','y',8),
+           ('t','z',-4),
+           ('x','t',-2),
+           ('y','x',-3),
+           ('y','z',9),
+           ('z','x',7),
+           ('z','s',2),
+           ('s','t',6),
+           ('s','y',7)
+          ]
 
-for i in range(V_size - 1):
-    for edge in G_edges_costs:
-        edge_u = edge[0]
-        edge_v = edge[1]
-        edge_cost = edge[2]
-        if G_V_costs[edge_u] + edge_cost < G_V_costs[edge_v]:
-            G_V_costs[edge_v] = G_V_costs[edge_u] + edge_cost
-            preds[edge_v] = edge_u
+P = {
+     's':None,
+     't':None,
+     'x':None,
+     'y':None,
+     'z':None
+    }
 
-for edge in G_edges_costs:
-    edge_u = edge[0]
-    edge_v = edge[1]
-    edge_cost = edge[2]
-    if G_V_costs[edge_u] + edge_cost < G_V_costs[edge_v]:
-        no_neg_cycle = False
-        break
-
-print(G_V_costs)
-print('predecessor of s:', preds['s'])
-print('predecessor of t:', preds['t'])
-print('predecessor of y:', preds['y'])
-print('predecessor of x:', preds['x'])
-print('predecessor of z:', preds['z'])
-
-print()
-if no_neg_cycle == True:
-  print('==> no negative cycle detected')
-else:
-  print('==> negative cycle detected')
+res = bellman_ford(G, G_costs, G_edges, P)
