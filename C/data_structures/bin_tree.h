@@ -30,3 +30,5 @@ T_NODE* minimum_rec(T_NODE*);
 T_NODE* maximum_rec(T_NODE*);
 
 T_NODE* minimum_iter(T_NODE*);
+
+T_NODE* successor(T_NODE*, T_NODE*);

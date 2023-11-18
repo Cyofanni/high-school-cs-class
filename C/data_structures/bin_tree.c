@@ -180,3 +180,18 @@ T_NODE* maximum_iter(T_NODE* t) {
 
   return t;
 }
+
+T_NODE* successor(T_NODE* t, T_NODE* z) {
+  if (!z) {
+    return NULL;
+  }
+  if (z -> right) {
+    return minimum_iter(t -> right);
+  }
+
+  while (z -> parent && z == z -> parent -> right) {
+    z = z -> parent;
+  }
+
+  return z -> parent;
+}

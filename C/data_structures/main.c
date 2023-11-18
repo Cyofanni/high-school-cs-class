@@ -268,7 +268,17 @@ int main() {
   r4 = bst_parent_insert_iter(r4, 8);
   print_tree(r4);
   putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 16);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 6);
+  print_tree(r4);
+  putchar('\n');
   printf("### %d\n", r4 -> right -> left -> parent -> parent ->  key);
+  T_NODE* s = successor(r4, r4 -> right -> right -> right);
+  if (s) {
+    printf("*** %d\n", s -> key);
+  }
   puts("\n");
 
   printf("%s\n", "doubly-linked list #1");
