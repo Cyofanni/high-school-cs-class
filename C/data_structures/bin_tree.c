@@ -145,7 +145,7 @@ int count_nodes(T_NODE* t) {
   return 1 + count_nodes(t -> left) + count_nodes(t -> right);
 }
 
-T_NODE* minimum_rec(T_NODE*t) {
+T_NODE* minimum_rec(T_NODE* t) {
   if (!t) {
     return NULL;
   }
@@ -175,7 +175,7 @@ T_NODE* minimum_iter(T_NODE* t) {
 
 T_NODE* maximum_iter(T_NODE* t) {
   while (t && t -> right) {
-    t= t -> right;
+    t = t -> right;
   }
 
   return t;
@@ -186,7 +186,7 @@ T_NODE* successor(T_NODE* t, T_NODE* z) {
     return NULL;
   }
   if (z -> right) {
-    return minimum_iter(t -> right);
+    return minimum_rec(z -> right);
   }
 
   while (z -> parent && z == z -> parent -> right) {
@@ -194,4 +194,52 @@ T_NODE* successor(T_NODE* t, T_NODE* z) {
   }
 
   return z -> parent;
+}
+
+T_NODE* delete_node(T_NODE* t, T_NODE* z) {
+  if (!z -> left && !z -> right) {
+    if (z -> parent) {
+      if (z == z -> parent -> left) {
+	z -> parent -> left = NULL;
+      }
+      else if (z == z -> parent -> right) {
+	z -> parent -> right = NULL;
+      }
+      free(z);
+    }
+    else if (!z -> parent) {
+      free(z);
+      return NULL;
+    }
+  }
+  else if (z -> left && !z -> right) {
+    if (z -> parent) {
+      z -> parent -> left = z -> left;
+      free(z);
+    }
+    else {
+      T_NODE* new_root = z -> left;
+      free(z);
+      return new_root;
+    }
+  }
+  else if (z -> right && !z -> left) {
+    if (z -> parent) {
+      z -> parent -> right = z -> right;
+      free(z);
+    }
+    else {
+      T_NODE* new_root = z -> right;
+      free(z);
+      return new_root;
+    }
+  }
+  else {
+    T_NODE* z_succ = successor(t, z);
+    z -> key = z_succ -> key;
+    printf("z_succ: %d\n", z_succ -> key);
+    delete_node(t, z_succ);
+  }
+
+  return t;
 }

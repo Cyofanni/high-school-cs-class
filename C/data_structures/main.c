@@ -275,7 +275,7 @@ int main() {
   print_tree(r4);
   putchar('\n');
   printf("### %d\n", r4 -> right -> left -> parent -> parent ->  key);
-  T_NODE* s = successor(r4, r4 -> right -> right -> right);
+  T_NODE* s = successor(r4, r4 -> right);
   if (s) {
     printf("*** %d\n", s -> key);
   }
