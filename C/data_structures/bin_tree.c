@@ -108,3 +108,23 @@ int count_nodes(T_NODE* t) {
   }
   return 1 + count_nodes(t -> left) + count_nodes(t -> right);
 }
+
+T_NODE* minimum_rec(T_NODE*t) {
+  if (!t) {
+    return NULL;
+  }
+  if (!t -> left) {
+    return t;
+  }
+  return minimum_rec(t -> left); 
+}
+
+T_NODE* maximum_rec(T_NODE* t) {
+  if (!t) {
+    return NULL;
+  }
+  if (!t -> right) {
+    return t;
+  }
+  return maximum_rec(t -> right);
+}

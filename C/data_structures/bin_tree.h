@@ -21,3 +21,7 @@ int sum_keys(T_NODE*);
 bool verify_BST(T_NODE*);
 
 int count_nodes(T_NODE*);
+
+T_NODE* minimum_rec(T_NODE*);
+
+T_NODE* maximum_rec(T_NODE*);

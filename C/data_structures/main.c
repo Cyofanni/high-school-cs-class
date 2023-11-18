@@ -1,8 +1,5 @@
 #include "list.h"
-#include "queue_array.h"
 #include "bin_tree.h"
-#include "heap.h"
-#include "stack_array.h"
 
 int main() {
   printf("%s\n", "list #1");
@@ -121,54 +118,6 @@ int main() {
   print_rec(l6);
   puts("\n");
 
-  printf("%s\n", "queue #1");
-  QUEUE q = {{}, 0, -1, 0};
-  print_queue_debug(&q);
-  enqueue(&q, 4);
-  print_queue(&q);
-  enqueue(&q, 6);
-  print_queue(&q);
-  enqueue(&q, 11);
-  print_queue(&q);
-  enqueue(&q, 9);
-  print_queue(&q);
-  enqueue(&q, 13);
-  print_queue(&q);
-  enqueue(&q, 14);
-  print_queue(&q);
-  enqueue(&q, 15);
-  print_queue(&q);
-  enqueue(&q, 17);
-  print_queue(&q);
-  dequeue(&q);
-  print_queue(&q);
-  dequeue(&q);
-  print_queue(&q);
-  enqueue(&q, 18);
-  print_queue(&q);
-  enqueue(&q, 19);
-  print_queue(&q);
-  enqueue(&q, 20);
-  print_queue(&q);
-  dequeue(&q);
-  print_queue(&q);
-  dequeue(&q);
-  print_queue(&q);
-  putchar('\n');
-
-  printf("%s\n", "queue #2");
-  QUEUE q1 = {{}, 0, -1, 0};
-  putchar('\n');
-
-  printf("%s\n", "stack #1");
-  STACK s1 = {{}, -1, 0};
-  push(&s1, 7);
-  push(&s1, 4);
-  print_stack(&s1);
-  pop(&s1);
-  print_stack(&s1);
-  putchar('\n');
-
   printf("%s\n", "tree #1");
   T_NODE* r = NULL;
   r = bst_insert_iter(r, 20);
@@ -179,6 +128,11 @@ int main() {
   putchar('\n');
   printf("height: %d\n\n", height(r));
   printf("sum of keys: %d\n\n", sum_keys(r));
+  T_NODE* min = minimum_rec(r);
+  if (min) {
+    printf("%d\n", min -> key);
+  }
+  puts("\n");
 
   printf("%s\n", "tree #2");
   T_NODE* r1 = NULL;
@@ -192,6 +146,11 @@ int main() {
   r1 = bst_insert_iter(r1, 23);
   r1 = bst_insert_iter(r1, 40);
   print_tree(r1);
+  putchar('\n');
+  min = minimum_rec(r1);
+  if (min) {
+    printf("%d\n", min -> key);
+  }
   puts("\n");
 
   printf("%s\n", "tree #3");
@@ -305,24 +264,4 @@ int main() {
   printf("%d ", tail -> prev -> prev -> prev -> prev -> key);
   printf("%d ", tail -> prev -> prev -> prev -> prev -> prev -> key);
   puts("\n");
-
-  printf("%s\n", "heap #1, #2, #3");
-  MAX_HEAP hp1 = {{-1, 16, 14, 10, 8, 7, 9, 3, 2, 4, 1}, 10};
-  print_heap(&hp1, 1);
-  putchar('\n');
-  MAX_HEAP hp2 = {{-1, 17, 3, 10, 8, 7, 9, 3, 2, 4, 1}, 10};
-  max_heapify(&hp2, 2);
-  print_heap(&hp2, 1);
-  putchar('\n');
-  MAX_HEAP hp3 = {{-1, 6, 8, 2, 3, 4, 0, 9, 1, 6, 17}, 10};
-  build_max_heap(&hp3);
-  print_heap(&hp3, 1);
-  putchar('\n');
-  printf("heapsort\n");
-  MAX_HEAP hp4 = {{-1, 5, 2, 3, 4, 98, 57, 1, 4, 5, 42, 12, 42, -31, -33, -100, 120}, 16};
-  heap_sort(&hp4);
-  for (int i = 1; i <= 16; i++) {
-    printf("%d ", hp4.array[i]);
-  }
-  putchar('\n');
 }
