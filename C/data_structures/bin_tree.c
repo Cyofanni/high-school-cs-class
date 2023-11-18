@@ -43,7 +43,10 @@ T_NODE* bst_insert_rec(T_NODE* t, int key) {
   if (key <= t -> key) {
     t -> left = bst_insert_rec(t -> left, key);
   }
-  t -> right = bst_insert_rec(t -> right, key);
+  else {
+    t -> right = bst_insert_rec(t -> right, key);
+  }
+
   return t;
 }
 
