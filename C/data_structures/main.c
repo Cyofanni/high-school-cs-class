@@ -248,8 +248,32 @@ int main() {
   printf("%d\n", count_nodes(r3));
   puts("\n");
 
+  printf("%s\n", "tree #5");
+  T_NODE* r4 = NULL;
+  r4 = bst_parent_insert_iter(r4, 6);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 9);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 2);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, -1);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 11);
+  print_tree(r4);
+  putchar('\n');
+  r4 = bst_parent_insert_iter(r4, 8);
+  print_tree(r4);
+  putchar('\n');
+  printf("### %d\n", r4 -> right -> left -> parent -> parent ->  key);
+  puts("\n");
+
   printf("%s\n", "doubly-linked list #1");
   L_NODE_D* dl1 = NULL;
+
   dl1 = insert_back_iter_d(dl1, 0);
   dl1 = insert_back_iter_d(dl1, 1);
   dl1 = insert_back_iter_d(dl1, 1);

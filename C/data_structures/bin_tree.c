@@ -50,6 +50,42 @@ T_NODE* bst_insert_rec(T_NODE* t, int key) {
   return t;
 }
 
+T_NODE* bst_parent_insert_iter(T_NODE* t, int key) {
+  T_NODE* new_node = (T_NODE*) malloc(sizeof(T_NODE));
+  new_node -> key = key;
+  new_node -> left = NULL;
+  new_node -> right = NULL;
+
+  T_NODE* root = t;
+  T_NODE* p = NULL;
+  bool left;
+  while (t) {
+    p = t;
+    if (key <= t -> key) {
+      t = t -> left;
+      left = true;
+    }
+    else {
+      t = t -> right;
+      left = false;
+    }
+  }
+
+  if (!root) {
+    return new_node;
+  }
+
+  if (left) {
+    p -> left = new_node;
+  }
+  else {
+    p -> right = new_node;
+  }
+  new_node -> parent = p;
+
+  return root;
+}
+
 void print_tree(T_NODE* t) {
   if (!t) {
     putchar('_');
@@ -116,7 +152,7 @@ T_NODE* minimum_rec(T_NODE*t) {
   if (!t -> left) {
     return t;
   }
-  return minimum_rec(t -> left); 
+  return minimum_rec(t -> left);
 }
 
 T_NODE* maximum_rec(T_NODE* t) {
@@ -127,4 +163,20 @@ T_NODE* maximum_rec(T_NODE* t) {
     return t;
   }
   return maximum_rec(t -> right);
+}
+
+T_NODE* minimum_iter(T_NODE* t) {
+  while (t && t -> left) {
+    t = t -> left;
+  }
+
+  return t;
+}
+
+T_NODE* maximum_iter(T_NODE* t) {
+  while (t && t -> right) {
+    t= t -> right;
+  }
+
+  return t;
 }
