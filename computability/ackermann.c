@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-unsigned long ackermann(int x, int y) {
+long int ackermann(long int x, long int y) {
   if (x == 0) {
     return y + 1;
   }
@@ -11,5 +11,5 @@ unsigned long ackermann(int x, int y) {
 }
 
 int main(int argc, char* argv[]) {
-  printf("%lu\n", ackermann(4, 2));
+  printf("%ld\n", ackermann(4, 2));
 }
