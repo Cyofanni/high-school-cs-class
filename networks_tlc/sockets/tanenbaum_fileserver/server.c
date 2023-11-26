@@ -8,15 +8,14 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-#define SERVER_PORT 12345	/* arbitrary, but client & server must agree */
-#define BUF_SIZE 4096	/* block transfer size */
+#define SERVER_PORT 12345    /* arbitrary, but client & server must agree */
+#define BUF_SIZE 4096    /* block transfer size */
 #define QUEUE_SIZE 10
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   int s, b, l, fd, sa, bytes, on = 1;
-  char buf[BUF_SIZE];	/* buffer for outgoing file */
-  struct sockaddr_in channel;	/* holds IP address */
+  char buf[BUF_SIZE];    /* buffer for outgoing file */
+  struct sockaddr_in channel;    /* holds IP address */
 
   /* Build address structure to bind to socket. */
   memset(&channel, 0, sizeof(channel));	/* zero channel */
@@ -37,7 +36,7 @@ int main(int argc, char *argv[])
     exit(-1);
   }
 
-  l = listen(s, QUEUE_SIZE);	/* specify queue size */
+  l = listen(s, QUEUE_SIZE);    /* specify queue size */
   if (l < 0) {
     printf("listen failed\n");
     exit(-1);
@@ -45,27 +44,27 @@ int main(int argc, char *argv[])
 
   /* Socket is now set up and bound. Wait for connection and process it. */
   while (1) {
-        sa = accept(s, 0, 0);	/* block for connection request */
-        if (sa < 0) {
-          printf("accept failed\n");
-          exit(-1);
-        }
+    sa = accept(s, 0, 0);    /* block for connection request */
+    if (sa < 0) {
+      printf("accept failed\n");
+      exit(-1);
+    }
 
-        read(sa, buf, BUF_SIZE);	/* read file name from socket */
+    read(sa, buf, BUF_SIZE);    /* read file name from socket */
 
-        /* Get and return the file. */
-        fd = open(buf, O_RDONLY);	/* open the file to be sent back */
-        if (fd < 0) {
-          printf("open failed\n");
-          exit(-1);
-        }
+    /* Get and return the file. */
+    fd = open(buf, O_RDONLY);    /* open the file to be sent back */
+    if (fd < 0) {
+      printf("open failed\n");
+      exit(-1);
+    }
 
-        while (1) {
-                bytes = read(fd, buf, BUF_SIZE); /* read from file */
-                if (bytes <= 0) break;	/* check for end of file */
-                write(sa, buf, bytes);	/* write bytes to socket */
-        }
-        close(fd);	/* close file */
-        close(sa);	/* close connection */
+    while (1) {
+      bytes = read(fd, buf, BUF_SIZE);    /* read from file */
+      if (bytes <= 0) break;    /* check for end of file */
+        write(sa, buf, bytes);    /* write bytes to socket */
+    }
+    close(fd);    /* close file */
+    close(sa);    /* close connection */
   }
 }

@@ -7,20 +7,19 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-#define SERVER_PORT 12345	/* arbitrary, but client & server must agree */
-#define BUF_SIZE 4096	/* block transfer size */
+#define SERVER_PORT 12345    /* arbitrary, but client & server must agree */
+#define BUF_SIZE 4096    /* block transfer size */
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   int c, s, bytes;
-  char buf[BUF_SIZE];	/* buffer for incoming file */
-  struct hostent *h;	/* info about server */
-  struct sockaddr_in channel;	/* holds IP address */
+  char buf[BUF_SIZE];    /* buffer for incoming file */
+  struct hostent *h;    /* info about server */
+  struct sockaddr_in channel;    /* holds IP address */
 
   if (argc != 3) {
     printf("Usage: client server-name file-name\n"); exit (-1);
   }
-  h = gethostbyname(argv[1]);	/* look up host's IP address */
+  h = gethostbyname(argv[1]);    /* look up host's IP address */
   if (!h) {
     printf("gethostbyname failed to locate %s\n", argv[1]);
     exit (-1);
@@ -46,9 +45,8 @@ int main(int argc, char **argv)
 
   /* Go get the file and write it to standard output. */
   while (1) {
-        bytes = read(s, buf, BUF_SIZE);	/* read from socket */
-        if (bytes <= 0) exit(0);	/* check for end of file */
-        write(1, buf, bytes);	/* write to standard output */
+    bytes = read(s, buf, BUF_SIZE);	/* read from socket */
+    if (bytes <= 0) exit(0);	/* check for end of file */
+    write(1, buf, bytes);	/* write to standard output */
   }
 }
-
