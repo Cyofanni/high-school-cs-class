@@ -55,6 +55,7 @@ T_NODE* bst_parent_insert_iter(T_NODE* t, int key) {
   new_node -> key = key;
   new_node -> left = NULL;
   new_node -> right = NULL;
+  new_node -> parent = NULL;
 
   T_NODE* root = t;
   T_NODE* p = NULL;
