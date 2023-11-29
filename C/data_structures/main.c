@@ -279,6 +279,17 @@ int main() {
   if (s) {
     printf("*** %d\n", s -> key);
   }
+  //r4 = delete_node(r4, r4 -> right);
+  print_tree(r4);
+  putchar('\n');
+  printf("%d\t%d\n", bst_search_rec(r4, -1), bst_search_iter(r4, -1));
+  printf("%d\t%d\n", bst_search_rec(r4, 6), bst_search_iter(r4, 6));
+  printf("%d\t%d\n", bst_search_rec(r4, 34), bst_search_iter(r4, 34));
+  printf("%d\t%d\n", bst_search_rec(r4, 16), bst_search_iter(r4, 16));
+  printf("%d\t%d\n", bst_search_rec(r4, 11), bst_search_iter(r4, 11));
+  printf("%d\t%d\n", bst_search_rec(r4, -11), bst_search_iter(r4, -11));
+
+  putchar('\n');
   puts("\n");
 
   printf("%s\n", "doubly-linked list #1");

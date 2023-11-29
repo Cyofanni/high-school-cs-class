@@ -243,3 +243,33 @@ T_NODE* delete_node(T_NODE* t, T_NODE* z) {
 
   return t;
 }
+
+bool bst_search_rec(T_NODE* t, int key) {
+  if (!t) {
+    return false;
+  }
+  if (t -> key == key) {
+    return true;
+  }
+  if (key < t -> key) {
+    return bst_search_rec(t -> left, key);
+  }
+  return bst_search_rec(t -> right, key);
+}
+
+bool bst_search_iter(T_NODE* t, int key) {
+  bool found = false;
+  while (t && !found) {
+    if (t -> key == key) {
+      found = true;
+    }
+    else if (key < t -> key) {
+      t = t -> left;
+    }
+    else {
+      t = t -> right;
+    }
+  }
+
+  return found;
+}
