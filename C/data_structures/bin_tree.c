@@ -7,7 +7,7 @@ T_NODE* bst_insert_iter(T_NODE* t, int key) {
 
   while (it) {
     parent = it;
-    if (key >= it -> key) {
+    if (key > it -> key) {
       it = it -> right;
       last_left = false;
     }
