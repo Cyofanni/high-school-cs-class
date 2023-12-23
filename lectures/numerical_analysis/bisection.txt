@@ -1,0 +1,111 @@
+***Ricerca numerica degli zeri - Metodo di bisezione***
+
+*Motivazioni*
+- Non è sempre possibile determinare analiticamente gli zeri di una funzione,
+  ossia le soluzioni dell'equazione f(x) = 0
+  - e.g. f(x) = x ** 3 + 4 * x - 2
+         f(x) = x ** 3 + 2 * x ** 2 + 10 * x - 20
+         f(x) = math.exp(x) + x
+         f(x) = sin(x) - x
+- In questi casi si utilizzano metodi numerici, ossia algoritmi che
+  permettono di trovare soluzioni approssimate (iterativamente)
+- I passaggi di questi metodi sono i seguenti:
+    - determinare gli intervalli che contengono una e una sola soluzione
+    - ricercare gli zeri (radici) approssimate all’interno degli intervalli
+      individuati al punto precedente
+- Provare il comando roots(f) su GeoGebra
+
+
+*Esistenza degli zeri*
+- Teorema di esistenza degli zeri:
+    - se una funzione f(x) è continua nell'intervallo chiuso [a, b], e se 
+      f(a) * f(b) < 0 (i.e. la funzione assume valori di segno opposto agli
+      estremi dell'intervallo), allora l'equazione f(x) = 0 ha almeno una 
+      soluzione interna all'intervallo
+
+
+*Metodo di bisezione*
+- Il metodo di bisezione è l'algoritmo più semplice per la ricerca numerica
+  degli zeri di una funzione
+- Ipotizziamo di aver determinato l'intervallo [a, b] in cui f(x) è continua e ammette
+  un solo zero. Il metodo procede nel modo seguente:
+    1- suddividi l'intervallo [a, b] in 2 sottointervalli di lunghezza uguale: [a, c]
+       e [c, b]
+    2- considera il sottointervallo nei cui estremi la funzione assume valori di segno
+       opposto
+    3- se hai raggiunto il numero massimo di iterazioni, oppure se la lunghezza
+       dell'intervallo [a, b] è inferiore ad una certa soglia, oppure se il valore 
+       assoluto di f(c) è inferiore ad una certa soglia, arresta il ciclo e 
+       restituisci c
+    4- torna al passo 1
+
+
+*Esecuzione manuale*
+- Consideriamo la funzione f(x) = x ** 3 + 4 * x - 2
+- La funzione ha un solo zero nell'intervallo [0, 1]
+- Costruiamo una tabella che rappresenta le prime 6 iterazioni:
+a        c          b         f(a)        f(c)        f(b)     it
+0        0.5        1         -2          0.125       3         0
+0        0.25       0.5       -2         -0.9843      0.125     1
+0.25     0.375      0.5       -0.9843    -0.4472      0.125     2
+0.375    0.4375     0.5       -0.4472    -0.1662      0.125     3
+0.4375   0.4687     0.5       -0.1662    -0.0220      0.125     4
+0.4687   0.4843     0.5       -0.0220     0.0511      0.125     5
+
+
+*Implementazione (Python)*
+
+import math
+
+def f1(x):
+    return x ** 3 + 4 * x - 2
+
+def f2(x):
+    return x ** 3 + 2 * x ** 2 + 10 * x - 20
+
+def bisection(f, a, b, n_iters, tol, cutoff):
+    i = 0
+    while i < n_iters:
+        c = (a + b) / 2
+        print('it', i, ' a:', a, '; c:', c, '; b:', b, '; f(a):', f(a), \
+              '; f(c):', f(c), '; f(b):', f(b))
+        if abs(f(c)) < cutoff or abs(b - a) < tol:
+            break
+        if f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+        i += 1
+
+    return c
+
+print('f(x) = x^3 + 4x - 2')
+bisection(f1, 0, 1, 20, 1e-4, 1e-4)
+print('f(x) = x^3 + 2x^2 + 10x - 20')
+bisection(f2, 1, 2, 20, 1e-4, 1e-4)
+
+
+*Risoluzione algebrica - SymPy*
+- Utilizzare SymPy per provare a trovare algebricamente gli zeri delle funzioni 
+  elencate sopra
+- Codice:
+    from sympy import *
+    x = Symbol('x')
+    solve(x ** 3 + 4 * x - 2)
+    solve(x ** 3 + 2 * x ** 2 + 10 * x - 20)
+    solve(exp(x) + x)
+    solve(sin(x) - x)
+
+
+*Risoluzione numerica - SciPy*
+- Utilizzare SciPy per trovare numericamente lo zero di f(x) = x ** 3 + 4 * x - 2
+  nell'intervallo [0, 1]
+- Codice:
+    from scipy.optimize import fsolve
+    f = lambda x: x ** 3 + 4 * x - 2
+    fsolve(f, [0, 1])
+
+
+*Esercizi*
+  - Utilizzare il metodo di bisezione per estrarre la radice quadrata
+  - Utilizzare il metodo di bisezione per calcolare il logaritmo in base 10
