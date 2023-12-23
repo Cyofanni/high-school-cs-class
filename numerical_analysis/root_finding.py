@@ -35,6 +35,29 @@ def secant(f, a, b, tol, max_iters):
 
     return x2
 
+def secant_regula_falsi(f, a, b, tol, max_iters):
+    x00 = a
+    x0 = a
+    x1 = b
+
+    i = 1
+    while i <= max_iters:
+        if abs(x1 - x0) < tol:
+            break
+        if f(x0) * f(x1) < 0:
+            m = (f(x1) - f(x0)) / (x1 - x0)
+            x2 = x0 - f(x0) / m
+            x00 = x0
+        else:
+            m = (f(x1) - f(x00)) / (x1 - x00)
+            x2 = x00 - f(x00) / m
+
+        x0 = x1
+        x1 = x2
+        i += 1
+
+    return x2
+
 #def newton_raphson(f, f1, f2, a, b, eps, tol, max_iters):
 
 def f1(x):
@@ -49,6 +72,9 @@ def f3(x):
 def f4(x):
     return x - math.cos(x)
 
+def f5(x):
+    return math.cos(x) + math.log(x)
+
 print('bisection:')
 print(bisection(f1, 1, 2, 0.001, 0.001, 10))
 print(bisection(f2, 0, 1, 0.001, 0.001, 10))
@@ -60,3 +86,5 @@ print(secant(f1, 1, 2, 0.001, 10))
 print(secant(f2, 0, 1, 0.001, 10))
 print(secant(f3, -1, 0, 0.001, 10))
 print(secant(f4, 0, 1, 0.001, 10))
+print(secant(f5, 0.2, 2, 0.0001, 10))
+print(secant_regula_falsi(f5, 0.2, 2, 0.0001, 10))
