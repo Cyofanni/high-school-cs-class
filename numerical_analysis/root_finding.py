@@ -58,7 +58,23 @@ def secant_regula_falsi(f, a, b, tol, max_iters):
 
     return x2
 
-#def newton_raphson(f, f1, f2, a, b, eps, tol, max_iters):
+def newton_raphson(f, f1, a, b, tol, max_iters):
+    x0 = 0
+    i = 1
+
+    while i <= max_iters:
+        m = f1(x0)
+        #y - f(x0) = m * (x - x0) =>
+        #y = f(x0) + m * (x - x0) =>
+        #y = f(x0) + m * x - m * x0 =>
+        #x = x0 - f(x0) / m
+        x = x0 - f(x0) / m
+        if abs(x - x0) < tol:
+            break
+        x0 = x
+        i += 1
+
+    return x
 
 def f1(x):
     return x ** 3 + 2 * x ** 2 + 10 * x - 20
@@ -88,3 +104,7 @@ print(secant(f3, -1, 0, 0.001, 10))
 print(secant(f4, 0, 1, 0.001, 10))
 print(secant(f5, 0.2, 2, 0.0001, 10))
 print(secant_regula_falsi(f5, 0.2, 2, 0.0001, 10))
+print()
+print('newton-raphson:')
+print(newton_raphson(f1, lambda x: 3*x**2 + 4*x + 10, 1, 2, 0.0001, 10))
+print(newton_raphson(f2, lambda x: 3*x**2 + 4, 0, 1, 0.0001, 10))
