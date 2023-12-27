@@ -9,16 +9,17 @@ void gen_subsets(vector<int>& nums, int k, vector<int> subset) {
     powerset.push_back(subset);
     return;
   }
-  subset.push_back(nums.at(k));
-  gen_subsets(nums, k + 1, subset);
-  subset.pop_back();
+  vector<int> subset_copy = subset;
+  subset_copy.push_back(nums.at(k));
+  gen_subsets(nums, k + 1, subset_copy);
   gen_subsets(nums, k + 1, subset);
 }
 
 int main() {
-  vector<int> nums = {3, 1};
+  vector<int> nums = {0, 1, 2, 3};
   vector<int> subs = {};
   gen_subsets(nums, 0, subs);
+  cout << "powerset size: " << powerset.size() << endl;
   for (vector<int> subset : powerset) {
     if (subset.size() == 0) {
       cout << "EMPTY_SET" << endl;
