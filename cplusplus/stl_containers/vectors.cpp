@@ -70,4 +70,12 @@ int main() {
     }
     cout << endl;
   }
+
+  //example 6 (size vs capacity)
+  cout << endl;
+  vector<int> v6(2);
+  for (int i = 1; i <= 1000; i++) {
+    cout << "size: " << v6.size() << ", capacity: " << v6.capacity() << endl;
+    v6.push_back(i);
+  }
 }
