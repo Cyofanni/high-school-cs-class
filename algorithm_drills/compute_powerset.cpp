@@ -4,12 +4,12 @@ using namespace std;
 
 vector<vector<int>> powerset = {};
 
-void gen_subsets(vector<int>& nums, int k, vector<int>& subset) {
+void gen_subsets(vector<int>& nums, int k, vector<int> subset) {
   if (k == nums.size()) {
     powerset.push_back(subset);
     return;
   }
-  subset.push_back(nums[k]);
+  subset.push_back(nums.at(k));
   gen_subsets(nums, k + 1, subset);
   subset.pop_back();
   gen_subsets(nums, k + 1, subset);
