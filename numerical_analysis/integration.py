@@ -9,19 +9,44 @@ i = integrate(sin(x) / x)
 print(i)
 
 #methods for numerical integration (quadrature)
+
+#rectangle rule (left)
 def rectangle_rule_l(f, a, b, n):
   h = (b - a) / n
   xs = [a + i * h for i in range(n)]
   s = 0
   ys = [f(x) for x in xs]
+
   return sum(ys) * h
 
+#rectangle rule (right)
 def rectangle_rule_r(f, a, b, n):
   h = (b - a) / n
   xs = [a + i * h for i in range(1, n + 1)]
   s = 0
   ys = [f(x) for x in xs]
+
   return sum(ys) * h
+
+#rectangle rule (midpoint)
+def rectangle_rule_m(f, a, b, n):
+  h = (b - a) / n
+  xs = [a + i * h for i in range(0, n)]
+  midpoints = [x + h / 2 for x in xs]
+  ys = [f(m) for m in midpoints]
+
+  return sum(ys) * h
+
+#trapezoidal rule (without optimization)
+def trapezoidal_rule(f, a, b, n):
+  h = (b - a) / n
+  xs = [a + i * h for i in range(0, n + 1)]
+  ys = [f(x) for x in xs]
+  s = 0
+  for i in range(1, len(ys)):
+    s = s + h * (ys[i] + ys[i - 1]) / 2
+
+  return s
 
 print()
 print('integral(x ** 2 + x + 1)dx|(0, 6)')
@@ -38,6 +63,22 @@ print('  known value:')
 print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 
 print()
+print('integral(e ** (2 * x))dx|(2, 5)')
+print('  rectangle rule (midpoint):')
+print('  ', rectangle_rule_m(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  known value:')
+print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
+
+print()
+print('integral(e ** (2 * x))dx|(2, 5)')
+print('  trapezoidal rule:')
+print('  ', trapezoidal_rule(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  known value:')
+print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
+
+############
+
+print()
 print('integral(cos(x))dx|(0, 2 * pi)')
 print('  rectangle rule (left):')
 print('  ', rectangle_rule_l(lambda x: math.cos(x), 0, math.pi, 40))
@@ -47,20 +88,80 @@ print('  ', float(integrate(cos(x), (x, 0, 2 * pi))))
 print()
 print('integral(3 * x)dx|(-1, 0)')
 print('  rectangle rule (right):')
-print('  ', rectangle_rule_r(lambda x: 3 * x, -1, 0, 80))
+print('  ', rectangle_rule_r(lambda x: 3 * x, -1, 0, 40))
 print('  known value:')
 print('  ', float(integrate(3 * x, (x, -1, 0))))
 
 print()
+print('integral(3 * x)dx|(-1, 0)')
+print('  rectangle rule (midpoint):')
+print('  ', rectangle_rule_m(lambda x: 3 * x, -1, 0, 40))
+print('  known value:')
+print('  ', float(integrate(3 * x, (x, -1, 0))))
+
+print()
+print('integral(3 * x)dx|(-1, 0)')
+print('  trapezoidal rule:')
+print('  ', trapezoidal_rule(lambda x: 3 * x, -1, 0, 40))
+print('  known value:')
+print('  ', float(integrate(3 * x, (x, -1, 0))))
+
+############
+
+print()
 print('integral(sin(ln(x)))dx|(5, 10)')
 print('  rectangle rule (left):')
-print('  ', rectangle_rule_l(lambda x: math.sin(math.log(x)), 5, 10, 80))
+print('  ', rectangle_rule_l(lambda x: math.sin(math.log(x)), 5, 10, 40))
 print('  known value:')
 print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
 
 print()
 print('integral(sin(ln(x)))dx|(5, 10)')
 print('  rectangle rule (right):')
-print('  ', rectangle_rule_r(lambda x: math.sin(math.log(x)), 5, 10, 80))
+print('  ', rectangle_rule_r(lambda x: math.sin(math.log(x)), 5, 10, 40))
 print('  known value:')
 print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
+
+print()
+print('integral(sin(ln(x)))dx|(5, 10)')
+print('  rectangle rule (midpoint):')
+print('  ', rectangle_rule_m(lambda x: math.sin(math.log(x)), 5, 10, 40))
+print('  known value:')
+print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
+
+print()
+print('integral(sin(ln(x)))dx|(5, 10)')
+print('  trapezoidal rule:')
+print('  ', trapezoidal_rule(lambda x: math.sin(math.log(x)), 5, 10, 40))
+print('  known value:')
+print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
+
+############
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  rectangle rule (left):')
+print('  ', rectangle_rule_l(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  rectangle rule (right):')
+print('  ', rectangle_rule_r(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  rectangle rule (midpoint):')
+print('  ', rectangle_rule_m(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  trapezoidal rule:')
+print('  ', rectangle_rule_m(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
