@@ -48,6 +48,17 @@ def trapezoidal_rule(f, a, b, n):
 
   return s
 
+#kepler-cavalieri-simpson (without optimization)
+def kepler_cavalieri_simpson_rule(f, a, b, n):
+  h = (b - a) / n
+  xs = [a + i * h for i in range(0, n + 1)]
+  s = 0
+  for i in range(len(xs) - 1):
+    midpoint = (xs[i] + xs[i + 1]) / 2
+    s = s + (h / 6) * (f(xs[i]) + f(xs[i + 1]) + 4 * f(midpoint))
+
+  return s
+
 print()
 print('integral(x ** 2 + x + 1)dx|(0, 6)')
 print('  rectangle rule (left):')
@@ -76,7 +87,14 @@ print('  ', trapezoidal_rule(lambda x: math.exp(2 * x), 2, 5, 40))
 print('  known value:')
 print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 
-############
+print()
+print('integral(e ** (2 * x))dx|(2, 5)')
+print('  kepler-cavalieri-simpson rule:')
+print('  ', kepler_cavalieri_simpson_rule(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  known value:')
+print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
+
+print('\n################')
 
 print()
 print('integral(cos(x))dx|(0, 2 * pi)')
@@ -106,7 +124,14 @@ print('  ', trapezoidal_rule(lambda x: 3 * x, -1, 0, 40))
 print('  known value:')
 print('  ', float(integrate(3 * x, (x, -1, 0))))
 
-############
+print()
+print('integral(3 * x)dx|(-1, 0)')
+print('  kepler-cavalieri-simpson rule:')
+print('  ', kepler_cavalieri_simpson_rule(lambda x: 3 * x, -1, 0, 40))
+print('  known value:')
+print('  ', float(integrate(3 * x, (x, -1, 0))))
+
+print('\n################')
 
 print()
 print('integral(sin(ln(x)))dx|(5, 10)')
@@ -136,32 +161,46 @@ print('  ', trapezoidal_rule(lambda x: math.sin(math.log(x)), 5, 10, 40))
 print('  known value:')
 print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
 
-############
+print()
+print('integral(sin(ln(x)))dx|(5, 10)')
+print('  kepler-cavalieri-simpson rule:')
+print('  ', kepler_cavalieri_simpson_rule(lambda x: math.sin(math.log(x)), 5, 10, 40))
+print('  known value:')
+print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
+
+print('\n################')
 
 print()
 print('integral(cos(x) + ln(x))dx|(10, 40)')
 print('  rectangle rule (left):')
-print('  ', rectangle_rule_l(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  ', rectangle_rule_l(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
 
 print()
 print('integral(cos(x) + ln(x))dx|(10, 40)')
 print('  rectangle rule (right):')
-print('  ', rectangle_rule_r(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  ', rectangle_rule_r(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
 
 print()
 print('integral(cos(x) + ln(x))dx|(10, 40)')
 print('  rectangle rule (midpoint):')
-print('  ', rectangle_rule_m(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  ', rectangle_rule_m(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
 
 print()
 print('integral(cos(x) + ln(x))dx|(10, 40)')
 print('  trapezoidal rule:')
-print('  ', rectangle_rule_m(lambda x: math.cos(x) + ln(x), 10, 40, 10))
+print('  ', rectangle_rule_m(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  kepler-cavalieri-simpson rule:')
+print('  ', kepler_cavalieri_simpson_rule(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
