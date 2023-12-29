@@ -7,9 +7,7 @@ class DFA:
     def exec(self, input_str):
         for c in input_str:
             self.state = self.delta_table[(self.state, c)]
-        if self.state in self.acc_states:
-          return True
-        return False
+        return self.state in self.acc_states
 
 #a1 accepts strings containing at least one occurrence of '01'
 states_a1 = {'q0','q1','q2'}
