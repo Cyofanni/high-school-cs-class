@@ -1,0 +1,59 @@
+*** SQL - 0 ***
+
+*Il linguaggio SQL*
+ - SQL (Structured Query Language) è un linguaggio dichiarativo domain-specific
+   che permette di interagire con i database relazionali
+ - Ha 4 componenti:
+    - DDL (Data Definition Language)
+    - DML (Data Manipulation Language)
+    - DQL (Data Query Language)
+    - DCL (Data Control Language)
+ - NON è un linguaggio di programmazione
+ - Esistono diversi RDBMSs (Relational Database Management Systems), sia 
+   proprietari sia open source (DB2, Oracle, Microsoft SQL Server, 
+   MySQL, PostgreSQL).
+   Noi utilizzeremo MySQL, che è open source
+
+*Primi comandi*
+ - SHOW DATABASES;
+    * mostra i database esistenti
+ - CREATE DATABASE IF NOT EXISTS hospital;
+    * DDL - crea un database (se non esiste già con lo stesso nome),
+      di nome 'hospital'
+ - USE hospital;
+    * dopo questo comando, il database considerato da MySQL sarà
+      'hospital'
+ - SHOW TABLES;
+    * mostra le tabelle presenti nel database
+ - CREATE TABLE doctors(
+     id INT AUTO_INCREMENT,
+     name VARCHAR(20) NOT NULL,
+     surname VARCHAR(20) NOT NULL,
+     birthdate DATE NOT NULL,
+     PRIMARY KEY(id)
+   );
+    * DDL - crea la tabella 'doctors', formata dai seguenti attributi:
+        - id (primary key, intero, auto-incrementale)
+        - name (stringa variable-length, lunghezza max 20, non può avere valore NULL)
+        etc...
+ - DESCRIBE doctors; 
+    * DDL - mostra i dettagli dello schema della tabella 'doctors'
+ - INSERT INTO doctors(name, surname, birthdate) VALUES
+      ('mario', 'rossi', '1990-07-05'),
+      ('maria', 'verdi', '1976-12-10'),
+      ('claudia', 'rossini', '1971-10-10');
+    * DML - inserisce 3 record nella tabella 'doctors'
+      (NB: 'id' viene assegnato automaticamente)
+ - SELECT * FROM doctors;
+    * DQL - mostra i valori di tutte le colonne di tutte le righe di 'doctors'
+
+*Esercizi* 
+ - Spiegare perché il comando seguente dà errore:
+    INSERT INTO doctors(name, surname) VALUES ('mario', 'rossi');
+ - Provare questo comando e spiegarne il funzionamento:
+    ALTER TABLE doctors ADD COLUMN salary DECIMAL(9, 4);
+ - Studiare questa pagina: https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html
+ - Utilizzare MySQL come calcolatrice scientifica. Provare questi comandi:
+    - SELECT 2 * 2;
+    - SELECT SQRT(2) * SQRT(2);
+    - SELECT LOG(EXP(1));
