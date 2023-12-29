@@ -1,6 +1,6 @@
 class DFA:
-    def __init__(self, Q, start, acc_states, delta_table):
-        self.Q = Q
+    def __init__(self, states, start, acc_states, delta_table):
+        self.states = states
         self.state = start
         self.acc_states = acc_states
         self.delta_table = delta_table
