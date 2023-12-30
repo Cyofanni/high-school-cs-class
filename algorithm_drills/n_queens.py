@@ -1,5 +1,5 @@
 def place_queen(cb, i, j):
-    cb[i][j] = '*'
+    cb[i][j] = 'Q'
 
 def erase_queen(cb, i, j):
     cb[i][j] = '-'
@@ -8,7 +8,7 @@ def find_conflict(cb, side, i, j):
     found_conflict = False
     #backwards
     for k in range(i - 1, -1, -1):
-        if cb[k][j] == '*':
+        if cb[k][j] == 'Q':
             found_conflict = True
             break
 
@@ -16,7 +16,7 @@ def find_conflict(cb, side, i, j):
     if found_conflict == False:
         row_ind = i - 1
         for k in range(j - 1, -1, -1):
-            if cb[row_ind][k] == '*':
+            if cb[row_ind][k] == 'Q':
                 found_conflict = True
                 break
             row_ind = row_ind - 1
@@ -25,7 +25,7 @@ def find_conflict(cb, side, i, j):
     if found_conflict == False:
         row_ind = i - 1
         for k in range(j + 1, side):
-            if cb[row_ind][k] == '*':
+            if cb[row_ind][k] == 'Q':
                 found_conflict = True
                 break
             row_ind = row_ind - 1
@@ -52,6 +52,6 @@ def solve_n_queens(cb, side, row):
 
     return num_sols
 
-side = 5
+side = 8
 chessboard = [['-' for j in range(side)] for i in range(side)]
 print(solve_n_queens(chessboard, side, 0))
