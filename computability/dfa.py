@@ -1,9 +1,9 @@
 class DFA:
     def __init__(self, states, start, acc_states, delta_table):
-        self.states = states
+        self.states = states.copy()
         self.state = start
-        self.acc_states = acc_states
-        self.delta_table = delta_table
+        self.acc_states = acc_states.copy()
+        self.delta_table = delta_table.copy()
     def exec(self, input_str):
         for c in input_str:
             self.state = self.delta_table[(self.state, c)]
