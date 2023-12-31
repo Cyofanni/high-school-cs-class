@@ -54,24 +54,30 @@ def no_dup(board, num, row, col):
 
     return True
 
-def solve(board, row, col):
+def next_pos(row, col):
+    if col == 8:
+        return (row + 1, 0)
+    else:
+        return (row, col + 1)
+
+def solve_and_print_sols(board, row, col):
     if row == 9:
         print_board(board)
+        print()
+        print()
         return True
-    if col == 9:
-        return solve(board, row + 1, 0)
-    if board[row][col] != 0:    #blocked cell
-        return solve(board, row, col + 1)
-    if board[row][col] == 0:    #free cell
-        for k in range(1, 10):
-            if no_dup(board, k, row, col) == True:
-                board[row][col] = k
-                res = solve(board, row, col + 1)
-                if res == False:
-                    board[row][col] = 0
-                else:
-                    return True
-        return False
+
+    for i in range(row, 9):
+        for j in range(col, 9):
+            if board[i][j] == 0:
+                for num in range(1, 10):
+                    if no_dup(board, num, i, j):
+                        board[i][j] = num
+                        s = solve_and_print_sols(board, next_pos(i, j)[0], next_pos(i, j)[1])
+                        board[i][j] = 0
+                return False
+            else:
+                return solve_and_print_sols(board, next_pos(i, j)[0], next_pos(i, j)[1])
 
 #taken from wikipedia
 board = [[5,3,0,0,7,0,0,0,0],
@@ -84,4 +90,4 @@ board = [[5,3,0,0,7,0,0,0,0],
          [0,0,0,4,1,9,0,0,5],
          [0,0,0,0,8,0,0,7,9]]
 
-solve(board, 0, 0)
+solve_and_print_sols(board, 0, 0)
