@@ -60,9 +60,20 @@ def next_pos(row, col):
     else:
         return (row, col + 1)
 
+#brute-force algorithm
+def is_sol_valid(board):
+    for i in range(9):
+        for j in range(9):
+            if no_dup(board, board[i][j], i, j) == False:
+                return False
+    return True
+
 def solve_and_print_sols(board, row, col):
     if row == 9:
         print_board(board)
+        is_val = is_sol_valid(board)
+        if is_val:
+            print('valid solution')
         print()
         print()
         return True
@@ -79,12 +90,12 @@ def solve_and_print_sols(board, row, col):
 #taken from wikipedia
 board = [[5,3,0,0,7,0,0,0,0],
          [6,0,0,1,9,5,0,0,0],
-         [0,9,8,0,0,0,0,6,0],
+         [0,9,8,0,0,0,0,0,0],
          [8,0,0,0,6,0,0,0,3],
          [4,0,0,8,0,3,0,0,1],
-         [7,0,0,0,2,0,0,0,6],
-         [0,6,0,0,0,0,2,8,0],
+         [0,0,0,0,2,0,0,0,6],
+         [0,0,0,0,0,0,2,8,0],
          [0,0,0,4,1,9,0,0,5],
-         [0,0,0,0,8,0,0,7,9]]
+         [0,0,0,0,8,0,0,0,0]]
 
 solve_and_print_sols(board, 0, 0)
