@@ -79,7 +79,7 @@ def solve_and_print_sols(board, row, col):
         for num in range(1, 10):
             if no_dup(board, num, row, col):
                 board[row][col] = num
-                s = solve_and_print_sols(board, next_pos(row, col)[0], next_pos(row, col)[1])
+                solve_and_print_sols(board, next_pos(row, col)[0], next_pos(row, col)[1])
                 board[row][col] = 0
         return False
     return solve_and_print_sols(board, next_pos(row, col)[0], next_pos(row, col)[1])
