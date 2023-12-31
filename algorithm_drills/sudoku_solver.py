@@ -2,14 +2,12 @@ def print_board(board):
     for i in range(9):
         for j in range(9):
             print(board[i][j], end = '')
+            print(' ', end = '')
             if j % 3 == 2:
-                print('  ', end = '')
-            else:
                 print(' ', end = '')
+        print()
         if i % 3 == 2:
             print('\n')
-        else:
-            print()
 
 def get_block_start(row, col):
     grid_num = (row // 3) * 3 + col // 3
@@ -57,8 +55,7 @@ def no_dup(board, num, row, col):
 def next_pos(row, col):
     if col == 8:
         return (row + 1, 0)
-    else:
-        return (row, col + 1)
+    return (row, col + 1)
 
 #brute-force algorithm
 def is_sol_valid(board):
@@ -90,12 +87,12 @@ def solve_and_print_sols(board, row, col):
 #taken from wikipedia
 board = [[5,3,0,0,7,0,0,0,0],
          [6,0,0,1,9,5,0,0,0],
-         [0,9,8,0,0,0,0,0,0],
+         [0,9,8,0,0,0,0,6,0],
          [8,0,0,0,6,0,0,0,3],
          [4,0,0,8,0,3,0,0,1],
-         [0,0,0,0,2,0,0,0,6],
-         [0,0,0,0,0,0,2,8,0],
+         [7,0,0,0,2,0,0,0,6],
+         [0,6,0,0,0,0,2,8,0],
          [0,0,0,4,1,9,0,0,5],
-         [0,0,0,0,8,0,0,0,0]]
+         [0,0,0,0,8,0,0,7,9]]
 
 solve_and_print_sols(board, 0, 0)
