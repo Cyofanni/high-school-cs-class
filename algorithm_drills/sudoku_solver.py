@@ -67,17 +67,14 @@ def solve_and_print_sols(board, row, col):
         print()
         return True
 
-    for i in range(row, 9):
-        for j in range(col, 9):
-            if board[i][j] == 0:
-                for num in range(1, 10):
-                    if no_dup(board, num, i, j):
-                        board[i][j] = num
-                        s = solve_and_print_sols(board, next_pos(i, j)[0], next_pos(i, j)[1])
-                        board[i][j] = 0
-                return False
-            else:
-                return solve_and_print_sols(board, next_pos(i, j)[0], next_pos(i, j)[1])
+    if board[row][col] == 0:
+        for num in range(1, 10):
+            if no_dup(board, num, row, col):
+                board[row][col] = num
+                s = solve_and_print_sols(board, next_pos(row, col)[0], next_pos(row, col)[1])
+                board[row][col] = 0
+        return False
+    return solve_and_print_sols(board, next_pos(row, col)[0], next_pos(row, col)[1])
 
 #taken from wikipedia
 board = [[5,3,0,0,7,0,0,0,0],
