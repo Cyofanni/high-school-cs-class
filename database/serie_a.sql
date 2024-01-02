@@ -8,7 +8,7 @@ CREATE TABLE teams(
       id INT AUTO_INCREMENT,
       name VARCHAR(20) NOT NULL,
       date_est DATE,
-      revenue decimal(6, 2) NOT NULL,
+      revenue DECIMAL(6, 2) NOT NULL,
       new_promoted BOOL,
       colour ENUM('red', 'white', 'green', 'black', 'yellow', 'blue'),
       PRIMARY KEY(id)
