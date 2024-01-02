@@ -31,8 +31,9 @@ CREATE TABLE players(
 
 /*extract this:
 +-------------+----------------+-----------+--------------+----------------+
-| player_name | player_surname | team_name | coach_name   | coache_surname |
-+-------------+----------------+-----------+--------------+----------------+*/
+| player_name | player_surname | team_name | coach_name   | coach_surname |
++-------------+----------------+-----------+--------------+----------------+
+*/
 SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name,
 coaches.name AS coach_name, coaches.surname AS coache_surname
 FROM players
