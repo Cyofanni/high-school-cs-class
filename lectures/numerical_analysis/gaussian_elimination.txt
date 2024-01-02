@@ -1,0 +1,94 @@
+***Algebra lineare - Eliminazione gaussiana***
+
+*Sistemi lineari in forma matriciale*
+ - Si consideri il sistema lineare seguente:
+      2x + y -  z =    8
+     -3x - y + 2z =  -11
+     -2x + y + 2z =   -3
+ - La "matrice aumentata" 3 x 4 corripondente è:
+        2    1   -1     8
+       -3   -1    2   -11
+       -2    1    2    -3
+
+
+*Eliminazione gaussiana*
+ - L'eliminazione gaussiana è un algoritmo che permette di
+   risolvere sistemi lineari
+ - L'obiettivo è trasformare il sistema in "triangolare superiore",
+   per poi risolverlo tramite "back substitution"
+
+
+*Esecuzione passo-passo*
+   *2    1   -1     8    (R0)
+   -3   -1    2   -11    (R1)
+   -2    1    2    -3    (R2)
+
+ 1) Azzerare gli elementi della colonna di *2 (sotto *2),
+    tramite i passaggi seguenti:
+      - calcolare -3 / 2 = -1.5
+      - trasformare R1: R1 = R1 - (-1.5 * R0);
+        l'operazione va fatta tra gli elementi corrispondenti di R0 e R1:
+         .  -3 - (-1.5 * 2) = -3 - (-3) = -3 + 3 = 0
+         .  -1 - (-1.5 * 1) = -1 - (-1.5) = -1 + 1.5 = 0.5
+         .   2 - (-1.5 * (-1)) = 2 - (1.5) = 2 - 1.5 = 0.5
+         . -11 - (-1.5 * 8) = -11 - (-12) = -11 + 12 = 1
+      - la matrice aumentata è diventata:
+         *2    1     -1     8    (R0)
+          0    0.5    0.5   1    (R1)
+         -2    1      2    -3    (R2)
+      - ora bisogna modificare R2:
+         - calcolare -2 / 2 = -1
+         - trasformare R2: R2 = R2 - (-1 * R0);
+           l'operazione va fatta tra gli elementi corrispondenti di R0 e R2:
+            . -2 - (-1 *  2) = -2 - (-2) = -2 + 2 = 0
+            .  1 - (-1 *  1) = 1 - (-1) = 1 + 1 = 2
+            .  2 - (-1 * -1) = 2 - 1 = 1
+            . -3 - (-1 *  8) = -3 - (-8) = -3 + 8 = 5
+         - la matrice aumentata è diventata:
+            *2    1     -1     8    (R0)
+             0    0.5    0.5   1    (R1)
+             0    2      1     5    (R2)
+         - la colonna di *2 (sotto *2) è stata azzerata
+ 2) La matrice aumentata è diventata:
+      2    1     -1     8    (R0)
+      0   *0.5    0.5   1    (R1)
+      0    2      1     5    (R2)     
+    
+    Azzerare gli elementi della colonna di *0.5 (sotto *0.5),
+    tramite i passaggi seguenti:
+     - calcolare 2 / 0.5 = 4
+     - trasformare R2: R2 = R2 - (4 * R1); 
+       l'operazione va fatta tra gli elementi corrispondenti di R2 e R1:
+        . 0 - 4 * 0 = 0
+        . 2 - 4 * 0.5 = 0
+        . 1 - 4 * 0.5 = -1
+        . 5 - 4 * 1 = 1
+     - la matrice aumentata è diventata:
+        2    1     -1     8    (R0)
+        0    0.5    0.5   1    (R1)
+        0    0     -1     1    (R2)
+ 3) Ora, la matrice aumentata è:
+     2    1     -1     8    (R0)
+     0    0.5    0.5   1    (R1)
+     0    0    *-1     1    (R2)
+
+    Bisognerebbe procedere allo stesso modo per gli elementi
+    sotto *-1, che non esistono, quindi l'algoritmo termina
+
+
+*Back substitution*
+  - Il sistema corrispondente alla matrice ottenuta sopra è:
+      2x +    y -    z = 8
+           0.5y + 0.5z = 1
+                    -z = 1
+  - Risolverlo "all'indietro":
+     . z = -1
+     . 0.5y - 0.5 = 1 => y = 1.5 / 0.5 = 3
+     . 2x + 3 + 1 = 8 => 2x = 4 => x = 2
+
+
+*NB: non abbiamo considerato il caso in cui l'elemento * è 0
+
+
+*Implementazione*
+  - https://github.com/Cyofanni/high-school-cs-class/blob/main/numerical_analysis/gaussian_elimination.cpp
