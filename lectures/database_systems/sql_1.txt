@@ -1,0 +1,52 @@
+*** SQL - 1 ***
+
+*UPDATE, DELETE*
+ - CREATE TABLE doctors(
+     id INT AUTO_INCREMENT,
+     name VARCHAR(20) NOT NULL,
+     surname VARCHAR(20) NOT NULL,
+     birthdate DATE NOT NULL,
+     salary DECIMAL(9, 4),
+     PRIMARY KEY(id)
+   );
+ - UPDATE doctors SET salary = 4832.2 WHERE id = 1;
+    * aggiorna il 'salary' del record di 'doctors' con 'id' 1
+ - DELETE FROM doctors WHERE id = 1;
+    * elimina il record di 'doctors' con 'id' 1
+
+
+*Query*
+ - SELECT * FROM doctors WHERE name = 'mario';
+    * estrae da 'doctors' i record (tutte le colonne) per cui è vera la proposizione
+      logica seguente: name = 'mario'
+ - SELECT * FROM doctors WHERE name = 'mario' AND surname = 'rossi';
+    * estrae da 'doctors' i record (tutte le colonne) per cui è vera la proposizione
+      logica seguente: name = 'mario' AND surname = 'rossi'
+ - SELECT name, surname FROM doctors;
+    * estrae da 'doctors' tutti i record (colonne 'name' e 'surname')
+ - SELECT COUNT(*) FROM doctors;
+    * calcola il numero di record nella tabella 'doctors'
+ - SELECT MAX(salary) FROM doctors;
+    * estrae il valore massimo della colonna 'salary' di 'doctors'
+ - SELECT MAX(salary) AS max_doct_salary FROM doctors;
+    * estrae il valore massimo della colonna 'salary' di 'doctors;
+      la colonna viene rinominata 'max_doct_salary'
+ - SELECT * FROM doctors
+   WHERE salary = (SELECT MAX(salary) FROM doctors);
+    * estrae i record (tutte le colonne) di 'doctors' in cui il valore di 
+      'salary' è uguale al valore massimo della colonna 'salary' di
+      'doctors'
+
+
+*Comandi*
+ - DROP TABLE doctors;
+    * elimina la tabella 'doctors'
+ - DROP DATABASE hospital;
+    * elimina il database 'hospital'
+
+
+*Esercizi*
+ - Provare queste query e spiegarne il funzionamento:
+    1) SELECT YEAR(birthdate) FROM doctors;
+    2) SELECT MONTH(birthdate) FROM doctors;
+    3) SELECT DAY(birthdate) FROM doctors;
