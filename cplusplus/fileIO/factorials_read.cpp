@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-  ifstream ifs("factorials");
+  ifstream ifs("factorials_i");
   int n, f;
   while (ifs >> n >> f) {
     cout << n << ' ' << f << endl;
