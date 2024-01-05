@@ -1,0 +1,69 @@
+*** SQL - 3 ***
+
+*JOIN*
+ - Considerare il database 'serie_a'
+ - Considerare il contenuto delle tabelle 'teams' e 'players':
+
+teams
++----+----------+------------+----------------+--------------+--------+
+| id | name     | date_est   | revenue        | new_promoted | colour |
++----+----------+------------+----------------+--------------+--------+
+|  4 | J.       | 1898-11-01 |  99999931.0000 |            0 | white  |
+|  5 | I.       | 1899-11-01 | 100999931.0000 |            0 | blue   |
+|  6 | M.       | 1901-03-02 |  80999931.0000 |            0 | red    |
++----+----------+------------+----------------+--------------+--------+
+
+players
++----+------------+----------+------------+------------+-----------+------+
+| id | name       | surname  | birthdate  | salary     | country   | team |
++----+------------+----------+------------+------------+-----------+------+
+|  8 | F.         | C.       | 1997-03-02 |  100000.00 | Italy     |    4 |
+| 10 | K.         | Y.       | 2005-04-01 |   10000.00 | Germany   |    4 |
+| 12 | L.         | M.       | 1997-10-13 | 7000000.00 | Argentina |    5 |
+| 13 | A.         | B.       | 1999-04-13 | 4000000.00 | Italy     |    5 |
+| 14 | R.         | L.       | 1999-06-10 | 4000000.00 | Portugal  |    6 |
+| 15 | O.         | G.       | 1986-06-10 | 3000000.00 | France    |    6 |
++----+------------+----------+------------+------------+-----------+------+
+
+ - Lanciare questa query:
+    SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+    FROM players JOIN teams;
+  
+   l'output è il seguente:
+
++-------------+-----------------+-----------+
+| player_name | player_surname  | team_name |
++-------------+-----------------+-----------+
+| F.          | C.              | M.        |
+| F.          | C.              | I.        |
+| F.          | C.              | J.        |
+| K.          | Y.              | M.        |
+| K.          | Y.              | I.        |
+| K.          | Y.              | J.        |
+| L.          | M.              | M.        |
+| L.          | M.              | I.        |
+| L.          | M.              | J.        |
+| A.          | B.              | M.        |
+| A.          | B.              | I.        |
+| A.          | B.              | J.        |
+| R.          | L.              | M.        |
+| R.          | L.              | I.        |
+| R.          | L.              | J.        |
+| O.          | G.              | M.        |
+| O.          | G.              | I.        |
+| O.          | G.              | J.        |
++-------------+-----------------+-----------+
+
+ - L'operazione effettuata dalla query precedente è detta CROSS JOIN
+   (a livello matematico si tratta di un prodotto cartesiano)
+ - Sintassi alternative:
+    1) SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+       FROM players CROSS JOIN teams;
+    2) SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+       FROM players, teams;
+    3) SELECT players.name player_name, players.surname player_surname, teams.name team_name
+       FROM players, teams;
+
+
+*Esercizio*
+ - Spiegare l'output sulla base della query
