@@ -38,13 +38,16 @@ RSA private_key: (25257525612165302437240988336629923783917769814770609683745474
 
 8) Alice e Bob ora riescono a comunicare in modo sicuro senza dover condividere una chiave simmetrica segreta.
 
-9) Ipotizziamo che una terza persona, di nome Mallory, voglia calcolare la chiave privata di Alice partendo da quella pubblica.
+9) Ipotizziamo che una terza persona, di nome Mallory, voglia calcolare la chiave privata di Alice partendo
+   da quella pubblica.
    Dovrebbe calcolare l'inverso modulare di 3, modulo phi(n), la funzione di Eulero su n.
    Per effettuare questo calcolo bisogna prima calcolare phi(n).
    Mallory apre una shell di Python e scrive:
           import sympy
           sympy.totient(378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
    E aspetta...
-   Con un computer normale dovrà aspettare un bel po'... Ma forse anche con un computer molto più potente le cose non migliorerebbero più di tanto.
-   Il calcolo della funzione di Eulero su un n molto grande è intrattabile. Per calcolarla velocemente bisognerebbe conoscere i fattori primi di n.
+   Con un computer normale dovrà aspettare un bel po'... Ma forse anche con un computer molto più potente
+   le cose non migliorerebbero più di tanto.
+   Il calcolo della funzione di Eulero su un n molto grande è intrattabile.
+   Per calcolarla velocemente bisognerebbe conoscere i fattori primi di n.
    Ma attualmente non esiste un algoritmo che fattorizza numeri molto grandi in tempi ragionevoli.
