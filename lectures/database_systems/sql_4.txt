@@ -1,0 +1,61 @@
+*** SQL - 4 ***
+
+*INNER JOIN*
+ - Considerare il database 'serie_a'
+ - Considerare il contenuto delle tabelle 'teams' e 'players':
+
+teams
++----+----------+------------+----------------+--------------+--------+
+| id | name     | date_est   | revenue        | new_promoted | colour |
++----+----------+------------+----------------+--------------+--------+
+|  4 | J.       | 1898-11-01 |  99999931.0000 |            0 | white  |
+|  5 | I.       | 1899-11-01 | 100999931.0000 |            0 | blue   |
+|  6 | M.       | 1901-03-02 |  80999931.0000 |            0 | red    |
++----+----------+------------+----------------+--------------+--------+
+
+players
++----+------------+----------+------------+------------+-----------+------+
+| id | name       | surname  | birthdate  | salary     | country   | team |
++----+------------+----------+------------+------------+-----------+------+
+|  8 | F.         | C.       | 1997-03-02 |  100000.00 | Italy     |    4 |
+| 10 | K.         | Y.       | 2005-04-01 |   10000.00 | Germany   |    4 |
+| 12 | L.         | M.       | 1997-10-13 | 7000000.00 | Argentina |    5 |
+| 13 | A.         | B.       | 1999-04-13 | 4000000.00 | Italy     |    5 |
+| 14 | R.         | L.       | 1999-06-10 | 4000000.00 | Portugal  |    6 |
+| 15 | O.         | G.       | 1986-06-10 | 3000000.00 | France    |    6 |
++----+------------+----------+------------+------------+-----------+------+
+
+ - Lanciare questa query:
+    SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+    FROM players JOIN teams ON players.team = teams.id;
+  
+   l'output è il seguente:
++-------------+-----------------+-----------+
+| player_name | player_surname  | team_name |
++-------------+-----------------+-----------+
+| F.          | C.              | J.        |
+| K.          | Y.              | J.        |
+| L.          | M.              | I.        |
+| A.          | B.              | I.        |
+| R.          | L.              | M.        |
+| O.          | G.              | M.        |
++-------------+-----------------+-----------+
+
+ - L'operazione effettuata dalla query precedente è detta INNER JOIN.
+   Si tratta di una JOIN per la quale vengono mantenuti soltanto i record che
+   rendono vera la condizione specificata tramite la clausola ON
+ - Sintassi alternative:
+    1) SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+       FROM players INNER JOIN teams ON players.team = teams.id;
+    2) SELECT players.name AS player_name, players.surname AS player_surname, teams.name AS team_name
+       FROM players, teams WHERE players.team = teams.id;
+
+
+*Esercizio*
+ - Scrivere una query che estrae per ciascun giocatore nato dopo il 1 gennaio 2000
+   le informazioni seguenti:
+    - nome
+    - cognome
+    - data di nascita
+    - squadra
+   NB: i giocatori nati prima della data sopra indicata non vanno inclusi
