@@ -9,7 +9,7 @@ class DFA:
             self.state = self.delta[(self.state, c)]
         return self.state in self.F
 
-#a1 accepts strings containing at least one occurrence of '01'
+#a1 accepts all and only the strings containing at least one occurrence of '01'
 Q_a1 = {'q0','q1','q2'}
 q0_a1 = 'q0'
 F_a1 = {'q1'}
@@ -32,7 +32,7 @@ a1.state = 'q0'
 print('', end = ' : ')
 print(a1.exec(''))
 
-#a2 accepts strings where all 'a' comes before all 'b'
+#a2 accepts all and only the strings where all 'a' comes before all 'b'
 Q_a2 = {'q0','q1','q2'}
 q0_a2 = 'q0'
 F_a2 = {'q0', 'q1'}
@@ -52,7 +52,7 @@ a2.state = 'q0'
 print('aaaaaaaaaaaaaaaaaaaabbbbbbbbbabab', end = ' : ')
 print(a2.exec('aaaaaaaaaaaaaaaaaaaabbbbbbbbbabab'))
 
-#a3 accepts strings where ending with an odd number of '1'
+#a3 accepts all and only the strings ending with an odd number of '1'
 Q_a3 = {'q0','q1'}
 q0_a3 = 'q0'
 F_a3 = {'q1'}
