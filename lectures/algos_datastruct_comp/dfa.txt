@@ -1,0 +1,60 @@
+*** Deterministic Finite Automata (DFA) ***
+
+* Definizione *
+ - Un DFA (Deterministic Finite Automaton - Automa deterministico a stati finiti) è 
+   composto da:
+    1) Q: insieme di stati
+    2) SIGMA: insieme finito di simboli di input
+    3) delta: funzione di transizione, che prende come argomenti
+       uno stato e un simbolo, e restituisce uno stato
+    4) q0: stato iniziale
+    5) F: insieme di stati finali, sottoinsieme di Q
+   
+   generalmente, un DFA A viene rappresentato sinteticamente così:
+       A = (Q, SIGMA, delta, q0, F)
+  
+   rappresentazione grafica:
+       https://en.wikipedia.org/wiki/Deterministic_finite_automaton#/media/File:DFAexample.svg
+
+
+* Il linguaggio di un DFA *
+ - Il "linguaggio" di un DFA è l'insieme delle stringhe da esso accettate
+ - Data una sequenza di simboli di input a0, a1 ... an, se, dopo aver letto
+   tutta la stringa e applicando per ogni simbolo la funzione delta, l'automa
+   si trova in uno stato finale, allora la stringa è accettata, altrimenti è
+   rifiutata
+ - Esempio: Proviamo a costruire un DFA che accetta tutte e sole le stringhe
+   di simboli appartenenti all'alfabeto {0, 1}, in cui vi sia almeno un'occorrenza
+   della sequenza 01. Il linguaggio accettato da questo DFA può essere espresso
+   così:
+
+      L = {x01y | con x e y stringhe qualsiasi di 0 e 1}
+
+   rappresentazione tabellare della funzione di transizione (delta):
+ 
+             state   q0    q1    q2
+      input        
+        0            q2    q1    q2
+        1            q0    q1    q1
+
+   quindi:
+
+      delta(q0, 0) = q2
+      delta(q0, 1) = q0
+      delta(q1, 0) = q1
+      delta(q1, 1) = q1
+      delta(q2, 0) = q2
+      delta(q2, 1) = q1
+
+
+* Linguaggi regolari *
+ - Se un linguaggio L è accettato da un DFA, allora L è detto "linguaggio regolare"
+
+
+* Applicazioni *
+ - Compilatori (riconoscimento di nomi di variabili, numeri), pattern matching,
+   analisi dei protocolli di rete, etc...
+
+
+* Implementazione ed esempi *
+ - https://github.com/Cyofanni/high-school-cs-class/blob/main/computability/dfa.py
