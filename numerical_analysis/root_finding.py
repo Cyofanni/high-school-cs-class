@@ -1,4 +1,5 @@
 import math
+from scipy.optimize import fsolve
 
 def bisection(f, a, b, eps, tol, max_iters):
     i = 1
@@ -91,18 +92,23 @@ def f4(x):
 def f5(x):
     return math.cos(x) + math.log(x)
 
+def f6(x):
+    return x ** 3 - 3 * x ** 2 - x + 3
+
 print('bisection:')
-print(bisection(f1, 1, 2, 0.001, 0.001, 10))
-print(bisection(f2, 0, 1, 0.001, 0.001, 10))
+print(bisection(f1, 1, 2, 0.001, 0.001, 10), fsolve(f1, [1, 2]))
+print(bisection(f2, 0, 1, 0.001, 0.001, 10), fsolve(f2, [0, 1]))
 print(bisection(f3, -1, 0, 0.001, 0.001, 10))
+print(bisection(f6, 0, 2, 0.001, 0.001, 10))
+
 #approximate square root
 print(bisection(lambda x: x ** 2 - 255, 0, 255, 0.000001, 0.000001, 100))
 print(math.sqrt(255))
 
 print()
 print('secant:')
-print(secant(f1, 1, 2, 0.001, 10))
-print(secant(f2, 0, 1, 0.001, 10))
+print(secant(f1, 1, 2, 0.001, 10), fsolve(f1, [1, 2]))
+print(secant(f2, 0, 1, 0.001, 10), fsolve(f2, [0, 1]))
 print(secant(f3, -1, 0, 0.001, 10))
 print(secant(f4, 0, 1, 0.001, 10))
 print(secant(f5, 0.2, 2, 0.0001, 10))
@@ -112,3 +118,5 @@ print()
 print('newton-raphson:')
 print(newton_raphson(f1, lambda x: 3 * x ** 2 + 4 * x + 10, 1, 2, 0.0001, 10))
 print(newton_raphson(f2, lambda x: 3 * x ** 2 + 4, 0, 1, 0.0001, 10))
+print(newton_raphson(f3, lambda x: math.exp(x) + 1, -1, 0, 0.0001, 10))
+print(newton_raphson(f3, lambda x: 3 * x ** 2 - 6 * x - 1, 0, 2, 0.0001, 10))
