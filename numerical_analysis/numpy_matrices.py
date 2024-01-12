@@ -22,7 +22,29 @@ A3 = np.array([[2, 13, -13, 2],
                [3, 12, 2, 8.2]])
 b3 = np.array([3, 11, -3, -15])
 
+#solve linear systems
 print(np.linalg.solve(A, b))
 print(np.linalg.solve(A1, b1))
 print(np.linalg.solve(A2, b2))
 print(np.linalg.solve(A3, b3))
+
+#compute determinant
+print()
+print(np.linalg.det(A))
+
+#compute inverse
+print()
+print(np.linalg.inv(A))
+print()
+print(np.matmul(A, np.linalg.inv(A)))
+
+#matrix multiplication
+print()
+C = np.array([[5, 6, 5, 3.3],
+              [4, 3, 3.3, 4.1],
+              [1, 2, 3, 9]])
+D = np.array([[5, 6.8],
+              [4, 3.2],
+              [1, 2],
+              [0, 34]])
+print(np.matmul(C, D))
