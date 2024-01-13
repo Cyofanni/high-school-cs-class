@@ -60,7 +60,7 @@ def secant_regula_falsi(f, a, b, tol, max_iters):
     return x2
 
 def newton_raphson(f, f1, a, b, tol, max_iters):
-    x0 = 0
+    x0 = a
     i = 1
 
     while i <= max_iters:
