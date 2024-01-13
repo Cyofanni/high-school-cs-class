@@ -1,13 +1,13 @@
 #include <iostream>
-#include <cstdio>
 using namespace std;
 
 #define NUM_ROWS_PASCAL 8
 #define NUM_COLS_PASCAL 15
 
 int main() {
-  int pascal_triangle[NUM_ROWS_PASCAL][NUM_COLS_PASCAL] = {{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0}, {}, {}, {}, {}};
-  int first_index_row = 6;
+  int pascal_triangle[NUM_ROWS_PASCAL][NUM_COLS_PASCAL] = {{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+                                                           {}, {}, {}, {}, {}, {}, {}};
+  int first_index_col = 6, last_index_col = 8;
   /*
       0 0 0 0 1 0 0 0 0
       0 0 0 1 0 1 0 0 0
@@ -17,26 +17,25 @@ int main() {
            etc...
   */
   for (int i = 1; i < NUM_ROWS_PASCAL; i++) {
-    for (int j = first_index_row; j < NUM_COLS_PASCAL; j += 2) {
-      if (j > 0 && j < 14) {
+    for (int j = first_index_col; j <= last_index_col; j += 2) {
+      if (j >= 1 && j <= 13) {
 	pascal_triangle[i][j] = pascal_triangle[i - 1][j - 1] + pascal_triangle[i - 1][j + 1];
       }
-      else if (j == 0) {
-	pascal_triangle[i][j] = pascal_triangle[i - 1][j + 1];
-      }
       else {
-	pascal_triangle[i][j] = pascal_triangle[i - 1][j - 1];
+	pascal_triangle[i][j] = 1;
       }
     }
-    first_index_row--;
+    first_index_col--;
+    last_index_col++;
   }
+
   for (int i = 0; i < NUM_ROWS_PASCAL; i++) {
-    for (int j = 0; j < NUM_COLS_PASCAL; j++){
+    for (int j = 0; j < NUM_COLS_PASCAL; j++) {
       if (pascal_triangle[i][j] != 0) {
-	cout << pascal_triangle[i][j] << "    ";
+        cout << pascal_triangle[i][j] << ' ';
       }
       else {
-	cout << "   ";
+        cout << ' ';
       }
     }
     cout << endl;
