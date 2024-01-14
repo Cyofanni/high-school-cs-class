@@ -31,6 +31,28 @@ def matrix_mult_div_n_con(A, B):
     row1 = np.hstack((res2, res3))
     return np.vstack((row0, row1))
 
+#https://en.wikipedia.org/wiki/Strassen_algorithm
+def strassen(A, B):
+    if A.shape[0] <= 2:
+        return matrix_mult_brute_force(A, B)
+
+    a_11, a_12, a_21, a_22 = split_n_2(A)
+    b_11, b_12, b_21, b_22 = split_n_2(B)
+    m1 = strassen(a_11 + a_22, b_11 + b_22)
+    m2 = strassen(a_21 + a_22, b_11)
+    m3 = strassen(a_11, b_12 - b_22)
+    m4 = strassen(a_22, b_21 - b_11)
+    m5 = strassen(a_11 + a_12, b_22)
+    m6 = strassen(a_21 - a_11, b_11 + b_12)
+    m7 = strassen(a_12 - a_22, b_21 + b_22)
+
+    c_11 = m1 + m4 - m5 + m7
+    c_12 = m3 + m5
+    c_21 = m2 + m4
+    c_22 = m1 - m2 + m3 + m6
+
+    return np.vstack((np.hstack((c_11,c_12)), np.hstack((c_21,c_22))))
+
 A = np.array([[3,5,1,3,6,5,3,4],
               [1,2,3,4,1,2,3,8],
               [4,5,6,8,6,5,4,6],
@@ -51,6 +73,19 @@ B = np.array([[3,5,1,34,6,53,3,4],
              )
 
 #a, b, c, d = split_n_2(A)
-print(matrix_mult_brute_force(A, B))
+res1 = matrix_mult_brute_force(A, B)
+print(res1)
 print()
-print(matrix_mult_div_n_con(A, B))
+res2 = matrix_mult_div_n_con(A, B)
+print(res2)
+print()
+res3 = strassen(A, B)
+print(res3)
+print()
+res4 = A.dot(B)
+print(res4)
+print()
+res5 = np.matmul(A, B)
+print(res5)
+print()
+print(np.all(res3 == res4) == True)
