@@ -18,7 +18,7 @@ def split_n_2(A):
     return A[0:n//2, 0:n//2], A[0:n//2, n//2:n], A[n//2:n, 0:n//2], A[n//2:n, n//2:n]
 
 def matrix_mult_div_n_con(A, B):
-    if A.shape[0] == 2:
+    if A.shape[0] <= 2:
         return matrix_mult_brute_force(A, B)
 
     a, b, c, d = split_n_2(A)
