@@ -1,11 +1,3 @@
-/*a teacher could teach in (0:n) classes;
-  a class could have (0:n) teachers;
-
-  teachers(id, name, surname);
-  classes(id, name, major);
-  ...
-*/
-
 DROP DATABASE IF EXISTS assignment_0;
 CREATE DATABASE assignment_0;
 USE assignment_0;
@@ -37,8 +29,6 @@ VALUES('4BSA', 'science'),
       ('4ASA', 'science'),
       ('1AC', 'humanities');
 
-
-/*solution*/
 CREATE TABLE teacher_class_conn(
   teacher_id INT,
   class_id INT,
