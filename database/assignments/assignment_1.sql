@@ -66,7 +66,7 @@ GROUP BY region;
 
 /*
 2. write a query that extracts the number of cities per region,
-   but only when region has at least two cities.
+   but only when region has at least two cities
 */
 SELECT
 regions.name AS region_name,
