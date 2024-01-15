@@ -1,6 +1,6 @@
 # high-school-cs-class
 
-Computer Science lectures and exercises for italian Scientific High School courses. \
+Computer Science lectures and exercises for italian Scientific high-school courses. \
 This repo includes lectures and examples on: 
 + algorithms and data structures
 + numerical analysis
