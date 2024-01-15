@@ -23,13 +23,13 @@ def matrix_mult_div_n_con(A, B):
 
     a, b, c, d = split_n_2(A)
     e, f, g, h = split_n_2(B)
-    res0 = matrix_mult_div_n_con(a, e) + matrix_mult_div_n_con(b, g)
-    res1 = matrix_mult_div_n_con(a, f) + matrix_mult_div_n_con(b, h)
-    res2 = matrix_mult_div_n_con(c, e) + matrix_mult_div_n_con(d, g)
-    res3 = matrix_mult_div_n_con(c, f) + matrix_mult_div_n_con(d, h)
-    row0 = np.hstack((res0, res1))
-    row1 = np.hstack((res2, res3))
-    return np.vstack((row0, row1))
+    c_00 = matrix_mult_div_n_con(a, e) + matrix_mult_div_n_con(b, g)
+    c_01 = matrix_mult_div_n_con(a, f) + matrix_mult_div_n_con(b, h)
+    c_10 = matrix_mult_div_n_con(c, e) + matrix_mult_div_n_con(d, g)
+    c_11 = matrix_mult_div_n_con(c, f) + matrix_mult_div_n_con(d, h)
+    hblock_0 = np.hstack((c_00, c_01))
+    hblock_1 = np.hstack((c_10, c_11))
+    return np.vstack((hblock_0, hblock_1))
 
 #https://en.wikipedia.org/wiki/Strassen_algorithm
 def strassen(A, B):
@@ -38,20 +38,20 @@ def strassen(A, B):
 
     a_11, a_12, a_21, a_22 = split_n_2(A)
     b_11, b_12, b_21, b_22 = split_n_2(B)
-    m1 = strassen(a_11 + a_22, b_11 + b_22)
-    m2 = strassen(a_21 + a_22, b_11)
-    m3 = strassen(a_11, b_12 - b_22)
-    m4 = strassen(a_22, b_21 - b_11)
-    m5 = strassen(a_11 + a_12, b_22)
-    m6 = strassen(a_21 - a_11, b_11 + b_12)
-    m7 = strassen(a_12 - a_22, b_21 + b_22)
+    p1 = strassen(a_11 + a_22, b_11 + b_22)
+    p2 = strassen(a_21 + a_22, b_11)
+    p3 = strassen(a_11, b_12 - b_22)
+    p4 = strassen(a_22, b_21 - b_11)
+    p5 = strassen(a_11 + a_12, b_22)
+    p6 = strassen(a_21 - a_11, b_11 + b_12)
+    p7 = strassen(a_12 - a_22, b_21 + b_22)
 
-    c_11 = m1 + m4 - m5 + m7
-    c_12 = m3 + m5
-    c_21 = m2 + m4
-    c_22 = m1 - m2 + m3 + m6
+    c_00 = p1 + p4 - p5 + p7
+    c_01 = p3 + p5
+    c_10 = p2 + p4
+    c_11 = p1 - p2 + p3 + p6
 
-    return np.vstack((np.hstack((c_11,c_12)), np.hstack((c_21,c_22))))
+    return np.vstack((np.hstack((c_00,c_01)), np.hstack((c_10,c_11))))
 
 A = np.array([[3,5,1,3,6,5,3,4],
               [1,2,3,4,1,2,3,8],
@@ -89,3 +89,4 @@ res5 = np.matmul(A, B)
 print(res5)
 print()
 print(np.all(res3 == res4) == True)
+print(np.all(res2 == res4) == True)
