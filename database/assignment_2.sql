@@ -1,6 +1,6 @@
 /*
   "a person has two parents..."
-  create a relational database that describes this miniworld.
+  create a relational database that describes this miniworld
 */
 
 DROP DATABASE IF EXISTS assignment_2;
