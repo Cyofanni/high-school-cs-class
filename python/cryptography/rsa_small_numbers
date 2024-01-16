@@ -21,7 +21,7 @@
       computing phi(n) is easy, if n's factors are known. Obviously, Alice knows
       p and q, the factors of n
 
-    - Alice finds an integer, e such that:
+    - Alice finds an integer, e, such that:
 
           gcd(e, phi(n)) = 1
 
