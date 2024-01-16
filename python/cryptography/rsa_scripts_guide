@@ -1,53 +1,59 @@
-Tutti gli script che ho sviluppato per provare il sistema crittografico a chiave asimmetrica RSA si trovano qui:
+Tutti gli script che ho sviluppato per provare RSA si trovano qui:
      https://github.com/Cyofanni/high-school-cs-class/tree/main/python/cryptography
 
-1) Ipotizza di chiamarti Alice. Tu Alice vuoi fare in modo che il mondo possa
-   comunicare con te in modo sicuro.
+1) Alice vuole fare in modo che tutti possano comunicare con lei in modo sicuro
 
-2) Alice, devi generare una coppia di chiavi (public_key, private_key), lanciando il comando seguente:
+2) Alice deve generare una coppia di chiavi (public_key, private_key), lanciando
+   il comando seguente:
+
        python3 rsa_keygen.py
 
 3) Lo script precedente ha generato un output in questa forma:
+
 RSA public_key: (3, 378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
 RSA private_key: (252575256121653024372409883366299237839177698147706096837454740896749912306728759070355934030558240011241426064866273235, 378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
 
-4) Se una persona di nome Bob vuole comunicare con te, devi fargli avere la tua chiave pubblica.
-   Quindi devi mandargli (o pubblicare da qualche parte, ad esempio sul tuo sito web):
+4) Se Bob vuole comunicare con Alice, Alice deve fargli avere la sua chiave pubblica.
+   Alice deve quindi mandargli (o pubblicare da qualche parte, ad esempio sul suo sito web) questo:
+
        RSA public_key: (3, 378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
 
-5) Ipotizziamo che Bob voglia inviare il plaintext "helloworld" ad Alice.
+5) Ipotizziamo che Bob voglia inviare ad Alice il plaintext "helloworld".
    Deve criptarlo con la chiave pubblica di Alice, che è nota a tutti.
-   Bob quindi lancerà questo comando:
+   Bob lancia questo comando:
+
        python3 rsa_apply_public_key.py helloworld 3 378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141
 
-   3 e l'altro numero spaventosamente grande sono la coppia (e, n), ossia la chiave pubblica di Alice.
+   3 e l'altro numero molto grande sono la coppia (e, n), ossia la chiave pubblica di Alice.
    Il ciphertext generato è:
+
        tkvjlvmobuaetfukxhobk avmfukj
-   Bob lo manda ad Alice.
+
+   Bob lo invia ad Alice.
 
 6) Solo Alice può decriptarlo, perché possiede la chiave privata corrispondente a quella pubblica.
    Alice lo decripta lanciando:
+
        python3 rsa_apply_private_key.py "tkvjlvmobuaetfukxhobk avmfukj" 252575256121653024372409883366299237839177698147706096837454740896749912306728759070355934030558240011241426064866273235 378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141
 
    I 2 parametri passati a questo script costituiscono la chiave privata (d, n). Solo Alice la conosce!
 
    Alice si ritrova in mano "helloworld", che è proprio il testo inviato da Bob.
 
-7) Se Alice vuole inviare un messaggio criptato a Bob utilizzando RSA, allora Bob dovrebbe generare a sua volta la sua coppia
-   di chiavi e fornire ad Alice la chiave pubblica.
+7) Se Alice volesse inviare un messaggio criptato a Bob utilizzando RSA, allora Bob dovrebbe
+   generare a sua volta la sua coppia di chiavi e fornire ad Alice la chiave pubblica.
 
-8) Alice e Bob ora riescono a comunicare in modo sicuro senza dover condividere una chiave simmetrica segreta.
+8) Alice e Bob ora riescono a comunicare in modo sicuro senza dover condividere una
+   chiave simmetrica segreta.
 
-9) Ipotizziamo che una terza persona, di nome Mallory, voglia calcolare la chiave privata di Alice partendo
-   da quella pubblica.
-   Dovrebbe calcolare l'inverso modulare di 3, modulo phi(n), la funzione di Eulero su n.
+9) Ipotizziamo che una terza persona, di nome Mallory, voglia calcolare la chiave privata
+   di Alice partendo da quella pubblica.
+   Dovrebbe calcolare l'inverso modulare di 3, modulo phi(n).
    Per effettuare questo calcolo bisogna prima calcolare phi(n).
-   Mallory apre una shell di Python e scrive:
+   Mallory apre una shell Python e scrive:
           import sympy
           sympy.totient(378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
    E aspetta...
-   Con un computer normale dovrà aspettare un bel po'... Ma forse anche con un computer molto più potente
-   le cose non migliorerebbero più di tanto.
-   Il calcolo della funzione di Eulero su un n molto grande è intrattabile.
+   Problema: il calcolo della funzione di Eulero è un problema intrattabile.
    Per calcolarla velocemente bisognerebbe conoscere i fattori primi di n.
-   Ma attualmente non esiste un algoritmo che fattorizza numeri molto grandi in tempi ragionevoli.
+   Ma attualmente non esistono algoritmi efficienti per la fattorizzazione.
