@@ -50,17 +50,18 @@
 - Bob wants to send a message, P, encoded as the decimal number 149.
     - Bob encrypts P this way:
 
-        E(P): (P ^ e) mod n = (149 ^ 7) % 187 = 140
+          E(P): (P ^ e) mod n = (149 ^ 7) % 187 = 140
 
-        Bob sends 140 to Alice. Let C be 140
+      Bob sends 140 to Alice. Let C be 140
 
       Notice that Bob encrypts P by means of e and n, which make up Alice's public key
     
     - Alice receives 140, the ciphertext computed by Bob. She decrypts it this way:
 
-        D(C): (C ^ d) mod n = (140 ^ 23) % 187 = 149. The result is exactly Bob's plaintext!
+          D(C): (C ^ d) mod n = (140 ^ 23) % 187 = 149
 
-        notice that Alice made this computation using the parameters d and n, which make up her
+        the result is exactly Bob's plaintext!
+        Notice that Alice made this computation using the parameters d and n, which make up her
         private key
 
 - The security of this cryptosystem is based on the fact that computing phi(n)
