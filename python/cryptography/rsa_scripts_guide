@@ -29,7 +29,7 @@ RSA private_key: (25257525612165302437240988336629923783917769814770609683745474
 
        tkvjlvmobuaetfukxhobk avmfukj
 
-   Bob lo invia ad Alice.
+   Bob lo invia ad Alice
 
 6) Solo Alice può decriptarlo, perché possiede la chiave privata corrispondente a quella pubblica.
    Alice lo decripta lanciando:
@@ -38,13 +38,13 @@ RSA private_key: (25257525612165302437240988336629923783917769814770609683745474
 
    I 2 parametri passati a questo script costituiscono la chiave privata (d, n). Solo Alice la conosce!
 
-   Alice si ritrova in mano "helloworld", che è proprio il testo inviato da Bob.
+   Alice si ritrova in mano "helloworld", che è proprio il testo inviato da Bob
 
 7) Se Alice volesse inviare un messaggio criptato a Bob utilizzando RSA, allora Bob dovrebbe
-   generare a sua volta la sua coppia di chiavi e fornire ad Alice la chiave pubblica.
+   generare a sua volta la sua coppia di chiavi e fornire ad Alice la chiave pubblica
 
 8) Alice e Bob ora riescono a comunicare in modo sicuro senza dover condividere una
-   chiave simmetrica segreta.
+   chiave simmetrica segreta
 
 9) Ipotizziamo che una terza persona, di nome Mallory, voglia calcolare la chiave privata
    di Alice partendo da quella pubblica.
@@ -56,4 +56,4 @@ RSA private_key: (25257525612165302437240988336629923783917769814770609683745474
    E aspetta...
    Problema: il calcolo della funzione di Eulero è un problema intrattabile.
    Per calcolarla velocemente bisognerebbe conoscere i fattori primi di n.
-   Ma attualmente non esistono algoritmi efficienti per la fattorizzazione.
+   Ma attualmente non esistono algoritmi efficienti per la fattorizzazione
