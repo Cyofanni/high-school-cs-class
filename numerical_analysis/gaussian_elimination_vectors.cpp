@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     for (int j = i + 1; j <= n_rows - 1; j++) {
       double l = A_b.at(j).at(i) / u;
       for (int k = i; k <= n_cols - 1; k++) {
-	A_b.at(j).at(k)= A_b.at(j).at(k) - l * A_b.at(i).at(k);
+	A_b.at(j).at(k) = A_b.at(j).at(k) - l * A_b.at(i).at(k);
       }
     }
   }
