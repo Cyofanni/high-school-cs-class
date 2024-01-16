@@ -53,7 +53,7 @@ RSA private_key: (25257525612165302437240988336629923783917769814770609683745474
    Mallory apre una shell Python e scrive:
           import sympy
           sympy.totient(378862884182479536558614825049448856758766547221559145256183344508436182989723069368046849481426928753650435402918914141)
-   E aspetta...
+   e aspetta...
    Problema: il calcolo della funzione di Eulero è un problema intrattabile.
    Per calcolarla velocemente bisognerebbe conoscere i fattori primi di n.
    Ma attualmente non esistono algoritmi efficienti per la fattorizzazione
