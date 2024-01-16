@@ -1,4 +1,4 @@
-- Bob wants to send Alice a message encrypted with using RSA
+- Bob wants to send Alice a message encrypted using RSA
 
 - Alice must generate her pair (KEY_PUBLIC_ALICE, KEY_PRIVATE_ALICE):
     - Alice chooses two prime numbers (let the numbers be small in this example):
