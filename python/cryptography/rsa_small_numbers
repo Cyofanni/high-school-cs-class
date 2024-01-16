@@ -39,7 +39,7 @@
 
           K_PUBLIC_ALICE: (e, n)
 
-      this is Alice's RSA public key.
+      this is Alice's RSA public key
 
     - Alice keeps this secret:
 
