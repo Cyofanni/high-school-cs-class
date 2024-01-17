@@ -36,20 +36,20 @@ def strassen(A, B):
     if A.shape[0] <= 2:
         return matrix_mult_brute_force(A, B)
 
-    a_11, a_12, a_21, a_22 = split_n_2(A)
-    b_11, b_12, b_21, b_22 = split_n_2(B)
-    p1 = strassen(a_11 + a_22, b_11 + b_22)
-    p2 = strassen(a_21 + a_22, b_11)
-    p3 = strassen(a_11, b_12 - b_22)
-    p4 = strassen(a_22, b_21 - b_11)
-    p5 = strassen(a_11 + a_12, b_22)
-    p6 = strassen(a_21 - a_11, b_11 + b_12)
-    p7 = strassen(a_12 - a_22, b_21 + b_22)
+    a, b, c, d = split_n_2(A)
+    e, f, g, h = split_n_2(B)
+    p0 = strassen(a + d, e + h)
+    p1 = strassen(c + d, e)
+    p2 = strassen(a, f - h)
+    p3 = strassen(d, g - e)
+    p4 = strassen(a + b, h)
+    p5 = strassen(c - a, e + f)
+    p6 = strassen(b - d, g + h)
 
-    c_00 = p1 + p4 - p5 + p7
-    c_01 = p3 + p5
-    c_10 = p2 + p4
-    c_11 = p1 - p2 + p3 + p6
+    c_00 = p0 + p3 - p4 + p6
+    c_01 = p2 + p4
+    c_10 = p1 + p3
+    c_11 = p0 - p1 + p2 + p5
 
     return np.vstack((np.hstack((c_00,c_01)), np.hstack((c_10,c_11))))
 
