@@ -1,0 +1,69 @@
+*** SQL - 8 ***
+
+*GROUP BY, HAVING, BETWEEN, ORDER BY*
+ - Considerare questa tabella:
+
+people
++----+-----------+----------+---------+-----------+
+| id | name      | surname  | city    | salary    |
++----+-----------+----------+---------+-----------+
+|  9 | maria     | verdi    | torino  | 1000.0000 |
+| 10 | mario     | rossi    | vicenza | 8000.0000 |
+| 11 | giovanni  | bianchi  | milano  | 4000.0000 |
+| 12 | giovanna  | rossini  | roma    | 6500.0000 |
+| 13 | alberto   | neri     | torino  | 7500.0000 |
+| 14 | giuseppe  | rosselli | vicenza | 2500.0000 |
+| 15 | giovanni  | bianchi  | milano  | 8500.0000 |
+| 16 | bianca    | rossi    | roma    | 1500.0000 |
+| 17 | alberto   | neri     | torino  | 3500.0000 |
+| 18 | giovanni  | rosselli | milano  |      NULL |
+| 19 | giovanni  | bianchi  | milano  | 2500.0000 |
+| 20 | bianca    | rossi    | roma    | 3500.0000 |
+| 21 | francesca | neri     | NULL    |      NULL |
++----+-----------+----------+---------+-----------+
+
+ - Lanciare le query seguenti e spiegarne gli output:
+   
+    SELECT city, COUNT(*) FROM people GROUP BY city HAVING COUNT(*) > 2;
+   
+    output:
+    +--------+----------+
+    | city   | count(*) |
+    +--------+----------+
+    | torino |        3 |
+    | milano |        4 |
+    | roma   |        3 |
+    +--------+----------+
+
+ 
+    SELECT city, AVG(salary) FROM people GROUP BY city HAVING AVG(salary) > 4200;
+
+    output:
+    +---------+---------------+
+    | city    | AVG(salary)   |
+    +---------+---------------+
+    | vicenza | 5250.00000000 |
+    | milano  | 5000.00000000 |
+    +---------+---------------+
+
+
+    SELECT city, AVG(salary) AS avg_salary FROM people GROUP BY city
+    HAVING AVG(salary) BETWEEN 3000 AND 4000;
+
+    output:
+    +--------+---------------+
+    | city   | avg_salary    |
+    +--------+---------------+
+    | torino | 4000.00000000 |
+    | roma   | 3833.33333333 |
+    +--------+---------------+
+
+
+*Esercizi*
+ - Provare le seguenti query e spiegarne il significato sulla base
+   dei rispettivi output:
+ 
+    a) SELECT city, MAX(salary) AS max_salary FROM people GROUP BY city
+       ORDER BY max_salary;
+    b) SELECT city, MAX(salary) AS max_salary FROM people GROUP BY city
+       ORDER BY max_salary DESC;
