@@ -8,8 +8,6 @@ mp1 = map(len, mozart_works)
 for i in mp1:
     print(i)
 
-
-print()
 print()
 
 #filter
