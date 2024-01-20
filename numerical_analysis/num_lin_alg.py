@@ -1,8 +1,9 @@
 import numpy as np, random
 
 def jacobi(A, b, max_iters):
-    x_0 = [random.randint(0, 10) for _ in range(len(b))]
-    x_1 = [0 for _ in range(len(b))]
+    x_0 = np.array([random.randint(0, 10) for _ in range(len(b))],
+                    dtype = float)
+    x_1 = np.array([0 for _ in range(len(b))], dtype = float)
 
     for t in range(max_iters):
         for i in range(len(A)):
@@ -16,7 +17,8 @@ def jacobi(A, b, max_iters):
     return x_1
 
 def gauss_seidel(A, b, max_iters):
-    x = [random.randint(0, 10) for _ in range(len(b))]
+    x = np.array([random.randint(0, 10) for _ in range(len(b))],
+                  dtype = float)
 
     for t in range(max_iters):
         for i in range(len(A)):
@@ -28,10 +30,15 @@ def gauss_seidel(A, b, max_iters):
 
     return x
 
-A = np.array([[-80, -20, 1, 2], [2, 90, 0, 1], [1, 1, -35, 10],
-              [2, 3.14, 42, 100.12]])
-b = np.array([11, 30, -9, 20])
+#A = np.array([[-80, -20, 1, 2], [2, 90, 0, 1], [1, 1, -35, 10],
+#              [2, 3.14, 42, 100.12]])
+#b = np.array([11, 30, -9, 20])
+A = np.array([[-80, -20, 1], [2, 90, 0], [1, 1, -35]])
+b = np.array([11, 30, -9])
 
+print("built-in:")
 print(np.linalg.solve(A, b))
-print(jacobi(A, b, 100))
+print("\njacobi:")
+print(jacobi(A, b, 10))
+print("\ngauss-seidel:")
 print(gauss_seidel(A, b, 10))
