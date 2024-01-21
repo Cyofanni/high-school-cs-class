@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as np, random, time
 
 def matrix_mult_brute_force(A, B):
     n_rows_A, n_cols_A = A.shape[0], A.shape[1]
@@ -53,40 +53,34 @@ def strassen(A, B):
 
     return np.vstack((np.hstack((c_00,c_01)), np.hstack((c_10,c_11))))
 
-A = np.array([[3,5,1,3,6,5,3,4],
-              [1,2,3,4,1,2,3,8],
-              [4,5,6,8,6,5,4,6],
-              [7,8,9,3,3,8,7,6],
-              [1,9,8,3,4,5,2,1],
-              [5,7,56,1,2,3,4,5],
-              [1,2,9,-8,6,5,43,3],
-              [1,3,9,-8,6,1,47,9]]
-             )
-B = np.array([[3,5,1,34,6,53,3,4],
-              [0,2,1,2,1,2,3,8],
-              [0,5,6,8,6,5,4,6],
-              [0,8,9,4,3,0,7,6],
-              [1,9,8,3,4,5,21,1],
-              [5,7,56,1,2,3,43,5],
-              [1,2,9,-8,6,5,3,3],
-              [3,3,9,8,6,1,40,-1]]
-             )
+size = 2048
+A = np.array([[random.randint(0, size)] * size for _ in range(size)])
+B = np.array([[random.randint(0, size)] * size for _ in range(size)])
 
-#a, b, c, d = split_n_2(A)
-res1 = matrix_mult_brute_force(A, B)
-print(res1)
-print()
-res2 = matrix_mult_div_n_con(A, B)
-print(res2)
-print()
-res3 = strassen(A, B)
-print(res3)
-print()
+start_time = time.time()
 res4 = A.dot(B)
-print(res4)
-print()
+end_time = time.time()
+print('built-in (dot):', end_time - start_time)
+
+start_time = time.time()
 res5 = np.matmul(A, B)
-print(res5)
-print()
+end_time = time.time()
+print('built-in (matmul):', end_time - start_time)
+
+start_time = time.time()
+res3 = strassen(A, B)
+end_time = time.time()
+print('strassen:', end_time - start_time)
+
+start_time = time.time()
+res1 = matrix_mult_brute_force(A, B)
+end_time = time.time()
+print('brute-force:', end_time - start_time)
+
+start_time = time.time()
+res2 = matrix_mult_div_n_con(A, B)
+end_time = time.time()
+print('divide-and-conquer:', end_time - start_time)
+
 print(np.all(res3 == res4) == True)
 print(np.all(res2 == res4) == True)
