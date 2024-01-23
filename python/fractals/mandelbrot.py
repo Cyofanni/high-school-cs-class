@@ -7,10 +7,11 @@ def is_point_of_M(c, num_iters):
     while i <= num_iters:
         z = z ** 2 + c
         if abs(z - c) > 2:
-            return True
+            return False
+
         i += 1
 
-    return False
+    return True
 
 x = -1.5
 final_x = 0.5
