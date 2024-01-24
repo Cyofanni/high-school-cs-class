@@ -48,7 +48,7 @@ tm_1.exec()
 print(tm_1.cursor)
 print(tm_1.tape[0:50])
 
-#program 1: successor (decimal)
+#program 2: successor (decimal)
 print('\nprogram 2')
 states_2 = ['A', 'B', 'C']
 tape_2 = ['' for i in range(1000)]
@@ -86,6 +86,7 @@ instructions_2 = {
                   ('C','9'):('H'),
                   ('C',''):('H'),
                  }
+
 tm_2 = TM(states_2, 'A', tape_2, 10, instructions_2)
 tm_2.exec()
 print(tm_2.tape[0:50])
