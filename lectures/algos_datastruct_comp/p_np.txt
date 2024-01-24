@@ -2,7 +2,7 @@
 
 *Polynomial-time algorithms*
  - Tutti gli algoritmi che abbiamo visto sono polynomial-time: 
-   - su un input di size n, il loro running-time (worst-case) è O(n^k)
+   - su un input di size n, il loro running time (worst-case) è O(n^k)
  - Non tutti i problemi possono essere risolti in tempo polinomiale, esistono
    infatti:
     . problemi non risolvibili dai computer (problemi indecidibili, come
