@@ -28,7 +28,7 @@ people
    
     output:
     +--------+----------+
-    | city   | count(*) |
+    | city   | COUNT(*) |
     +--------+----------+
     | torino |        3 |
     | milano |        4 |
