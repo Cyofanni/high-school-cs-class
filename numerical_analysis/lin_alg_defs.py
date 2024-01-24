@@ -22,6 +22,7 @@ def is_symmetric(A):
 
   return True
 
+#lower triangular
 def is_L(A):
   nrows, ncols = A.shape
   if nrows != ncols:
@@ -33,6 +34,7 @@ def is_L(A):
 
   return True
 
+#upper triangular
 def is_U(A):
   nrows, ncols = A.shape
   if nrows != ncols:
