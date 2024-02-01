@@ -12,7 +12,7 @@ def jacobi(A, b, max_iters):
                 if j != i:
                     s = s + A[i][j] * x_0[j]
             x_1[i] = (b[i] - s) / A[i][i]
-        x_0 = x_1
+        x_0 = np.copy(x_1)
 
     return x_1
 
