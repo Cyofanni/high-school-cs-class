@@ -19,9 +19,14 @@ def det_laplace(A, i):
 #A = np.array([[1, 2, 3, -3.5, 14], [7, 62, 5, 1, 0.25],
 #              [4, 8, 7, -50, 81], [7, 6, 1, 9, 12],
 #              [5, 6, 2.4, -1.3, 1]])
-A =  np.array([[6,8,9,3,1],[8.7,5,7,6,4],[4,7.6,8,0.43,9],[1.2,6,8,2,3],
+A = np.array([[6,8,9,3,1],[8.7,5,7,6,4],[4,7.6,8,0.43,9],[1.2,6,8,2,3],
                [1,5,6,7.1,1]], dtype = float)
 
 print(np.linalg.det(A))
 print()
 print(det_laplace(A, 3))
+
+print()
+B = np.array([[random.randint(0, 10) for _ in range(10)] for _ in range(10)])
+print(B)
+print(det_laplace(B, 0))

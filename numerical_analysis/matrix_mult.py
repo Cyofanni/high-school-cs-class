@@ -53,9 +53,9 @@ def strassen(A, B):
 
     return np.vstack((np.hstack((c_00,c_01)), np.hstack((c_10,c_11))))
 
-size = 2048
-A = np.array([[random.randint(0, size)] * size for _ in range(size)])
-B = np.array([[random.randint(0, size)] * size for _ in range(size)])
+size = 256
+A = np.array([[random.randint(0, size) for _ in range(size)] for _ in range(size)])
+B = np.array([[random.randint(0, size) for _ in range(size)] for _ in range(size)])
 
 start_time = time.time()
 res4 = A.dot(B)
