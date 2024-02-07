@@ -1,10 +1,10 @@
-table = {'a':45, 'b': 13,
-         'c':12, 'd': 16,
-         'e':9, 'f': 5}
+table = {'a': 45, 'b': 13,
+         'c': 12, 'd': 16,
+         'e': 9, 'f': 5}
 
-table_copy = {'a':45, 'b': 13,
-              'c':12, 'd': 16,
-              'e':9, 'f': 5}
+table_copy = {'a': 45, 'b': 13,
+              'c': 12, 'd': 16,
+              'e': 9, 'f': 5}
 
 tree = {'a':[None,None], 'b':[None,None],
         'c':[None,None], 'd':[None,None],
