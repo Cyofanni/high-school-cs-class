@@ -9,10 +9,11 @@ result = dsolve(diff(f(x), x) - f(x) + x ** 2 - 1, f(x), ics={f(0): 0.5})
 print('known solution:', result)
 
 #euler method
+
 def func(x, f_x):
   return f_x - x ** 2 + 1
 
-#compare numerical result, with known solution
+#compare numerical result with known solution
 def solution(x):
   return (x + 1) ** 2 - 0.5 * math.exp(x)
 
@@ -29,4 +30,4 @@ def euler_method(a, b, N, f_x, func):
     print('solution: x:', x, '    f(x):', solution(x))
     print()
 
-euler_method(0, 2, 100, 0.5, func)
+euler_method(0, 4, 100, 0.5, func)
