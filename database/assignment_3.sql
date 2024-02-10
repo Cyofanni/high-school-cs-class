@@ -26,14 +26,14 @@ CREATE TABLE discoveries(
 INSERT INTO scientists(name, surname,
             birthdate, deathdate,
             field, country, received_nobel_prize)
-VALUES('Rita', 'Levi-Montalcini', '1909-04-22', '2012-12-30', 'physiology', 'Italy', 1),
-      ('Isaac', 'Newton', '1642-12-25', '1727-03-30', 'physics', 'England', 0);
+VALUES('Rita', 'Levi-Montalcini', '1909-04-22', '2012-12-30', 'Physiology', 'Italy', 1),
+      ('Isaac', 'Newton', '1642-12-25', '1727-03-30', 'Physics', 'England', 0);
 
 INSERT INTO discoveries(name, field,
             year, id_scientist)
-VALUES('Nerve growth factor', 'genetics', 1956, 1),
-      ('Classical mechanics', 'physics', 1676, 2),
-      ('Gravitation', 'physics', 1683, 2);
+VALUES('Nerve growth factor', 'Genetics', 1956, 1),
+      ('Classical mechanics', 'Physics', 1676, 2),
+      ('Gravitation', 'Physics', 1683, 2);
 
 SELECT
 scientists.name AS scientist_name,
