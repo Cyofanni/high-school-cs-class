@@ -30,16 +30,16 @@ CREATE TABLE cities(
 );
 
 INSERT INTO regions(name, population, gdp)
-VALUES('veneto', 5000000, 300000),
-      ('lombardia', 1000000, 600000),
-      ('toscana', 4000000, 250000),
+VALUES('Veneto', 5000000, 300000),
+      ('Lombardia', 1000000, 600000),
+      ('Toscana', 4000000, 250000),
       ('emptyregion', 1000000, 25000);
 
 INSERT INTO cities(name, population, region)
-VALUES('venezia', 250000, 1),
-      ('milano', 1000000, 2),
-      ('bergamo', 150000, 2),
-      ('firenze', 350000, 3);
+VALUES('Venezia', 250000, 1),
+      ('Milano', 1000000, 2),
+      ('Bergamo', 150000, 2),
+      ('Firenze', 350000, 3);
 
 /*
 1. write a query that extracts the number of cities per region
