@@ -31,9 +31,8 @@ def rectangle_rule_r(f, a, b, n):
 #rectangle rule (midpoint)
 def rectangle_rule_m(f, a, b, n):
   h = (b - a) / n
-  xs = [a + i * h for i in range(0, n)]
-  midpoints = [x + h / 2 for x in xs]
-  ys = [f(m) for m in midpoints]
+  xs = [a + h * (i + 0.5) for i in range(0, n)]
+  ys = [f(x) for x in xs]
 
   return sum(ys) * h
 
@@ -48,14 +47,23 @@ def trapezoidal_rule(f, a, b, n):
 
   return s
 
+#trapezoidal rule (with optimization)
+def trapezoidal_rule_opt(f, a, b, n):
+  h = (b - a) / n
+  s = 0
+  for i in range(1, n):
+    s += f(a + i * h)
+
+  return (h / 2) * (f(a) + f(b) + 2 * s)
+
 #kepler-cavalieri-simpson (without optimization)
 def kepler_cavalieri_simpson_rule(f, a, b, n):
   h = (b - a) / n
-  xs = [a + i * h for i in range(0, n + 1)]
   s = 0
+  xs = [a + i * h for i in range(n + 1)]
   for i in range(len(xs) - 1):
-    midpoint = (xs[i] + xs[i + 1]) / 2
-    s = s + (h / 6) * (f(xs[i]) + f(xs[i + 1]) + 4 * f(midpoint))
+    m = (xs[i] + xs[i + 1]) / 2
+    s = s + ((xs[i + 1] - xs[i]) / 6) * (f(xs[i]) + 4 * f(m) + f(xs[i + 1]))
 
   return s
 
@@ -84,6 +92,8 @@ print()
 print('integral(e ** (2 * x))dx|(2, 5)')
 print('  trapezoidal rule:')
 print('  ', trapezoidal_rule(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  trapezoidal rule - opt:')
+print('  ', trapezoidal_rule_opt(lambda x: math.exp(2 * x), 2, 5, 40))
 print('  known value:')
 print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 
@@ -121,6 +131,8 @@ print()
 print('integral(3 * x)dx|(-1, 0)')
 print('  trapezoidal rule:')
 print('  ', trapezoidal_rule(lambda x: 3 * x, -1, 0, 40))
+print('  trapezoidal rule - opt:')
+print('  ', trapezoidal_rule_opt(lambda x: 3 * x, -1, 0, 40))
 print('  known value:')
 print('  ', float(integrate(3 * x, (x, -1, 0))))
 
@@ -158,6 +170,8 @@ print()
 print('integral(sin(ln(x)))dx|(5, 10)')
 print('  trapezoidal rule:')
 print('  ', trapezoidal_rule(lambda x: math.sin(math.log(x)), 5, 10, 40))
+print('  trapezoidal rule - opt:')
+print('  ', trapezoidal_rule_opt(lambda x: math.sin(math.log(x)), 5, 10, 40))
 print('  known value:')
 print('  ', float(integrate(sin(log(x)), (x, 5, 10))))
 
@@ -194,6 +208,8 @@ print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
 print()
 print('integral(cos(x) + ln(x))dx|(10, 40)')
 print('  trapezoidal rule:')
+print('  ', rectangle_rule_m(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
+print('  trapezoidal rule - opt:')
 print('  ', rectangle_rule_m(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
