@@ -60,4 +60,17 @@ P = {
      'z':None
     }
 
-res = bellman_ford(G, G_costs, G_edges, P)
+G_1 = {'s':['t'],'t': ['s']}
+G_costs_1 = {'s': 0,'t': math.inf}
+G_edges_1 = [('s','t',2),('t','s',-4)]
+P_1 = {'s':None,'t':None}
+
+G_2 = {'s':['x'],'x':['y'],'y':['x']}
+G_costs_2 = {'s':0,'x':math.inf,'y':math.inf}
+G_edges_2 = [('s','x',1),('x','y',3),('y','x',-5)]
+P_2 = {'s':None,'x':None,'y':None}
+
+res = bellman_ford(G_2, G_costs_2, G_edges_2, P_2)
+print(G_costs_2)
+print(P_2)
+print(res)
