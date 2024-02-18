@@ -17,7 +17,7 @@ def quicksort_tailrec(A, l, h):
     quicksort_tailrec(A, l, p - 1)
     l = p + 1
 
-a = [random.randint(0, 3000) for _ in range(200)]
+a = [random.randint(0, 3000) for _ in range(3000)]
 a_cp = a.copy()
 quicksort_tailrec(a, 0, len(a) - 1)
 print(a)
