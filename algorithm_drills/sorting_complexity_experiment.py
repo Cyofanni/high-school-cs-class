@@ -1,7 +1,7 @@
 import math, random, time
 
-size = 1000000
-range_upper_limit = 1000000
+size = 15641
+range_upper_limit = 15641
 v1 = [random.randint(0, range_upper_limit) for i in range(size)]
 v2 = v1.copy()
 v3 = v2.copy()
@@ -9,8 +9,9 @@ v4 = v3.copy()
 v5 = v4.copy()
 v6 = v5.copy()
 v7 = v6.copy()
+v8 = v7.copy()
 
-#Merge sort: sort v7
+#Mergesort
 def merge(lst, l, m, h):
     left = lst[l:m + 1]
     right = lst[m + 1:h + 1]
@@ -36,15 +37,15 @@ def merge_sort(lst, l, h):
 
 print('#merge sort')
 start_time = time.time()
-merge_sort(v7, 0, size - 1)
+merge_sort(v1, 0, size - 1)
 end_time = time.time()
 
-print('sorted:', sorted(v7) == v7)
+print('sorted:', sorted(v2) == v1)
 print('merge sort time:', end_time - start_time)
 print()
 ########
 
-#Quicksort: sort v6
+#Quicksort
 def partition(A, low, high):
     i = low - 1
     pivot = A[high]
@@ -56,24 +57,24 @@ def partition(A, low, high):
             A[j] = temp
     return i
 
-def quick_sort(A, low, high):
+def quicksort(A, low, high):
     if low >= high:
         return
     pivot_index = partition(A, low, high)
-    quick_sort(A, low, pivot_index - 1)
-    quick_sort(A, pivot_index + 1, high)
+    quicksort(A, low, pivot_index - 1)
+    quicksort(A, pivot_index + 1, high)
 
 print('#quicksort')
 start_time = time.time()
-quick_sort(v6, 0, size - 1)
+quicksort(v2, 0, size - 1)
 end_time = time.time()
 
-print('sorted:', sorted(v6) == v6)
+print('sorted:', sorted(v3) == v2)
 print('quicksort time:', end_time - start_time)
 print()
 ########
 
-#Counting sort: sort v5
+#Counting sort
 def counting_sort(A, k):
     C = [0 for _ in range(k)]
     B = [0 for _ in range(len(A)) ]
@@ -96,15 +97,15 @@ def counting_sort(A, k):
 
 print('#counting sort')
 start_time = time.time()
-v5_counting_sorted = counting_sort(v5, range_upper_limit + 1)
+v3_counting_sorted = counting_sort(v3, range_upper_limit + 1)
 end_time = time.time()
 
-print('sorted:', sorted(v5) == v5_counting_sorted)
+print('sorted:', sorted(v3) == v3_counting_sorted)
 print('counting sort time:', end_time - start_time)
 print()
 ########
 
-#Heapsort: sort v4
+#Heapsort
 def left(i):
     if i != 0:
         return 2 * i
@@ -150,12 +151,12 @@ start_time = time.time()
 heap_sort(v4, size)
 end_time = time.time()
 
-print('sorted:', sorted(v4) == v4)
+print('sorted:', sorted(v5) == v4)
 print('heapsort time:', end_time - start_time)
 print()
 ########
 
-#Insertion sort: sort v1
+#Insertion sort
 def insertion_sort(v):
     for i in range(1, len(v)):
         item = v[i]
@@ -163,19 +164,19 @@ def insertion_sort(v):
         while j >= 0 and item < v[j]:
             v[j + 1] = v[j]
             j -= 1
-    v[j + 1] = item
+        v[j + 1] = item
 
 print('#insertion sort')
 start_time = time.time()
-insertion_sort(v1)
+insertion_sort(v5)
 end_time = time.time()
 
-print('sorted:', v1 == sorted(v1))
+print('sorted:', v5 == sorted(v6))
 print('insertion sort time:', end_time - start_time)
 print()
 ########
 
-#Bubble sort: sort v2
+#Bubble sort
 def bubble_sort(v):
     for i in range(len(v) - 1, 0, -1):
       for j in range(0, i):
@@ -186,22 +187,22 @@ def bubble_sort(v):
 
 print('#bubble sort')
 start_time = time.time()
-bubble_sort(v2)
+bubble_sort(v6)
 end_time = time.time()
 
-print('sorted:', v2 == sorted(v2))
+print('sorted:', v6 == sorted(v7))
 print('bubble sort time:', end_time - start_time)
 print()
 ########
 
-#Selection sort: sort v3
+#Selection sort
 def selection_sort(v):
     for i in range(0, len(v) - 1):
-      min = v3[i]
+      min = v[i]
       pos_min = i
       for j in range(i + 1, len(v)):
         if v[j] < min:
-          min = v3[j]
+          min = v[j]
           pos_min = j
       t = v[i]
       v[i] = v[pos_min]
@@ -209,9 +210,9 @@ def selection_sort(v):
 
 print('#selection sort')
 start_time = time.time()
-selection_sort(v3)
+selection_sort(v7)
 end_time = time.time()
 
-print('sorted:', v3 == sorted(v3))
+print('sorted:', v7 == sorted(v8))
 print('selection sort time:', end_time - start_time)
 #######
