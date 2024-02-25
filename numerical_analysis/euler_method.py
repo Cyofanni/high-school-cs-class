@@ -18,6 +18,7 @@ def solution(x):
   return (x + 1) ** 2 - 0.5 * math.exp(x)
 
 def euler_method(a, b, n, w, f):
+  output = []
   step = (b - a) / n
   x = a
   print('approximation: x:', x, '    f(x):', w)
@@ -25,9 +26,14 @@ def euler_method(a, b, n, w, f):
   print()
   for i in range(1, n + 1):
     w = w + step * f(x, w)
+    output.append((x, w))
     x = a + i * step
-    print('approximation: x:', x, '    f(x):', w)
-    print('solution: x:', x, '    f(x):', solution(x))
-    print()
+    #print('approximation: x:', x, '    f(x):', w)
+    #print('solution: x:', x, '    f(x):', solution(x))
+    #print()
 
-euler_method(0, 4, 100, 0.5, f)
+  return output
+
+res = euler_method(0, 4, 10, 0.5, f)
+for item in res:
+  print(item)
