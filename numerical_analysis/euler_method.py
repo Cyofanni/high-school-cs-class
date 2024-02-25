@@ -10,24 +10,24 @@ print('known solution:', result)
 
 #euler method
 
-def func(x, f_x):
-  return f_x - x ** 2 + 1
+def f(x, y):
+  return y - x ** 2 + 1
 
 #compare numerical result with known solution
 def solution(x):
   return (x + 1) ** 2 - 0.5 * math.exp(x)
 
-def euler_method(a, b, N, f_x, func):
-  step = (b - a) / N
+def euler_method(a, b, n, w, f):
+  step = (b - a) / n
   x = a
-  print('approximation: x:', x, '    f(x):', f_x)
+  print('approximation: x:', x, '    f(x):', w)
   print('solution: x:', x, '    f(x):', solution(x))
   print()
-  for i in range(1, N + 1):
-    f_x = f_x + step * func(x, f_x)
+  for i in range(1, n + 1):
+    w = w + step * f(x, w)
     x = a + i * step
-    print('approximation: x:', x, '    f(x):', f_x)
+    print('approximation: x:', x, '    f(x):', w)
     print('solution: x:', x, '    f(x):', solution(x))
     print()
 
-euler_method(0, 4, 100, 0.5, func)
+euler_method(0, 4, 100, 0.5, f)
