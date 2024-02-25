@@ -21,7 +21,7 @@ def maclaurin_exp_eval(deg, x):
 
     return s
 
-#approximate e^0.2
+#approximate e^0.5
 for i in range(15):
     print(maclaurin_exp_build(str(i)))
     print(maclaurin_exp_eval(i, 0.5))
