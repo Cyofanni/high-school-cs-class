@@ -1,57 +1,62 @@
+import sys
+
 def place_queen(cb, i, j):
     cb[i][j] = 'Q'
 
 def erase_queen(cb, i, j):
     cb[i][j] = '-'
 
-def find_conflict(cb, side, i, j):
-    found_conflict = False
-    #backwards
+def print_board(cb):
+    for row in cb:
+        for cell in row:
+            print(cell, end = ' ')
+        print()
+
+def find_conflict(cb, i, j):
+    side = len(cb)
+
+    #backwards on column j
     for k in range(i - 1, -1, -1):
         if cb[k][j] == 'Q':
-            found_conflict = True
-            break
+            return True
 
     #backwards-leftwards
-    if found_conflict == False:
-        row_ind = i - 1
-        for k in range(j - 1, -1, -1):
-            if cb[row_ind][k] == 'Q':
-                found_conflict = True
-                break
-            row_ind = row_ind - 1
+    row_ind = i - 1
+    k = j - 1
+    while row_ind >= 0 and k >= 0:
+        if cb[row_ind][k] == 'Q':
+            return True
+        row_ind = row_ind - 1
+        k = k - 1
 
     #backwards-rightwards
-    if found_conflict == False:
-        row_ind = i - 1
-        for k in range(j + 1, side):
-            if cb[row_ind][k] == 'Q':
-                found_conflict = True
-                break
-            row_ind = row_ind - 1
+    row_ind = i - 1
+    k = j + 1
+    while row_ind >= 0 and k <= side - 1:
+        if cb[row_ind][k] == 'Q':
+            return True
+        row_ind = row_ind - 1
+        k = k + 1
 
-    return found_conflict
+    return False
 
-def solve_n_queens(cb, side, row):
-    if row == side:
-        for row in cb:
-            for cell in row:
-                print(cell, end = ' ')
-            print()
+def solve_n_queens(cb, row):
+    if row == len(cb):
+        print_board(cb)
         print()
         return 1
 
     num_sols = 0
     col = 0
-    while col <= side - 1:
-        if find_conflict(cb, side, row, col) == False:
+    while col <= len(cb) - 1:
+        if find_conflict(cb, row, col) == False:
             place_queen(cb, row, col)
-            num_sols = num_sols + solve_n_queens(cb, side, row + 1)
+            num_sols = num_sols + solve_n_queens(cb, row + 1)
             erase_queen(cb, row, col)
         col += 1
 
     return num_sols
 
-side = 8
+side = int(sys.argv[1])
 chessboard = [['-' for j in range(side)] for i in range(side)]
-print(solve_n_queens(chessboard, side, 0))
+print(solve_n_queens(chessboard, 0))
