@@ -1,15 +1,12 @@
-var expr = '()()()()()(((())))';
-var stack = [];
-
 function verify_parenth_balancing(expr) {
-    var is_unbalanced = false;
-    for (var i = 0; i < expr.length && is_unbalanced == false; i++) {
+    let stack = [];
+    for (let i = 0; i < expr.length; i++) {
         if (expr[i] == '(') {
             stack.push('(');
         }
         else if (expr[i] == ')') {
             if (stack.length == 0) {
-                 is_unbalanced = true;
+                 return false;
             }
             else {
                 stack.pop();
@@ -17,8 +14,10 @@ function verify_parenth_balancing(expr) {
         }
     }
 
-    return stack.length == 0 && !is_unbalanced;
+    return stack.length == 0;
 }
+
+expr = '(e^sin(x)) * 2 (';
 
 if (verify_parenth_balancing(expr)) {
     console.log(expr, "is balanced");
