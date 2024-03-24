@@ -14,7 +14,6 @@ print(i)
 def rectangle_rule_l(f, a, b, n):
   h = (b - a) / n
   xs = [a + i * h for i in range(n)]
-  s = 0
   ys = [f(x) for x in xs]
 
   return sum(ys) * h
@@ -23,7 +22,6 @@ def rectangle_rule_l(f, a, b, n):
 def rectangle_rule_r(f, a, b, n):
   h = (b - a) / n
   xs = [a + i * h for i in range(1, n + 1)]
-  s = 0
   ys = [f(x) for x in xs]
 
   return sum(ys) * h
@@ -68,9 +66,16 @@ def kepler_cavalieri_simpson_rule(f, a, b, n):
   return s
 
 print()
+print('integral(sin(x)dx|(0, 2.5)')
+print('  rectangle rule (left):')
+print('  ', rectangle_rule_l(lambda x: sin(x), 0, 2.5, 100))
+print('  known value:')
+print('  ', float(integrate(sin(x), (x, 0, 2.5))))
+
+print()
 print('integral(x ** 2 + x + 1)dx|(0, 6)')
 print('  rectangle rule (left):')
-print('  ', rectangle_rule_l(lambda x: x ** 2 + x + 1, 0, 6, 40))
+print('  ', rectangle_rule_l(lambda x: x ** 2 + x + 1, 0, 6, 400))
 print('  known value:')
 print('  ', float(integrate(x ** 2 + x + 1, (x, 0, 6))))
 
@@ -84,16 +89,16 @@ print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 print()
 print('integral(e ** (2 * x))dx|(2, 5)')
 print('  rectangle rule (midpoint):')
-print('  ', rectangle_rule_m(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  ', rectangle_rule_m(lambda x: math.exp(2 * x), 2, 5, 400))
 print('  known value:')
 print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 
 print()
 print('integral(e ** (2 * x))dx|(2, 5)')
 print('  trapezoidal rule:')
-print('  ', trapezoidal_rule(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  ', trapezoidal_rule(lambda x: math.exp(2 * x), 2, 5, 400))
 print('  trapezoidal rule - opt:')
-print('  ', trapezoidal_rule_opt(lambda x: math.exp(2 * x), 2, 5, 40))
+print('  ', trapezoidal_rule_opt(lambda x: math.exp(2 * x), 2, 5, 400))
 print('  known value:')
 print('  ', float(integrate(exp(2 * x), (x, 2, 5))))
 
