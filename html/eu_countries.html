@@ -1,19 +1,19 @@
 <html>
   <head>
     <title>Some EU countries</title>
-  </head>
-  <script type="text/javascript">
-    function deleteCountry() {
-      countriesUl = document.getElementById('eu_list');
-      idCountryToDelete = document.getElementById('country_to_delete').
+    <script type="text/javascript">
+      function deleteCountry() {
+        countriesUl = document.getElementById('eu_list');
+        idCountryToDelete = document.getElementById('country_to_delete').
                                    value.trim().toLowerCase();
       
-      liToDelete = document.getElementById(idCountryToDelete);
-      if (liToDelete) {
-        countriesUl.removeChild(liToDelete);
+        liToDelete = document.getElementById(idCountryToDelete);
+        if (liToDelete) {
+          countriesUl.removeChild(liToDelete);
+        }
       }
-    }
-  </script>
+    </script>
+  </head>
   <body>
     <h1>Some EU countries</h1>
     <ul id="eu_list">
