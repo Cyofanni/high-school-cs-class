@@ -1,18 +1,18 @@
 <html>
   <head>
     <title>Some EU countries</title>
-  </head>
-  <script type="text/javascript">
-    countries = ['germany', 'austria', 'romania', 'netherlands',
+    <script type="text/javascript">
+      countries = ['germany', 'austria', 'romania', 'netherlands',
                  'belgium', 'italy', 'portugal', 'spain', 'france'];
-    function setBoldCountries() {
-      countriesUl = document.getElementById('eu_list');
-      for (let i = 0; i < countries.length; i++) {
+      function setBoldCountries() {
+        countriesUl = document.getElementById('eu_list');
+        for (let i = 0; i < countries.length; i++) {
           countryElement = document.getElementById(countries[i]);
           countryElement.setAttribute('style', 'font-weight: bold');
+        }
       }
-    }
-  </script>
+    </script>
+  </head>
   <body>
     <h1>Some EU countries</h1>
     <ul id="eu_list">
