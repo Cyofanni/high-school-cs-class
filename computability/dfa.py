@@ -32,7 +32,7 @@ a1.state = 'q0'
 print('', end = ' : ')
 print(a1.exec(''))
 
-#a2 accepts all and only the strings where all 'a' comes before all 'b'
+#a2 accepts all and only the strings where all 'a' come before all 'b'
 Q_a2 = {'q0','q1','q2'}
 q0_a2 = 'q0'
 F_a2 = {'q0', 'q1'}
