@@ -1,8 +1,7 @@
 <?php
   $db = new mysqli("localhost", "root", "brocchi", "hospital");
 
-  $q = "SELECT * FROM doctors WHERE id = " . $_GET['id'] .
-       " AND password = " . $_GET['password'];
+  $q = "SELECT * FROM doctors WHERE id = " . $_GET['id'] . " AND password = '" . $_GET['password'] . "'";
 
   $res = $db -> query($q);
   echo "<html><body>";
