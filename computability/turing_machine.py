@@ -90,9 +90,30 @@ instructions_2 = {
                   ('C','7'):('H'),
                   ('C','8'):('H'),
                   ('C','9'):('H'),
-                  ('C',''):('H'),
+                  ('C',''):('H')
                  }
 
 tm_2 = TM(states_2, 'A', tape_2, 10, instructions_2)
 tm_2.exec()
 print(tm_2.tape[0:50])
+
+#program 3: alternatively set 1 to 0
+print('\nprogram 3')
+states_3 = ['q0', 'q1']
+tape_3 = ['' for i in range(1000)]
+tape_3[8] = '0'
+tape_3[9] = '1'
+tape_3[10] = '0'
+tape_3[11] = '1'
+tape_3[12] = '1'
+tape_3[13] = '0'
+tape_3[14] = '1'
+tape_3[15] = '0'
+instructions_3 ={('q0','0'):('q0','0','R'),('q0','1'):('q1','0','R'),('q0',''):('H'),
+                 ('q1','0'):('q1','0','R'),('q1','1'):('q0','1', 'R'),('q1',''):('H')}
+
+tm_3 = TM(states_3, 'q0', tape_3, 8, instructions_3)
+print(tm_3.tape[0:50])
+tm_3.exec()
+print(tm_3.cursor)
+print(tm_3.tape[0:50])
