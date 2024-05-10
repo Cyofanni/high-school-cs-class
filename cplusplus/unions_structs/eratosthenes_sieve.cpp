@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define LAST_NUM 100000
+#define LAST_NUM 1000000
 #define SIEVE_SIZE LAST_NUM - 1
 
 typedef struct nat_p_c {
@@ -29,15 +29,16 @@ int main() {
     nums[i - 2].is_prime = true;
   }
 
-  for (unsigned int i = 0; i <= SIEVE_SIZE - 2; i++) {
-    for (unsigned int j = i + 1; j <= SIEVE_SIZE - 1; j++) {
-      if (nums[j].number % nums[i].number == 0) {
-	nums[j].is_prime = false;
-      }
+  for (unsigned int i = 0; i < SIEVE_SIZE; i++) {
+    for (unsigned int j = i + 2 * nums[i].number; j < SIEVE_SIZE;
+         j += nums[i].number) {
+    	nums[j].is_prime = false;
     }
   }
 
   for (unsigned int i = 0; i < SIEVE_SIZE; i++) {
-    print_number_marker(nums[i]);
+    if (nums[i].is_prime) {
+      print_number_marker(nums[i]);
+    }
   }
 }
