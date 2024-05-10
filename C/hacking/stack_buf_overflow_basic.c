@@ -10,5 +10,5 @@ int main(int argc, char* argv[]) {
 
     gets(buffer);
 
-    printf("0x%02x\n", i);
+    printf("0x%X\n", i);
 }
