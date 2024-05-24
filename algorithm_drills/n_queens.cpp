@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define CHESSBOARD_SIZE 14
+#define CHESSBOARD_SIZE 5
 
 void print_chessboard(char board[][CHESSBOARD_SIZE]) {
   for (int i = 0; i < CHESSBOARD_SIZE; i++) {
@@ -22,7 +22,7 @@ void erase_queen(char board[][CHESSBOARD_SIZE], int i, int j) {
 }
 
 bool is_pos_safe(char board[][CHESSBOARD_SIZE], int i, int j) {
-  bool safe = true, inside = true;
+  bool safe = true;
   int col_back = j, col_diag_left = j - 1, col_diag_right = j + 1;
   for (int row = i - 1; row >= 0 && safe; row--){
     if (board[row][col_back] == 'Q' ||
