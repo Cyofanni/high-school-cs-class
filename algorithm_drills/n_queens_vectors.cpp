@@ -23,7 +23,7 @@ void erase_queen(vector<vector<char>>& board, int i, int j) {
 }
 
 bool is_pos_safe(const vector<vector<char>>& board, int i, int j) {
-  bool safe = true, inside = true;
+  bool safe = true;
   int col_back = j, col_diag_left = j - 1, col_diag_right = j + 1;
   for (int row = i - 1; row >= 0 && safe; row--){
     if (board.at(row).at(col_back) == 'Q' ||
