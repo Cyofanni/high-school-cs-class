@@ -22,8 +22,8 @@ def karatsuba(x, y, n):
     k3 = karatsuba(k1, k2, n//2)
     return (10**n)*ac + (10**(n//2))*(k3-ac-bd) + bd
 
-n = 16
-x = 34246454232
+n = 32
+x = 34246454232342
 y = 1151534534987394858762
 r1 = mr(x, y, n)
 r2 = karatsuba(x, y, n)
