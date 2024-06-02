@@ -65,6 +65,15 @@ def kepler_cavalieri_simpson_rule(f, a, b, n):
 
   return s
 
+#kepler-cavalieri-simpson (with optimization)
+def kepler_cavalieri_simpson_rule_opt(f, a, b, n):
+  h = (b - a) / n
+  xs_2 = [a + i * h for i in range(1, n)]
+  ys_2 = [f(x) for x in xs_2]
+  xs_4 = [a + i * h + h / 2 for i in range(n)]
+  ys_4 = [f(x) for x in xs_4]
+  return (h / 6) * (f(a) + f(b) + 2 * sum(ys_2) + 4 * sum(ys_4))
+
 print()
 print('integral(sin(x)dx|(0, 2.5)')
 print('  rectangle rule (left):')
@@ -225,3 +234,24 @@ print('  kepler-cavalieri-simpson rule:')
 print('  ', kepler_cavalieri_simpson_rule(lambda x: math.cos(x) + math.log(x), 10, 40, 10))
 print('  known value:')
 print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(cos(x) + ln(x))dx|(10, 40)')
+print('  kepler-cavalieri-simpson rule (with optimization):')
+print('  ', kepler_cavalieri_simpson_rule_opt(lambda x: math.cos(x) + math.log(x), 10, 40, 20))
+print('  known value:')
+print('  ', float(integrate(cos(x) + log(x), (x, 10, 40))))
+
+print()
+print('integral(1 / x)dx|(2, 10)')
+print('  kepler-cavalieri-simpson rule (with optimization):')
+print('  ', kepler_cavalieri_simpson_rule_opt(lambda x: 1 / x, 2, 10, 100))
+print('  known value:')
+print('  ', float(integrate(1 / x, (x, 2, 10))))
+
+print()
+print('integral(exp(-x ** 2))dx|(1, 3)')
+print('  kepler-cavalieri-simpson rule (with optimization):')
+print('  ', kepler_cavalieri_simpson_rule_opt(lambda x: math.exp(-x ** 2), 1, 3, 4))
+print('  known value:')
+print('  ', float(integrate(exp(-x ** 2), (x, 1, 3))))
