@@ -1,3 +1,5 @@
+#simplified and inefficient implementation
+
 #[[a],[b],[h],[i],[c],[g],[f],[d],[e]]
 #[[a],[b],[h,g],[i],[c],[f],[d],[e]]
 #[[a],[b],[h,g],[i,c],[f],[d],[e]]
