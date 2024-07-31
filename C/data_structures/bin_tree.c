@@ -238,8 +238,8 @@ T_NODE* delete_node(T_NODE* t, T_NODE* z) {
   else {
     T_NODE* z_succ = successor(t, z);
     z -> key = z_succ -> key;
-    printf("z_succ: %d\n", z_succ -> key);
-    delete_node(t, z_succ);
+    z_succ -> parent -> left = NULL;
+    free(z_succ);
   }
 
   return t;
