@@ -1,5 +1,3 @@
-#simplified and inefficient implementation
-
 #[[a],[b],[h],[i],[c],[g],[f],[d],[e]]
 #[[a],[b],[h,g],[i],[c],[f],[d],[e]]
 #[[a],[b],[h,g],[i,c],[f],[d],[e]]
@@ -14,6 +12,7 @@ def find_set(sets, v):
     for i in range(len(sets)):
         if v in sets[i]:
             return i
+
     return -1
 
 def kruskal(g_v, g_e):
@@ -21,19 +20,24 @@ def kruskal(g_v, g_e):
     sets = []
     A = []
     for v in g_v:
-        sets.append([v])
+        sets.append({v})
     print(sets)
     for edge in g_e:
-        u = edge[0]
-        v = edge[1]
+        u, v = edge[0], edge[1]
         i = find_set(sets, u)
         j = find_set(sets, v)
         if i != j:
-            for item in sets[j]:
-                sets[i].append(item)
-            sets.pop(j)
+            sets.append(sets[i].union(sets[j]))
+            if i > j:
+                sets.pop(i)
+                sets.pop(j)
+            else:
+                sets.pop(j)
+                sets.pop(i)
+
             print(sets)
             A.append(u + v)
+
     return A
 
 G_V = {'a','b','h','i','c','g','f','d','e'}
