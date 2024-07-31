@@ -274,3 +274,32 @@ bool bst_search_iter(T_NODE* t, int key) {
 
   return found;
 }
+
+T_NODE* rotate_right(T_NODE* t, T_NODE* y) {
+  if (!t) {
+    return t;
+  }
+
+  T_NODE* x = y -> left;
+
+  if (x) {
+    y -> left = x -> right;
+    x -> parent = y -> parent;
+    x -> right = y;
+
+    if (y -> parent) {
+      if (y == y -> parent -> left) {
+	y -> parent -> left = x;
+      }
+      else {
+	y -> parent -> right = x;
+      }
+    }
+
+    if (x -> parent == NULL) {
+      return x;
+    }
+  }
+
+  return t;
+}

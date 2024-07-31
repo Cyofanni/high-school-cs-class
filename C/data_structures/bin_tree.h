@@ -38,3 +38,5 @@ T_NODE* delete_node(T_NODE*, T_NODE*);
 bool bst_search_rec(T_NODE*, int);
 
 bool bst_search_iter(T_NODE*, int);
+
+T_NODE* rotate_right(T_NODE*, T_NODE*);
