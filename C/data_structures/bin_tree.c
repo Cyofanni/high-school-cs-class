@@ -238,8 +238,8 @@ T_NODE* delete_node(T_NODE* t, T_NODE* z) {
   else {
     T_NODE* z_succ = successor(t, z);
     z -> key = z_succ -> key;
-    z_succ -> parent -> left = NULL;
-    free(z_succ);
+    printf("z_succ: %d\n", z_succ -> key);
+    delete_node(t, z_succ);
   }
 
   return t;
@@ -286,6 +286,35 @@ T_NODE* rotate_right(T_NODE* t, T_NODE* y) {
     y -> left = x -> right;
     x -> parent = y -> parent;
     x -> right = y;
+
+    if (y -> parent) {
+      if (y == y -> parent -> left) {
+	y -> parent -> left = x;
+      }
+      else {
+	y -> parent -> right = x;
+      }
+    }
+
+    if (x -> parent == NULL) {
+      return x;
+    }
+  }
+
+  return t;
+}
+
+T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
+  if (!t) {
+    return t;
+  }
+
+  T_NODE* x = y -> right;
+
+  if (x) {
+    y -> right = x -> left;
+    x -> parent = y -> parent;
+    x -> left = y;
 
     if (y -> parent) {
       if (y == y -> parent -> left) {
