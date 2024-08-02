@@ -13,7 +13,7 @@ def cut_rod(p, n):
 
     return q
 
-def cut_rod_memoized(p, n, r):
+def cut_rod_memoized(p, n, r, s):
     if n == 0:
         return 0
 
@@ -22,12 +22,13 @@ def cut_rod_memoized(p, n, r):
 
     q = -math.inf
     for i in range(n):
-        x = cut_rod_memoized(p, n - i - 1, r)
+        x = cut_rod_memoized(p, n - i - 1, r, s)
         if p[i] + x > q:
             q = p[i] + x
+            s[n - 1] = i + 1
 
     r[n - 1] = q
-    return q
+    return r[n - 1]
 
 def cut_rod_bottomup(p, n):
     revenues = [0] * (n + 1)
@@ -41,9 +42,18 @@ def cut_rod_bottomup(p, n):
 
     return revenues[len(revenues) - 1]
 
-prices = [6, 7, 8, 9, 12, 13, 16, 17, 18, 20, 24, 30]
+def print_solution(s, p, n):
+    while n > 0:
+        print('length: ' + str(s[n - 1]) + ', price: ' + str(p[s[n - 1] - 1]))
+        n = n - s[n - 1]
+    print()
+
+prices = [1,7,7,10,13,15,20,22,25,26,30,32,33,35,40,45,50,55,100,104,105,119,120]
 rod_length = len(prices)
 revenues = [-math.inf] * rod_length
-print(cut_rod_memoized(prices, rod_length, revenues))
+solution = [0] * rod_length
+print(cut_rod_memoized(prices, rod_length, revenues, solution))
+print_solution(solution, prices, rod_length)
 print(cut_rod(prices, rod_length))
 print(cut_rod_bottomup(prices, rod_length))
+
