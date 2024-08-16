@@ -14,7 +14,7 @@ for t in range(1, num_pts):
     xs[t] = xs[t - 1] + h * vs[t - 1]
 
 for i in range(num_pts):
-    print(str(h * i) + '  ' + str(xs[i]) + '  ' + str(vs[i]) + '  ' + str(-xs[i]))
+    print(h * i, xs[i], vs[i], -xs[i])
 
 ts = [h * t for t in range(num_pts)]
 plt.plot(ts, xs)
