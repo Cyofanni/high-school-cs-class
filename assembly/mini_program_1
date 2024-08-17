@@ -1,6 +1,7 @@
-LOAD $6 30
-LOAD $8 $6
-ADD $10 $6 $8
-ADD $0 23 53
-STORE $0 &200
-HALT
+LOAD $6 30 ;comment 1
+LOAD $8 $6 ;comment 2
+ADD $10 $6 $8 ;comment 3
+ADD $0 23 53 ;comment 4
+MULT $3 20 4 ;comment 5
+STORE $3 &200 ;comment 6
+HALT ;comment 7

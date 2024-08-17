@@ -1,0 +1,13 @@
+LOAD $0 9 ;0 n
+LOAD $1 1 ;3 a
+LOAD $2 $0 ;6 i
+LOAD $3 1 ;9 1
+CMP $2 $3 ;12
+JMPL 30 ;15
+MULT $1 $1 $2 ;17
+LOAD $4 1 ;21
+SUB $2 $2 $4 ;24
+JMP 12 ;28
+STORE $1 &255 ;30
+LOAD $15 1 ;33
+HALT ;35

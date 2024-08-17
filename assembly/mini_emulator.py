@@ -2,7 +2,7 @@
 
 import sys
 
-class MINI_CPU:
+class MINI_EMU:
     def __init__(self, instr, reg, mem):
         self.instr = instr
         self.reg = reg
@@ -13,7 +13,8 @@ class MINI_CPU:
         if self.instr[self.IP] == 'LOAD' or self.instr[self.IP] == 'STORE' \
            or self.instr[self.IP] == 'CMP':
             self.IP += 3
-        elif self.instr[self.IP] == 'ADD':
+        elif self.instr[self.IP] == 'ADD' or self.instr[self.IP] == 'MULT' \
+             or self.instr[self.IP] == 'SUB':
             self.IP += 4
         elif self.instr[self.IP] == 'JMP':
             op_instr_addr = int(self.instr[self.IP + 1])
@@ -26,6 +27,12 @@ class MINI_CPU:
                 self.IP += 2
         elif self.instr[self.IP] == 'JMPE':
             if self.cmp_flag == 0:
+                op_instr_addr = int(self.instr[self.IP + 1])
+                self.IP = op_instr_addr
+            else:
+                self.IP += 2
+        elif self.instr[self.IP] == 'JMPNE':
+            if self.cmp_flag != 0:
                 op_instr_addr = int(self.instr[self.IP + 1])
                 self.IP = op_instr_addr
             else:
@@ -77,11 +84,33 @@ class MINI_CPU:
                     imm_src_1 = int(self.instr[self.IP + 2])
                     imm_src_2 = int(self.instr[self.IP + 3])
                     self.reg[reg_dest] = imm_src_1 + imm_src_2
+            elif self.instr[self.IP] == 'MULT':
+                reg_dest = int(self.instr[self.IP + 1][1:])
+                #add values of 2 registers, store result into a register
+                if self.instr[self.IP + 2][0] == '$':
+                    reg_src_1 = int(self.instr[self.IP + 2][1:])
+                    reg_src_2 = int(self.instr[self.IP + 3][1:])
+                    self.reg[reg_dest] = self.reg[reg_src_1] * self.reg[reg_src_2]
+                else:
+                    imm_src_1 = int(self.instr[self.IP + 2])
+                    imm_src_2 = int(self.instr[self.IP + 3])
+                    self.reg[reg_dest] = imm_src_1 * imm_src_2
+            elif self.instr[self.IP] == 'SUB':
+                reg_dest = int(self.instr[self.IP + 1][1:])
+                #add values of 2 registers, store result into a register
+                if self.instr[self.IP + 2][0] == '$':
+                    reg_src_1 = int(self.instr[self.IP + 2][1:])
+                    reg_src_2 = int(self.instr[self.IP + 3][1:])
+                    self.reg[reg_dest] = self.reg[reg_src_1] - self.reg[reg_src_2]
+                else:
+                    imm_src_1 = int(self.instr[self.IP + 2])
+                    imm_src_2 = int(self.instr[self.IP + 3])
+                    self.reg[reg_dest] = imm_src_1 - imm_src_2
             elif self.instr[self.IP] == 'CMP':
                 #compare values of 2 registers, store result in flag
                 reg_1 = int(self.instr[self.IP + 1][1:])
                 reg_2 = int(self.instr[self.IP + 2][1:])
-                self.cmp_flag = reg_1 - reg_2
+                self.cmp_flag = self.reg[reg_1] - self.reg[reg_2]
 
             self.inc_IP()
 
@@ -89,25 +118,26 @@ class MINI_CPU:
         print('REGISTERS\' DUMP:')
         for i in range(len(self.reg)):
             print('R' + str(i), self.reg[i])
-        print('FLAGS:')
+        print('\nFLAGS:')
         print(self.cmp_flag)
+
     def dump_memory(self):
         print('MEMORY DUMP:')
         for i in range(len(self.mem)):
             print('CELL_' + str(i), self.mem[i])
 
-
 f = open(sys.argv[1])
 program = []
 for line in f:
+    index_comment = line.index(';')
+    line = line[0:index_comment]
     program.append(line.split(' '))
 
-program_flat = [item.rstrip() for line in program for item in line]
-print(program_flat)
+program_flat = [item.rstrip() for line in program for item in line if item != '']
 arch_bits = 8
 registers = [0] * 16
 memory = [0] * 2 ** arch_bits
-machine = MINI_CPU(program_flat, registers, memory)
+machine = MINI_EMU(program_flat, registers, memory)
 machine.run()
 machine.dump_registers()
 print()

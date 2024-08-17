@@ -1,0 +1,7 @@
+LOAD $0 10 ;0
+LOAD $1 10 ;3
+CMP $0 $1 ;6
+JMPNE 16 ;9
+STORE $0 &50 ;11
+JMP 6 ;14
+HALT ;16

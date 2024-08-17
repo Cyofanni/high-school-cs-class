@@ -1,0 +1,12 @@
+LOAD $0 2 ;0 base
+LOAD $1 5 ;3 exponent
+LOAD $2 1 ;6 accumulator
+LOAD $3 1 ;9 counter
+CMP $3 $1 ;12
+JMPG 30 ;15
+MULT $2 $2 $0 ;17
+LOAD $4 1 ;21 increment
+ADD $3 $3 $4 ;24 increment
+JMP 12 ;28
+STORE $2 &136 ;30
+HALT ;33
