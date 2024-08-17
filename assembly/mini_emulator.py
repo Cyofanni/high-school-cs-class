@@ -82,9 +82,9 @@ class MINI_CPU:
                 reg_1 = int(self.instr[self.IP + 1][1:])
                 reg_2 = int(self.instr[self.IP + 2][1:])
                 self.cmp_flag = reg_1 - reg_2
-                
+
             self.inc_IP()
-            
+
     def dump_registers(self):
         print('REGISTERS\' DUMP:')
         for i in range(len(self.reg)):
@@ -97,21 +97,17 @@ class MINI_CPU:
             print('CELL_' + str(i), self.mem[i])
 
 
-f = open(sys.argv[2])
+f = open(sys.argv[1])
+program = []
 for line in f:
-    print(line)
-            
+    program.append(line.split(' '))
+
+program_flat = [item.rstrip() for line in program for item in line]
+print(program_flat)
 arch_bits = 8
-program = ['LOAD', '$6', '30',
-           'LOAD', '$8', '$6',
-           'ADD', '$10', '$6', '$8',
-           'ADD', '$0', '23', '53',
-           'STORE', '$0', '&200',
-           'CMP', '$2', '$8',
-           'HALT']
 registers = [0] * 16
 memory = [0] * 2 ** arch_bits
-machine = MINI_CPU(program, registers, memory)
+machine = MINI_CPU(program_flat, registers, memory)
 machine.run()
 machine.dump_registers()
 print()

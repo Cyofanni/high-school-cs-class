@@ -1,0 +1,6 @@
+LOAD $6 30
+LOAD $8 $6
+ADD $10 $6 $8
+ADD $0 23 53
+STORE $0 &200
+HALT
