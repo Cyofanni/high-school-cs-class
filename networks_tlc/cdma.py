@@ -2,11 +2,7 @@
 import numpy as np
 
 def negate_chipcode(chipcode):
-  chipcode_neg = np.zeros(len(chipcode))
-  for i in range(len(chipcode)):
-    chipcode_neg[i] = -1 * chipcode[i]
-
-  return chipcode_neg
+  return -1 * chipcode
 
 def norm_inner_prod(S, T):
   return (1/len(S)) * sum(S * T)
