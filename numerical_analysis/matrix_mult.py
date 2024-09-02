@@ -13,6 +13,13 @@ def matrix_mult_brute_force(A, B):
 
     return C
 
+def matrix_mult_bf_1(A, B):
+  n_rows_A, n_cols_A = A.shape[0], A.shape[1]
+  n_rows_B, n_cols_B = B.shape[0], B.shape[1]
+  n_rows_C, n_cols_C = n_rows_A, n_cols_B
+  C = [[sum([A[i][k]*B[k][j] for k in range(n_cols_A)]) for j in range(n_cols_C)] for i in range(n_rows_A)]
+  return C
+
 def split_n_2(A):
     n = A.shape[0]
     return A[0:n//2, 0:n//2], A[0:n//2, n//2:n], A[n//2:n, 0:n//2], A[n//2:n, n//2:n]
@@ -53,7 +60,7 @@ def strassen(A, B):
 
     return np.vstack((np.hstack((c_00,c_01)), np.hstack((c_10,c_11))))
 
-size = 256
+size = 1024
 A = np.array([[random.randint(0, size) for _ in range(size)] for _ in range(size)])
 B = np.array([[random.randint(0, size) for _ in range(size)] for _ in range(size)])
 
@@ -78,9 +85,16 @@ end_time = time.time()
 print('brute-force:', end_time - start_time)
 
 start_time = time.time()
+res5 = matrix_mult_bf_1(A, B)
+end_time = time.time()
+print('brute-force 1:', end_time - start_time)
+
+start_time = time.time()
 res2 = matrix_mult_div_n_con(A, B)
 end_time = time.time()
 print('divide-and-conquer:', end_time - start_time)
 
+print(np.all(res1 == res4) == True)
 print(np.all(res3 == res4) == True)
 print(np.all(res2 == res4) == True)
+print(np.all(res5 == res1) == True)
