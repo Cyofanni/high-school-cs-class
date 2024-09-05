@@ -6,13 +6,15 @@ def extract_min(d):
 
 def huffman(table):
   tree = dict()
+  i = 0
   for j in range(1, len(table)):
     x = extract_min(table)
     y = extract_min(table)
     sum_freqs = x[1] + y[1]
-    node_label = 'n_' + str(sum_freqs)
+    node_label = 'n_' + str(sum_freqs) + '_' + str(i)
     table[node_label] = sum_freqs
     tree[node_label] = [x[0], y[0]]
+    i += 1
 
   return tree
 
