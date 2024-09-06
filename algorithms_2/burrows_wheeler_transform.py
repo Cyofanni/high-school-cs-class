@@ -33,6 +33,21 @@ def bwt(w):
 
     return bwt_str, rank
 
+def bwt_inverse(bwt, rank):
+    i = bwt.index('$')
+    res = str()
+    res += bwt[i]
+    r = rank[i]
+
+    for _ in range(len(bwt) - 1):
+        res += bwt[r]
+        r = rank[r]
+
+    return res[::-1]
+
 data = 'rutabaga$'
 print(rotations_sorted(data))
-print(bwt(data))
+bwt, rank = bwt(data)
+print(bwt)
+print(rank)
+print(bwt_inverse(bwt, rank))
