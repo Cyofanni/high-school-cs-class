@@ -7,7 +7,7 @@ def extract_min(d):
 def huffman(table):
   tree = dict()
   i = 0
-  for j in range(1, len(table)):
+  while len(table) >= 2:
     x = extract_min(table)
     y = extract_min(table)
     sum_freqs = x[1] + y[1]
