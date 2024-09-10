@@ -3,7 +3,7 @@
 using namespace std;
 
 double c2f(double deg_c) {
-  return deg_c * 1.8+ 32;
+  return deg_c * 1.8 + 32;
 }
 
 double f2c(double deg_f) {
