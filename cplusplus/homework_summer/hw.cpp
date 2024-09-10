@@ -92,4 +92,5 @@ int* erat_sieve(int num_max) {
 }
 
 int main(int argc, char* argv[]) {
+
 }
