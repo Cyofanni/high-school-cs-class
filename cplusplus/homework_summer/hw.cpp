@@ -74,7 +74,7 @@ void coeffs_bin_power(double a, double b, int n) {
 
 int* erat_sieve(int num_max) {
   int size = num_max - 1;
-  int* nums = new int[num_max - 1];
+  int* nums = new int[size];
   for (int i = 0; i < size; i++) {
     nums[i] = i + 2;
   }
