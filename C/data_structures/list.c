@@ -9,7 +9,7 @@ L_NODE* insert_back_iter(L_NODE* n, int key) {
   }
   L_NODE* it = n;
   while (it -> next) {
-    it = it->next;
+    it = it -> next;
   }
   it -> next = (L_NODE*) malloc(sizeof(L_NODE));
   it -> next -> key = key;
