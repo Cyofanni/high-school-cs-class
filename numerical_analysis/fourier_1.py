@@ -11,10 +11,10 @@ def f3(t):
   return t
 
 def integral_0(f, t):
-  return np.trapz(f(t), t)
+  return np.trapezoid(f(t), t)
 
 def integral_1(f, g, k, omega, t):
-  return np.trapz(f(t)*g(k*omega*t), t)
+  return np.trapezoid(f(t)*g(k*omega*t), t)
 
 def fourier_series(f, T, n):
   omega = (2*np.pi)/T
