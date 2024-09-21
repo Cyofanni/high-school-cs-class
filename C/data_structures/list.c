@@ -1,18 +1,22 @@
 #include "list.h"
 
+L_NODE* alloc_node(int key) {
+  L_NODE* new_node = (L_NODE*) malloc(sizeof(L_NODE));
+  new_node -> key = key;
+  new_node -> next = NULL;
+  return new_node;
+}
+
 L_NODE* insert_back_iter(L_NODE* n, int key) {
+  L_NODE* new_node = alloc_node(key);
   if (!n) {
-    L_NODE* new_node = (L_NODE*) malloc(sizeof(L_NODE));
-    new_node -> key = key;
-    new_node -> next = NULL;
     return new_node;
   }
   L_NODE* it = n;
   while (it -> next) {
     it = it -> next;
   }
-  it -> next = (L_NODE*) malloc(sizeof(L_NODE));
-  it -> next -> key = key;
+  it -> next = new_node;
   return n;
 }
 
@@ -144,7 +148,7 @@ void bubble_sort(L_NODE* n) {
 	  sorted = false;
 	  int t = it -> key;
 	  it -> key = it -> next -> key;
-	  it -> next -> key= t;
+	  it -> next -> key = t;
 	}
 	it = it -> next;
       }

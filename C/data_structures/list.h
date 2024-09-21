@@ -13,6 +13,8 @@ typedef struct list_node_d {
   struct list_node_d* next;
 } L_NODE_D;
 
+L_NODE* alloc_node(int);
+
 L_NODE* insert_back_iter(L_NODE*, int);
 
 L_NODE* insert_back_rec(L_NODE*, int);
