@@ -8,6 +8,9 @@ int main() {
   }
   print_rec(l);
   putchar('\n');
+  l = remove_all_iter(l);
+  print_rec(l);
+  putchar('\n');
 
   T_NODE* t = NULL;
   t = bst_parent_insert_iter(t, 11);

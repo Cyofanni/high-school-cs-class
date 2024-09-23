@@ -27,6 +27,8 @@ L_NODE* insert_rec(L_NODE*, int, int);
 
 L_NODE* remove_iter(L_NODE*, int);
 
+L_NODE* remove_all_iter(L_NODE*);
+
 int lin_search_iter(L_NODE*, int);
 
 L_NODE* node_at_ind(L_NODE*, int);

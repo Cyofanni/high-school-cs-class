@@ -98,6 +98,17 @@ L_NODE* remove_iter(L_NODE* n, int pos) {
   return n;
 }
 
+L_NODE* remove_all_iter(L_NODE* it) {
+  L_NODE* n;
+  while (it) {
+    n = it -> next;
+    free(it);
+    it = n;
+  }
+
+  return NULL;
+}
+
 int lin_search_iter(L_NODE* n, int key) {
   int key_ind = -1;
   int ind = 0;
