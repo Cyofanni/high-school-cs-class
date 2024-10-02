@@ -18,9 +18,9 @@ void display_bit_layout(int val, int is_float) {
   if (!is_float) {
     printf("the integer number is: %d\n", val);
   }
-  const size_t sz_bits_and_spaces = sz_int_bits + sz_int_bits / 4 - 1; 
+  const size_t sz_bits_and_spaces = sz_int_bits + sz_int_bits / 4 - 1;
   char bits[sz_bits_and_spaces]; //make room for spaces, 1 space between each nibble
-  
+
   unsigned int count;
   int curr_right_shifted = val;
   unsigned int bits_index = sz_bits_and_spaces - 1;
@@ -84,6 +84,6 @@ int main(int argc, char *argv[]) {
   printf("the real number is %f\n", fb.f);
   display_bit_layout(fb.ui, 1);
   puts("\n\n");
-  display_bit_layout(-14, 0); 
+  display_bit_layout(-14, 0);
   return 0;
 }
