@@ -1,21 +1,32 @@
-data = '_QQQCZZ_'
-print(data)
+def compress(data):
+  sz = len(data)
+  runs = []
+  count = 0
+  result = ''
 
-runs = []
-
-count = 0
-for i in range(1, len(data)):
-    if data[i] != data[i - 1]:
-        if (data[i - 1] != '_'):
-            runs.append((data[i - 1], count))
+  for i in range(sz):
+    if i >= 1 and data[i] != data[i - 1]:
+        runs.append((data[i - 1], count))
         count = 0
     count += 1
 
-print(runs)
+  if sz > 0:
+    runs.append((data[sz - 1], count))
 
-compressed_data = ''
-for item in runs:
-    compressed_data += str(item[1])
-    compressed_data += item[0]
+  for item in runs:
+    result += item[0] + str(item[1])
 
-print(compressed_data)
+  return result, runs
+
+def decompress(runs):
+  data = ''
+
+  for run in runs:
+    data += run[0] * run[1]
+
+  return data
+
+data = input()
+data_comp = compress(data)
+print(data_comp)
+print(decompress(data_comp[1]))
