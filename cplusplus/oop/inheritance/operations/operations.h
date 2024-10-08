@@ -3,7 +3,7 @@ typedef enum {
   MUL_OP
 } op_type;
 
-typedef struct operation{
+typedef struct operation {
   op_type t;
   int operand1;
   int operand2;
