@@ -12,7 +12,7 @@ private:
   int size;
 public:
   square(int size) {
-    this->size = size;
+    this -> size = size;
   }
   void draw() const {
     for (int i = 1; i <= size; i++) {
@@ -39,7 +39,7 @@ private:
   int size;
 public:
   line(int size) {
-    this->size = size;
+    this -> size = size;
   }
   void draw() const {
     for (int i = 1; i <= size; i++) {
@@ -54,7 +54,7 @@ private:
   int size;
 public:
   chessboard(int size) {
-    this->size = size;
+    this -> size = size;
   }
   void draw() const {
     for (int i = 1; i <= size; i++) {
