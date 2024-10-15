@@ -99,7 +99,7 @@ while peg3 != peg3_solution:
             elif len(peg2) == 0:
                 peg2.append(peg1.pop())
                 print('move disk from peg 1 to peg 2')
-                
+
     pick_smallest_disk = not(pick_smallest_disk)
     move_counter += 1
 
