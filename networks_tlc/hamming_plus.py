@@ -1,5 +1,3 @@
-import random
-
 def get_r(m):
     r = m
     while m + r + 1 <= 2 ** r:
