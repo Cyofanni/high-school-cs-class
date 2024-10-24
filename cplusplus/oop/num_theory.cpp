@@ -3,6 +3,7 @@
 using namespace std;
 
 class integer {
+  friend ostream& operator<<(ostream&, const integer&);
   private:
     long int i;
   public:
@@ -75,6 +76,11 @@ class integer {
     }
 };
 
+ostream& operator<<(ostream& o, const integer& i) {
+  o << i.i;
+  return o;
+}
+
 int main() {
   integer i1(3);
   cout << setprecision(16) << i1.sqrt_() << endl;
@@ -82,4 +88,6 @@ int main() {
     cout << i << "    " << integer(i).phi_euler().get_i() << endl;
   }
   integer(1024).factorize();
+  integer i2(13), i3(16);
+  cout << i2 << endl << i3 << endl;
 }
