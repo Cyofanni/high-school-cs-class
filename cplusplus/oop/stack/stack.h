@@ -10,8 +10,9 @@ class stack {
   ~stack();
   bool is_full() const;
   bool is_empty() const;
+  int get_size() const;
   void push(int);
-  void pop();
+  int pop();
   void print() const;
 };
 

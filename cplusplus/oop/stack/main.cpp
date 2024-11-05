@@ -1,22 +1,31 @@
-#include "stack.h"
+#include "queue_2_stacks.h"
+#include <iostream>
+using namespace std;
 
 int main(int argc, char* argv[]) {
-  stack st = stack(8);
-  st.push(7);
-  st.push(9);
-  st.push(10);
-  st.push(1);
-  st.push(7);
-  st.push(0);
-  st.push(7);
-  st.push(6);
-  st.pop();
-  st.pop();
-  st.pop();
-  st.pop();
-  st.pop();
-  st.pop();
-  st.pop();
+  q_2_s q(8);
+  q.enqueue(4);
+  q.enqueue(8);
+  q.enqueue(10);
+  q.enqueue(12);
+  q.enqueue(13);
+  q.enqueue(15);
+  q.enqueue(17);
+  q.enqueue(20);
+  q.enqueue(32);
 
-  st.print();
+  q.print();
+  cout << endl << endl;
+  q.dequeue();
+  q.print();
+  cout << endl << endl;
+  q.dequeue();
+  q.print();
+  cout << endl << endl;
+  q.dequeue();
+  q.print();
+  cout << endl << endl;
+  q.dequeue();
+  q.print();
+  cout << endl << endl;
 }

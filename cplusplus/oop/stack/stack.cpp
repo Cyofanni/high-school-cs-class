@@ -24,6 +24,10 @@ bool stack::is_empty() const {
   return top == -1;
 }
 
+int stack::get_size() const {
+  return size;
+}
+
 void stack::push(int item) {
   if (!is_full()) {
     top++;
@@ -35,10 +39,12 @@ void stack::push(int item) {
   }
 }
 
-void stack::pop() {
+int stack::pop() {
   if (!is_empty()) {
+    int top_item = ar[top];
     top--;
     size--;
+    return top_item;
   }
   else {
     throw stack_empty_exception();
