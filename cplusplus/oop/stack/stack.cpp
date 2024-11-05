@@ -2,6 +2,9 @@
 #include <iostream>
 using namespace std;
 
+stack::stack() {
+}
+
 stack::stack(int cap) {
   capacity = cap;
   size = 0;
@@ -13,11 +16,11 @@ stack::~stack() {
   delete[] ar;
 }
 
-bool stack::is_full() {
+bool stack::is_full() const {
   return top == capacity - 1;
 }
 
-bool stack::is_empty() {
+bool stack::is_empty() const {
   return top == -1;
 }
 
@@ -42,7 +45,7 @@ void stack::pop() {
   }
 }
 
-void stack::print() {
+void stack::print() const {
   for (int i = top; i >= 0; i--) {
     cout << ar[i] << endl;
     cout << "____" << endl;

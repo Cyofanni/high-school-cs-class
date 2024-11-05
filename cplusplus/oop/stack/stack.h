@@ -5,13 +5,14 @@ class stack {
   int capacity;
   int size;
  public:
+  stack();
   stack(int);
   ~stack();
-  bool is_full();
-  bool is_empty();
+  bool is_full() const;
+  bool is_empty() const;
   void push(int);
   void pop();
-  void print();
+  void print() const;
 };
 
 class stack_full_exception {
