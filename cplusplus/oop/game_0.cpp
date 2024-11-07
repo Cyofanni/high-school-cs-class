@@ -15,7 +15,7 @@ public:
     this -> ulc_y = ulc_y;
   }
 
-  int get_size() {
+  int get_size() const {
     return size;
   }
 
@@ -47,7 +47,7 @@ public:
     this -> ulc_y++;
   }
 
-  void draw() {
+  void draw() const {
     for (int i = 0; i < ulc_y; i++) {
       cout << endl;
     }
