@@ -336,3 +336,17 @@ T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
 
   return t;
 }
+
+bool match(T_NODE* t1, T_NODE* t2) {
+  if (!t1 && !t2) {
+    return true;
+  }
+  if ((!t1 && t2) || (t1 && !t2)) {
+    return false;
+  }
+  if (t1 -> key != t2 -> key) {
+    return false;
+  }
+  return match(t1 -> left, t2 -> left) &&
+         match(t1 -> right, t2 -> right);
+}
