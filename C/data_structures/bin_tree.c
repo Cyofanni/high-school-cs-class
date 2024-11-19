@@ -342,3 +342,27 @@ int max_bin_tree(T_NODE* t, int max) {
   int max_right = max_bin_tree(t -> right, max);
   return max_left >= max_right ? max_left : max_right;
 }
+
+int min_bin_tree(T_NODE* t, int min) {
+  if (!t) {
+    return min;
+  }
+  if (t -> key < min) {
+    min = t -> key;
+  }
+  int min_left = min_bin_tree(t -> left, min);
+  int min_right = min_bin_tree(t -> right, min);
+  return min_left <= min_right ? min_left : min_right;
+}
+
+bool verify_bst(T_NODE* t) {
+  if (!t) {
+    return true;
+  }
+  int max_left = max_bin_tree(t -> left, INT_MIN);
+  int min_right = min_bin_tree(t -> right, INT_MAX);
+  if (t -> key < max_left || t -> key >= min_right) {
+    return false;
+  }
+  return verify_bst(t -> left) && verify_bst(t -> right);
+}

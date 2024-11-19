@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 
 typedef struct tree_node {
   int key;
@@ -44,3 +45,7 @@ T_NODE* rotate_left(T_NODE*, T_NODE*);
 bool match(T_NODE*, T_NODE*);
 
 int max_bin_tree(T_NODE*, int);
+
+int min_bin_tree(T_NODE*, int);
+
+bool verify_bst(T_NODE*);
