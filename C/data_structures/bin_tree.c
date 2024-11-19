@@ -123,26 +123,6 @@ int sum_keys(T_NODE* t) {
   return t -> key + sum_keys(t -> left) + sum_keys(t -> right);
 }
 
-bool verify_BST(T_NODE* t) {
-  if (!t) {
-    return true;
-  }
-  if (!t -> left && !t -> right) {
-    return true;
-  }
-  if (t -> left) {
-    if (t -> key < t -> left -> key) {
-      return false;
-    }
-  }
-  if (t -> right) {
-    if (t -> key >= t -> right -> key) {
-      return false;
-    }
-  }
-  return verify_BST(t -> left) && verify_BST(t -> right);
-}
-
 int count_nodes(T_NODE* t) {
   if (!t){
     return 0;
