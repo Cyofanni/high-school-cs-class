@@ -96,7 +96,7 @@ void print_tree(T_NODE* t) {
     putchar('_');
     return;
   }
-  printf("%d", t -> key);
+  printf("%d:%d", t -> key, t -> height);
   putchar('(');
   print_tree(t -> left);
   putchar(',');
@@ -365,4 +365,33 @@ bool verify_bst(T_NODE* t) {
     return false;
   }
   return verify_bst(t -> left) && verify_bst(t -> right);
+}
+
+void set_heights_1(T_NODE* t) {
+  if (!t) {
+    return;
+  }
+  t -> height = height(t);
+  set_heights_1(t -> left);
+  set_heights_1(t -> right);
+}
+
+void set_heights_2(T_NODE* t) {
+  if (!t) {
+    return;
+  }
+  if (!t -> left && !t -> right) {
+    t -> height = 0;
+    return;
+  }
+  set_heights_2(t -> left);
+  set_heights_2(t -> right);
+  int hl = 0, hr = 0;
+  if (t -> left) {
+    hl = t -> left -> height;
+  }
+  if (t -> right) {
+    hr = t -> right -> height;
+  }
+  t -> height = hl >= hr ? hl + 1 : hr + 1;
 }
