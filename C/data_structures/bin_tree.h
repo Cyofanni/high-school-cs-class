@@ -42,3 +42,5 @@ T_NODE* rotate_right(T_NODE*, T_NODE*);
 T_NODE* rotate_left(T_NODE*, T_NODE*);
 
 bool match(T_NODE*, T_NODE*);
+
+int max_bin_tree(T_NODE*, int);

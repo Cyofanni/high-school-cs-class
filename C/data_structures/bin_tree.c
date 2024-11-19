@@ -330,3 +330,15 @@ bool match(T_NODE* t1, T_NODE* t2) {
   return match(t1 -> left, t2 -> left) &&
          match(t1 -> right, t2 -> right);
 }
+
+int max_bin_tree(T_NODE* t, int max) {
+  if (!t) {
+    return max;
+  }
+  if (t -> key > max) {
+    max = t -> key;
+  }
+  int max_left = max_bin_tree(t -> left, max);
+  int max_right = max_bin_tree(t -> right, max);
+  return max_left >= max_right ? max_left : max_right;
+}
