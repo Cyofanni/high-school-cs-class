@@ -4,7 +4,7 @@
 #include <limits.h>
 
 typedef struct tree_node {
-  int key, height;
+  int key, height, size;
   struct tree_node* left;
   struct tree_node* right;
   struct tree_node* parent;
@@ -53,3 +53,5 @@ bool verify_bst(T_NODE*);
 void set_heights_1(T_NODE*);
 
 void set_heights_2(T_NODE*);
+
+void set_sizes(T_NODE*);

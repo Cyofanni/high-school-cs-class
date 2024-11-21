@@ -96,7 +96,7 @@ void print_tree(T_NODE* t) {
     putchar('_');
     return;
   }
-  printf("%d:%d", t -> key, t -> height);
+  printf("%d:%d:%d", t -> key, t -> height, t -> size);
   putchar('(');
   print_tree(t -> left);
   putchar(',');
@@ -394,4 +394,24 @@ void set_heights_2(T_NODE* t) {
     hr = t -> right -> height;
   }
   t -> height = hl >= hr ? hl + 1 : hr + 1;
+}
+
+void set_sizes(T_NODE* t) {
+  if (!t) {
+    return;
+  }
+  if (!t -> left && !t -> right) {
+    t -> size = 1;
+    return;
+  }
+  set_sizes(t -> left);
+  set_sizes(t -> right);
+  int sz_l = 0, sz_r = 0;
+  if (t -> left) {
+    sz_l = t -> left -> size;
+  }
+  if (t -> right) {
+    sz_r = t -> right -> size;
+  }
+  t -> size = sz_l + sz_r + 1;
 }
