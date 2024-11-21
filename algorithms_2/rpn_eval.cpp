@@ -70,7 +70,7 @@ void stack::print() const {
 
 int rpn_eval(char* str) {
   int str_size = strlen(str);
-  stack s(strlen(str));
+  stack s(str_size);
   int res = 0;
 
   for (int i = 0; i < str_size; i++) {
