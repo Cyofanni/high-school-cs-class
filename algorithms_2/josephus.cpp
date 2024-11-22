@@ -39,12 +39,15 @@ int josephus(int n) {
   }
 
   int i = 0;
-  int next = 0;
+  int next = 0, last_alive;
 
   while (next != -1) {
     //only living soldiers can kill
     if (soldiers[i] != 0) {
       next = get_next_and_kill(soldiers, n, i);
+      if (next == -1) {
+        last_alive = soldiers[i];
+      }
       i = (next + 1) % n;
     }
     else {
@@ -52,19 +55,12 @@ int josephus(int n) {
     }
   }
 
-  //only one survivor
-  for (int i = 0; i < n; i++) {
-    if (soldiers[i] != 0) {
-      return soldiers[i];
-    }
-  }
-
   delete[] soldiers;
-  return -1;
+  return last_alive;
 }
 
 int main() {
-  for (int i = 1; i <= 30; i++) {
+  for (int i = 1; i <= 50; i++) {
     cout << i << " " << josephus(i) << endl;
   }
 }
