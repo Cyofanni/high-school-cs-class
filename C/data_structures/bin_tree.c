@@ -343,6 +343,25 @@ int max_bin_tree(T_NODE* t, int max) {
   return max_left >= max_right ? max_left : max_right;
 }
 
+int max_bin_tree_alt(T_NODE* t) {
+  if (!t) {
+    return INT_MIN;
+  }
+  if (!t -> left && !t -> right) {
+    return t -> key;
+  }
+  int max = t -> key;
+  int max_left = max_bin_tree_alt(t -> left);
+  if (max_left > max) {
+    max = max_left;
+  }
+  int max_right = max_bin_tree_alt(t -> right);
+  if (max_right > max) {
+    max = max_right;
+  }
+  return max;
+}
+
 int min_bin_tree(T_NODE* t, int min) {
   if (!t) {
     return min;

@@ -46,6 +46,8 @@ bool match(T_NODE*, T_NODE*);
 
 int max_bin_tree(T_NODE*, int);
 
+int max_bin_tree_alt(T_NODE*);
+
 int min_bin_tree(T_NODE*, int);
 
 bool verify_bst(T_NODE*);
