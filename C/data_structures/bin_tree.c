@@ -259,64 +259,6 @@ bool bst_search_iter(T_NODE* t, int key) {
   return found;
 }
 
-T_NODE* rotate_right(T_NODE* t, T_NODE* y) {
-  if (!t) {
-    return t;
-  }
-
-  T_NODE* x = y -> left;
-
-  if (x) {
-    y -> left = x -> right;
-    x -> parent = y -> parent;
-    x -> right = y;
-
-    if (y -> parent) {
-      if (y == y -> parent -> left) {
-	y -> parent -> left = x;
-      }
-      else {
-	y -> parent -> right = x;
-      }
-    }
-
-    if (x -> parent == NULL) {
-      return x;
-    }
-  }
-
-  return t;
-}
-
-T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
-  if (!t) {
-    return t;
-  }
-
-  T_NODE* x = y -> right;
-
-  if (x) {
-    y -> right = x -> left;
-    x -> parent = y -> parent;
-    x -> left = y;
-
-    if (y -> parent) {
-      if (y == y -> parent -> left) {
-	y -> parent -> left = x;
-      }
-      else {
-	y -> parent -> right = x;
-      }
-    }
-
-    if (x -> parent == NULL) {
-      return x;
-    }
-  }
-
-  return t;
-}
-
 bool match(T_NODE* t1, T_NODE* t2) {
   if (!t1 && !t2) {
     return true;
