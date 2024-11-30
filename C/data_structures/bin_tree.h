@@ -38,10 +38,6 @@ bool bst_search_rec(T_NODE*, int);
 
 bool bst_search_iter(T_NODE*, int);
 
-T_NODE* rotate_right(T_NODE*, T_NODE*);
-
-T_NODE* rotate_left(T_NODE*, T_NODE*);
-
 bool match(T_NODE*, T_NODE*);
 
 int max_bin_tree(T_NODE*, int);
@@ -57,3 +53,5 @@ void set_heights_1(T_NODE*);
 void set_heights_2(T_NODE*);
 
 void set_sizes(T_NODE*);
+
+T_NODE* rotate_left(T_NODE*, T_NODE*);

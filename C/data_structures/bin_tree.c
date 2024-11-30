@@ -96,7 +96,7 @@ void print_tree(T_NODE* t) {
     putchar('_');
     return;
   }
-  printf("%d:%d:%d", t -> key, t -> height, t -> size);
+  printf("%d", t -> key);
   putchar('(');
   print_tree(t -> left);
   putchar(',');
@@ -375,4 +375,47 @@ void set_sizes(T_NODE* t) {
     sz_r = t -> right -> size;
   }
   t -> size = sz_l + sz_r + 1;
+}
+
+T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
+  if (!t || !y) {
+    return NULL;
+  }
+  if (!y -> parent) {
+    return t;
+  }
+  if (y == y -> parent -> left) {
+    return t;
+  }
+
+  bool is_left_subtree;
+  T_NODE* x = y -> parent;
+
+  if (x -> parent && x == x -> parent -> left) {
+    is_left_subtree = true;
+  }
+  else {
+    is_left_subtree = false;
+  }
+
+  y -> parent = x -> parent;
+  T_NODE* beta = y -> left;
+  y -> left = x;
+  x -> parent = y;
+
+  if (y -> parent) {
+    if (is_left_subtree) {
+      y -> parent -> left = y;
+    }
+    else {
+      y -> parent -> right = y;
+    }
+  }
+  x -> right = beta;
+
+  if (!y -> parent) {
+    return y;
+  }
+
+  return t;
 }
