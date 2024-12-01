@@ -378,8 +378,11 @@ void set_sizes(T_NODE* t) {
 }
 
 T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
-  if (!t || !y) {
+  if (!t) {
     return NULL;
+  }
+  if (!y) {
+    return t;
   }
   if (!y -> parent) {
     return t;
@@ -412,6 +415,52 @@ T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
     }
   }
   x -> right = beta;
+
+  if (!y -> parent) {
+    return y;
+  }
+
+  return t;
+}
+
+T_NODE* rotate_right(T_NODE* t, T_NODE* y) {
+  if (!t) {
+    return NULL;
+  }
+  if (!y) {
+    return t;
+  }
+  if (!y -> parent) {
+    return t;
+  }
+  if (y == y -> parent -> right) {
+    return t;
+  }
+
+  bool is_left_subtree;
+  T_NODE* x = y -> parent;
+
+  if (x -> parent && x == x -> parent -> left) {
+    is_left_subtree = true;
+  }
+  else {
+    is_left_subtree = false;
+  }
+
+  y -> parent = x -> parent;
+  T_NODE* beta = y -> right;
+  y -> right = x;
+  x -> parent = y;
+
+  if (y -> parent) {
+    if (is_left_subtree) {
+      y -> parent -> left = y;
+    }
+    else {
+      y -> parent -> right = y;
+    }
+  }
+  x -> left = beta;
 
   if (!y -> parent) {
     return y;

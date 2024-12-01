@@ -55,3 +55,5 @@ void set_heights_2(T_NODE*);
 void set_sizes(T_NODE*);
 
 T_NODE* rotate_left(T_NODE*, T_NODE*);
+
+T_NODE* rotate_right(T_NODE*, T_NODE*);
