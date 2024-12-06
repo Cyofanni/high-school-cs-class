@@ -461,8 +461,65 @@ T_NODE* rotate_right(T_NODE* t, T_NODE* y) {
     }
   }
   x -> left = beta;
+  if (beta) {
+    beta -> parent = x;
+  }
 
   if (!y -> parent) {
+    return y;
+  }
+
+  return t;
+}
+
+T_NODE* rotate_left_1(T_NODE* t, T_NODE* y) {
+  //if either t or y are NULL, return t
+  if (!t || !y) {
+    return t;
+  }
+  //if pivot is root, do nothing
+  if (y == t) {
+    return t;
+  }
+  //if pivot is left child of its parent, do nothing
+  if (y == y -> parent -> left) {
+    return t;
+  }
+
+  //x is parent of y
+  T_NODE* x = y -> parent;
+  //xp is parent of x and grandparent of y
+  T_NODE* xp = x -> parent;
+  //beta is left child of y
+  T_NODE* beta = y -> left;
+
+  bool is_x_left_child = false;
+
+  if (xp && x == xp -> left) {
+    is_x_left_child = true;
+  }
+  else if (xp && x == xp -> right) {
+    is_x_left_child = false;
+  }
+
+  y -> parent = xp;
+  if (xp && is_x_left_child == true) {
+    xp -> left = y;
+  }
+  else if (xp && is_x_left_child == false) {
+    xp -> right = y;
+  }
+
+  y -> left = x;
+  x -> parent = y;
+
+  x -> right = beta;
+
+  if (beta) {
+    beta -> parent = x;
+  }
+
+  if (!xp) {
     return y;
   }
 
