@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
   printf("%u / %u    ", root -> right -> right -> left -> num,
                         root -> right -> right -> left -> den);
   printf("%u / %u\n\n", root -> right -> right -> right -> num,
-                      root -> right -> right -> right -> den);
+                        root -> right -> right -> right -> den);
 
   print_cw_tree(root);
   putchar('\n');
