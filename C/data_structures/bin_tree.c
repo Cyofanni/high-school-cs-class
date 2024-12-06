@@ -415,6 +415,9 @@ T_NODE* rotate_left(T_NODE* t, T_NODE* y) {
     }
   }
   x -> right = beta;
+  if (beta) {
+    beta -> parent = x;
+  }
 
   if (!y -> parent) {
     return y;
