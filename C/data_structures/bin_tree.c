@@ -96,7 +96,7 @@ void print_tree(T_NODE* t) {
     putchar('_');
     return;
   }
-  printf("%d", t -> key);
+  printf("%d:%p", t -> key, t);
   putchar('(');
   print_tree(t -> left);
   putchar(',');
@@ -527,4 +527,16 @@ T_NODE* rotate_left_1(T_NODE* t, T_NODE* y) {
   }
 
   return t;
+}
+
+T_NODE* deep_copy_tree(T_NODE* t) {
+  if (!t) {
+    return NULL;
+  }
+  T_NODE* t_copy = (T_NODE*) malloc(sizeof(T_NODE));
+  t_copy -> key = t -> key;
+  t_copy -> left = deep_copy_tree(t -> left);
+  t_copy -> right = deep_copy_tree(t -> right);
+
+  return t_copy;
 }
