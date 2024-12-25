@@ -19,7 +19,7 @@ df_dt_B = (np.sin(t) - np.sin(t - delta_t)) / delta_t
 pyplot.plot(t, df_dt_B, 'b')
 
 #central-finite-difference derivative
-df_dt_C = (np.sin(t + delta_t) - np.sin(t - delta_t)) / (2 *delta_t)
+df_dt_C = (np.sin(t + delta_t) - np.sin(t - delta_t)) / (2 * delta_t)
 pyplot.plot(t, df_dt_C, 'y')
 
 pyplot.show()
