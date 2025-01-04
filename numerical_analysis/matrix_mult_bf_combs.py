@@ -21,7 +21,7 @@ for col_C2 in range(C2.shape[1]):
 print(C2)
 print()
 
-#given k, then fill C by rows
+#given k, then fill C by rows (1 component of dot product per iteration)
 C3 = np.array([[0] * A.shape[0]] * B.shape[1])
 for ind_vec in range(A.shape[1]):
   for row_C3 in range(C3.shape[0]):
