@@ -2,7 +2,7 @@
 console.log(function(x) { return x; } (42));
 
 //?
-console.log(function(x, y) { return x * y; } (6, 7))
+console.log(function(x, y) { return x * y; } (6, 7));
 
 //?
 var g = function(a, b) {
