@@ -1,15 +1,18 @@
+#compute or of clause
 def or_vect(b_vals):
   res = False
   for val in b_vals:
     res = res or val
   return res
 
+#and-aggregate clauses
 def and_vect(b_vals):
   res = True
   for val in b_vals:
     res = res and val
   return res
 
+#generate assignments as a binary counter
 def next_assignment(variables):
   i = len(variables) - 1
   while i >= 0 and variables[i] == True:
@@ -18,35 +21,39 @@ def next_assignment(variables):
   if i >= 0:
     variables[i] = True
 
+#apply assignment
 def assign(formula, variables, assignment):
   num_vars = len(variables)
-  vars_vals = {}
 
   #generate dict with assignment (var:val)
+  vars_vals = {}
   i = 0
   for var in variables:
     vars_vals[var] = assignment[i]
     i += 1
 
-  res = True    #result of () and () and () ...
-  for clause in formula:
+  res = True    #final result of: (...) and (...) and (...) ...
+  for clause in formula:    #formula is a list of clauses (list of lists)
+    #apply values of assignment to single clause
     vals = []
     for var in clause:
+      #value depends on variable form (positive or negated)
       if var[0] == 'x':    #positive
         vals.append(vars_vals[var])
       elif var[0] == '-':    #negated
         vals.append(not(vars_vals[var[1:]]))
-    clause_res = or_vect(vals)    #result of (x or y or z)
-    res = res and clause_res
+    clause_res = or_vect(vals)    #evaluate current clause
+    res = res and clause_res    #and-accumulate clauses
 
   return res
 
+#try all assignments
 def three_sat(formula, variables):
   num_vars = len(variables)
   assignment = [False] * len(variables)
   for _ in range(2 ** num_vars):
-    print(assignment, end = ' => ')
-    print(assign(formula, variables, assignment))
+    print(assignment, end = ' => ')    #print current assignment
+    print(assign(formula, variables, assignment))    #print result of assignment
     next_assignment(assignment)
 
 #(x0 or x1 or not(x2)) and (x2 or not(x3) ...) ...
