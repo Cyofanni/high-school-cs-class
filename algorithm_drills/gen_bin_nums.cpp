@@ -18,8 +18,7 @@ void gen_bin_numbers(int n, vector<int> number) {
 }
 
 int main(int argc, char* argv[]) {
-  vector<int> num;
-  gen_bin_numbers(5, {});
+  gen_bin_numbers(3, {});
   for (auto num : numbers) {
     for (auto i : num) {
       cout << i;
