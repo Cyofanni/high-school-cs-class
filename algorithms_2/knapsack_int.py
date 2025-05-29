@@ -42,9 +42,7 @@ def knapsack_int_memoized(items, i, weight):
 def knapsack_int_bottom_up(items, weight):
     n = len(items)
     items_1 = [None] + items    #index from 1
-    print(items_1)
     dp = [[0] * (weight + 1) for _ in range(n + 1)]
-    print(dp)
     for i in range(1, n + 1):    #loop on items
         for j in range(1, weight + 1):    #loop on possible available weights
             if items_1[i][1] > j:
@@ -53,28 +51,31 @@ def knapsack_int_bottom_up(items, weight):
                 v0 = items_1[i][0] + dp[i - 1][j - items_1[i][1]]
                 v1 = dp[i - 1][j]
                 dp[i][j] = max(v0, v1)
-    print('####')
-    for row in dp:
-        print(row)
-    print('####')
+
+    return dp[n][weight]
 
 #(value, weight)
-items = [(random.randint(1,100),random.randint(1,100)) for _ in range(5)]
-print(items)
+items = [(random.randint(1,100),random.randint(1,100)) for _ in range(30)]
 print('total value: ', end = '')
 print(sum(item[0] for item in items))
 W = 10000
+
 start = time.time()
 res0 = knapsack_int_memoized(items, len(items) - 1, W)
 end = time.time()
 print(res0)
 print('time: ', end - start)
+print()
+
 start = time.time()
-res1 = knapsack_int(items, 0, W)
+res1 = knapsack_int_bottom_up(items, W)
 end = time.time()
 print(res1)
 print('time: ', end - start)
+print()
 
-items = [(5,4),(4,3),(3,2),(2,1)]
-W = 6
-knapsack_int_bottom_up(items, W)
+start = time.time()
+res2 = knapsack_int(items, 0, W)
+print(res2)
+end = time.time()
+print('time: ', end - start)
