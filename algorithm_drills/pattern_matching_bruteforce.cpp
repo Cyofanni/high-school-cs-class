@@ -9,7 +9,7 @@ int pattern_match_bruteforce(const string& text, const string& pattern) {
     bool found_match = true;
     for (int j = 0; j < pattern.size() && found_match; j++) {
       if (pattern.at(j) != text.at(i + j)) {
-	found_match = false;
+        found_match = false;
       }
     }
     if (found_match) {
