@@ -138,7 +138,7 @@ L_NODE* node_at_ind(L_NODE* n, int index) {
 }
 
 bool is_sorted(L_NODE* n) {
-  if (!n && !n -> next) {
+  if (!n || !n -> next) {
     return true;
   }
   if (n -> key > n -> next -> key) {
