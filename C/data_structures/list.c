@@ -160,7 +160,7 @@ void bubble_sort(L_NODE* n) {
           int t = it -> key;
           it -> key = it -> next -> key;
           it -> next -> key = t;
-	}
+        }
         it = it -> next;
       }
     }
