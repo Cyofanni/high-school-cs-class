@@ -155,13 +155,13 @@ void bubble_sort(L_NODE* n) {
       it = n;
       sorted = true;
       while (it -> next != NULL) {
-	if (it -> key > it -> next -> key) {
-	  sorted = false;
-	  int t = it -> key;
-	  it -> key = it -> next -> key;
-	  it -> next -> key = t;
+        if (it -> key > it -> next -> key) {
+          sorted = false;
+          int t = it -> key;
+          it -> key = it -> next -> key;
+          it -> next -> key = t;
 	}
-	it = it -> next;
+        it = it -> next;
       }
     }
   }
