@@ -96,7 +96,7 @@ void print_tree(T_NODE* t) {
     putchar('_');
     return;
   }
-  printf("%d:%p", t -> key, t);
+  printf("%d", t -> key);
   putchar('(');
   print_tree(t -> left);
   putchar(',');
@@ -185,10 +185,10 @@ T_NODE* delete_node(T_NODE* t, T_NODE* z) {
   if (!z -> left && !z -> right) {
     if (z -> parent) {
       if (z == z -> parent -> left) {
-	z -> parent -> left = NULL;
+        z -> parent -> left = NULL;
       }
       else if (z == z -> parent -> right) {
-	z -> parent -> right = NULL;
+        z -> parent -> right = NULL;
       }
       free(z);
     }
@@ -539,4 +539,40 @@ T_NODE* deep_copy_tree(T_NODE* t) {
   t_copy -> right = deep_copy_tree(t -> right);
 
   return t_copy;
+}
+
+T_NODE* rotate_left(T_NODE* t, T_NODE* z) {
+  if (!t) {
+    return NULL;
+  }
+  if (!z) {
+    return t;
+  }
+  if (!z -> parent) {
+    return t;
+  }
+  if (z == z -> parent -> left) {
+    return t;
+  }
+
+  T_NODE* x = z -> parent;
+  T_NODE* xp = x -> parent;
+
+  bool is_x_left_subtree;
+  if (xp && x == xp -> left) {
+    is_x_left_subtree = true;
+  }
+  else if (xp && x == xp -> right) {
+    is_x_left_subtree = false;
+  }
+  z -> parent = xp;
+  if (xp && is_x_left_subtree) {
+    xp -> left = z;
+  }
+  else if (xp && !is_x_left_subtree) {
+    xp -> right = z;
+  }
+
+  T_NODE* beta = z -> left;
+  
 }
