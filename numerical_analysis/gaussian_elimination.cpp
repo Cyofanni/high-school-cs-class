@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
       double l = A_b[j][i] / u;
       //loop on the row
       for (int k = i; k <= n_cols - 1; k++) {
-	A_b[j][k] = A_b[j][k] - l * A_b[i][k];
+        A_b[j][k] = A_b[j][k] - l * A_b[i][k];
       }
     }
   }
