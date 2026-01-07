@@ -19,10 +19,10 @@ int main() {
   for (int i = 1; i < NUM_ROWS_PASCAL; i++) {
     for (int j = first_index_col; j <= last_index_col; j += 2) {
       if (j >= 1 && j <= 13) {
-	pascal_triangle[i][j] = pascal_triangle[i - 1][j - 1] + pascal_triangle[i - 1][j + 1];
+        pascal_triangle[i][j] = pascal_triangle[i - 1][j - 1] + pascal_triangle[i - 1][j + 1];
       }
       else {
-	pascal_triangle[i][j] = 1;
+        pascal_triangle[i][j] = 1;
       }
     }
     first_index_col--;
