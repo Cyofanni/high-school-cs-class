@@ -574,5 +574,4 @@ T_NODE* rotate_left(T_NODE* t, T_NODE* z) {
   }
 
   T_NODE* beta = z -> left;
-  
 }
