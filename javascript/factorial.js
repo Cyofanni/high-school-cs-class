@@ -5,6 +5,6 @@ function factorial(num) {
     return num * factorial(num - 1);
 }
 
-for (var num = 0; num < 30; num++) {
+for (let num = 0; num < 30; num++) {
     console.log("factorial of ", num, " is: ", factorial(num))
 }

@@ -1,4 +1,4 @@
-var odd_numbers = [1, 3, 5, 7, 9, 11];
+let odd_numbers = [1, 3, 5, 7, 9, 11];
 console.log(odd_numbers);
 odd_numbers[8] = 17;
 console.log(odd_numbers);
@@ -8,7 +8,7 @@ console.log(odd_numbers);
   [ 1, 3, 5, 7, 9, 11, <2 empty items>, 17 ]
 */
 
-var song = {
+let song = {
     title: "let it be",
     author: "the beatles"
 }

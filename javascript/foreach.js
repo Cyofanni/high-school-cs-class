@@ -2,7 +2,7 @@ function print_times_2(x) {
     console.log(x * 2);
 }
 
-var ls = [5, 4, 3, 76, 54, 34, 23, 1];
+let ls = [5, 4, 3, 76, 54, 34, 23, 1];
 
 //print double of each number in ls, using a named function
 console.log("Example 1: ");

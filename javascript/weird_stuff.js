@@ -5,7 +5,7 @@ console.log(function(x) { return x; } (42));
 console.log(function(x, y) { return x * y; } (6, 7));
 
 //?
-var g = function(a, b) {
+let g = function(a, b) {
     return a + b;
 }
 console.log(g(5));
@@ -21,20 +21,20 @@ function f(a, b, c) {
 console.log(f(5, 8, 7));
 
 //?
-var nums = [1, 2, 6, 7, 8];
-var s = nums.reduce((x, y) => { return x * y; });
+let nums = [1, 2, 6, 7, 8];
+let s = nums.reduce((x, y) => { return x * y; });
 console.log(s);
 
 //?
-var ls = [0, 1];
-for (var i = 2; i < 10; i++) {
+let ls = [0, 1];
+for (let i = 2; i < 10; i++) {
     ls.push(ls[i - 1] + ls[i - 2]);
 }
 console.log(ls);
 
 //?
-var ls1 = [1, 3, 5, 7];
-var ls2 = [1, 3, 5, 7];
+let ls1 = [1, 3, 5, 7];
+let ls2 = [1, 3, 5, 7];
 console.log(ls1 == ls2);
 
 //?
