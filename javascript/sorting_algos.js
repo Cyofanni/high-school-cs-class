@@ -19,8 +19,8 @@ function selection_sort(array) {
             if (array[j] < min) {
                 min = array[j];
                 pos_min = j;
-	    }
-	}
+            }
+        }
         let t = array[i];
         array[i] = array[pos_min];
         array[pos_min] = t;
