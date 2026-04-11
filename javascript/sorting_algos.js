@@ -13,17 +13,17 @@ function insertion_sort(arr) {
 
 function selection_sort(array) {
     for (let i = 0; i <= array.length - 1; i++) {
-	let min = array[i];
-	let pos_min = i;
-	for (var j = i + 1; j < array.length; j++) {
-	    if (array[j] < min) {
-		min = array[j];
-		pos_min = j;
+        let min = array[i];
+        let pos_min = i;
+        for (var j = i + 1; j < array.length; j++) {
+            if (array[j] < min) {
+                min = array[j];
+                pos_min = j;
 	    }
 	}
-	let t = array[i];
-	array[i] = array[pos_min];
-	array[pos_min] = t;
+        let t = array[i];
+        array[i] = array[pos_min];
+        array[pos_min] = t;
     }
 }
 
