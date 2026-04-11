@@ -23,3 +23,12 @@ console.log(ns);
 //flat
 matr = [[4, 5, 3], [3, 4, 10], [53, 46, 4], [6, 3, 91]];
 console.log(matr.flat());
+
+//filter on objects
+people = [{name:'giovanna',surname:'rossi'},{name:'mario',surname:'rossini'},
+          {name:'mario',surname:'verdi'}];
+console.log(people.filter((p) => p.surname[0] == 'r'));
+
+//every
+nums = [1, 5, 4, 3, -6];
+console.log(nums.every(x => x >= 0));
