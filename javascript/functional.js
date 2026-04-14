@@ -1,6 +1,6 @@
 //reduce
 nums = [7, 4, 2, 5, 1, 9, 46];
-s = nums.reduce((x, y) => { return x + y; });
+s = nums.reduce((x, y) => x + y, 10);
 console.log(s);
 p = nums.reduce((x, y) => { return x * y; });
 console.log(p);
@@ -32,3 +32,17 @@ console.log(people.filter((p) => p.surname[0] == 'r'));
 //every
 nums = [1, 5, 4, 3, -6];
 console.log(nums.every(x => x >= 0));
+
+//keep only people whose surname is longer than 5
+
+//keep only non-negative arrays of an array of arrays
+
+//return sums of non-negative arrays of an array of arrays
+
+//return max sum of array of an array of arrays
+
+//convert array of numbers into array of strings
+
+//convert array of numbers into array of arrays of prime factors
+
+//keep only prime numbers
