@@ -45,9 +45,43 @@ def erat_sieve(n):
 
   return zip(numbers, primalities)
 
+def rep_sq(a, exp_bin):
+  res = 1
+  for bit in exp_bin:
+    if bit == 0:
+      res = res * res
+    else:
+      res = res * res * a
+  return res
+
+def gcd_ext_eucl_iter(a, b):
+  triples = []
+  quotients = []
+
+  while b != 0:
+    triples.append([0, 0, 0])
+    quotients.append(a // b)
+    r = a % b
+    a = b
+    b = r
+
+  triples.append([a, 1, 0])
+  for i in range(len(triples) - 2, -1, -1):
+    triples[i][0] = triples[i + 1][0]
+    triples[i][1] = triples[i + 1][2]
+    triples[i][2] = triples[i + 1][1] - quotients[i] * triples[i + 1][2]
+
+  return triples[0]
+
+
+print(gcd_ext_eucl_iter(99, 78))
+print()
+r = rep_sq(3, [1,0,0,1,1])
+print(r, 3 ** 19)
+print()
 #print(is_prime(34598672233309548723054829365798672361154598672239919548453054829365734592387867236231))
 print(factorize(4))
-sv = erat_sieve(1000)
+sv = erat_sieve(10)
 
 for pair in sv:
   print(pair)
