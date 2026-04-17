@@ -34,15 +34,38 @@ nums = [1, 5, 4, 3, -6];
 console.log(nums.every(x => x >= 0));
 
 //keep only people whose surname is longer than 5
+people = [{name:'giovanna',surname:'rossi'},{name:'mario',surname:'rossini'},
+          {name:'mario',surname:'verdi'}];
+console.log(people.filter(p => p.surname.length > 5));
 
 //keep only non-negative arrays of an array of arrays
+matrix = [[3, 4, 2], [-1, -4, 3], [6, 4, 0]];
+console.log(matrix.filter(arr => arr.every(x => x >= 0)));
 
 //return sums of non-negative arrays of an array of arrays
-
-//return max sum of array of an array of arrays
+sums = matrix.filter(a => a.every(b => b >= 0)).map(c => c.reduce((d, e) => d + e));
+console.log(sums);
 
 //convert array of numbers into array of strings
+nums = [6, 5, 4];
+console.log(nums.map(x => x + ''));
 
 //convert array of numbers into array of arrays of prime factors
+function factorize(n) {
+  let factors = [];
+  while (n != 1) {
+    for (let d = 2; d <= n; d++) {
+      if (n % d == 0) {
+        n = n / d;
+        factors.push(d);
+        d = n + 1;
+      }
+    }
+  }
+  return factors;
+}
+
+nums = [13, 53, 2645, 300, 42, 6274, 11, 79, 97, 4651, 6200093];
+console.log(nums.map(factorize));
 
 //keep only prime numbers
