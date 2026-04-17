@@ -46,7 +46,7 @@ console.log(matrix.filter(arr => arr.every(x => x >= 0)));
 console.log(matrix.map(arr => arr.reduce((a, b) => a + b)));
 
 //check if every sum is positive
-console.log(matrix.map(arr => arr.reduce((a, b) => a + b)).every(x => x >= -3));
+console.log(matrix.map(arr => arr.reduce((a, b) => a + b)).every(x => x >= 0));
 
 //return sums of non-negative arrays of an array of arrays
 sums = matrix.filter(a => a.every(b => b >= 0)).map(c => c.reduce((d, e) => d + e));
