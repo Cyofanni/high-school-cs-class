@@ -75,3 +75,9 @@ nums = [13, 53, 2645, 300, 42, 6274, 11, 79, 97, 4651, 6200093];
 console.log(nums.map(factorize));
 
 //keep only prime numbers
+
+//return sum of all elements of matrix
+
+//return sum of all negative elements of matrix
+
+//keep only palindrome strings from an array of strings
