@@ -24,17 +24,22 @@ def merge_sort_iterative(A):
 
   step = 2
   i = 1
-  while i <= h:
+  for _ in range(int(h)):
     j = 0
     while j <= n - step:
-      l, h = j, j + step - 1
-      m = (l + h) // 2
-      merge(A, j, m, j + step - 1)
+      low, high = j, j + step - 1
+      middle = (low + high) // 2
+      merge(A, low, middle, high)
       j += step
     i += 1
     step *= 2
 
-a = [random.randint(0, 2 ** 12) for _ in range(2 ** 12)]
+ar = [4, 5, 3, 6, 1, 2, 3, 4, -2, 5, 8, 1, -3, 2, -3, 10]
+print(ar)
+print(sorted(ar))
+merge_sort_iterative(ar)
+print(ar)
+a = [random.randint(0, 2 ** 8) for _ in range(2 ** 8)]
 a_cp = a.copy()
 merge_sort_iterative(a)
 print(a == sorted(a_cp))
