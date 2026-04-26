@@ -81,3 +81,7 @@ console.log(nums.map(factorize));
 //return sum of all negative elements of matrix
 
 //keep only palindrome strings from an array of strings
+
+//[1, 3, 5] => [[1], [3], [5]]
+
+//[1, 3, 2, 4, 7] => [1, 3, [2], [4], 7] //make array only even items
