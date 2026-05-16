@@ -24,7 +24,7 @@ void erase_queen(char board[][CHESSBOARD_SIZE], int i, int j) {
 bool is_pos_safe(char board[][CHESSBOARD_SIZE], int i, int j) {
   bool safe = true;
   int col_back = j, col_diag_left = j - 1, col_diag_right = j + 1;
-  for (int row = i - 1; row >= 0 && safe; row--){
+  for (int row = i - 1; row >= 0 && safe; row--) {
     if (board[row][col_back] == 'Q' ||
 	(col_diag_left >= 0 && board[row][col_diag_left] == 'Q') ||
 	(col_diag_right < CHESSBOARD_SIZE && board[row][col_diag_right] == 'Q')) {
