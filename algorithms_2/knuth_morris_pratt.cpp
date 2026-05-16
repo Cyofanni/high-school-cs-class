@@ -8,7 +8,6 @@ int max(int a, int b) {
 
 void pref_table(char* pattern, int* table, int size) {
   for (int i = 1; i < size; i++) {
-    int len = 0;
     for (int j = 0; j <= i && pattern[j] == pattern[i + j]; j++) {
       table[i + j] = max(table[i + j], j + 1);
     }
