@@ -45,36 +45,36 @@ int five_queens(char board[B_SIZE][B_SIZE]) {
       place_queen(board, i, j);
       i++;
       for (int j = 0; j < B_SIZE; j++) {
-	if (is_safe(board, i, j)) {
-	  place_queen(board, i, j);
-	  i++;
-	  for (int j = 0; j < B_SIZE; j++) {
-	    if (is_safe(board, i, j)) {
-	      place_queen(board, i, j);
-	      i++;
-	      for (int j = 0; j < B_SIZE; j++) {
-		if (is_safe(board, i, j)) {
-		  place_queen(board, i, j);
-		  i++;
-		  for (int j = 0; j < B_SIZE; j++) {
-		    if (is_safe(board, i, j)) {
-		      place_queen(board, i, j);
-		      print_chessboard(board);
-		      solutions++;
-		      erase_queen(board, i, j);
-		    }
-		  }
-		  i--;
-		  erase_queen(board, i, j);
-		}
-	      }
+        if (is_safe(board, i, j)) {
+          place_queen(board, i, j);
+          i++;
+          for (int j = 0; j < B_SIZE; j++) {
+            if (is_safe(board, i, j)) {
+              place_queen(board, i, j);
+              i++;
+              for (int j = 0; j < B_SIZE; j++) {
+                if (is_safe(board, i, j)) {
+                  place_queen(board, i, j);
+                  i++;
+                  for (int j = 0; j < B_SIZE; j++) {
+                    if (is_safe(board, i, j)) {
+                      place_queen(board, i, j);
+                      print_chessboard(board);
+                      solutions++;
+                      erase_queen(board, i, j);
+                    }
+                  }
+                  i--;
+                  erase_queen(board, i, j);
+                }
+              }
 	      i--;
 	      erase_queen(board, i, j);
-	    }
-	  }
-	  i--;
-	  erase_queen(board, i, j);
-	}
+            }
+          }
+          i--;
+          erase_queen(board, i, j);
+        }
       }
       i--;
       erase_queen(board, i, j);
