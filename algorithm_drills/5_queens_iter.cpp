@@ -68,8 +68,8 @@ int five_queens(char board[B_SIZE][B_SIZE]) {
                   erase_queen(board, i, j);
                 }
               }
-	      i--;
-	      erase_queen(board, i, j);
+              i--;
+              erase_queen(board, i, j);
             }
           }
           i--;
