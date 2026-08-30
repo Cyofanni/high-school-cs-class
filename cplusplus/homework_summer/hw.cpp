@@ -83,7 +83,7 @@ int* erat_sieve(int num_max) {
     int num = nums[i];
     if (num >= 2) {
       for (int j = i + num; j < size; j += num) {
-	nums[j] = 0;
+        nums[j] = 0;
       }
     }
   }
