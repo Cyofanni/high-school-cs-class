@@ -11,7 +11,7 @@ int main() {
     bool found = false;
     for (int j = 0; j < 10 && found == false; j++) {
       if (arr1[i] == arr2[j]) {
-	found = true;
+        found = true;
       }
     }
     if (found == false) {
